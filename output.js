@@ -1,4 +1,4 @@
-//Mon Jul 15 2024 02:09:36 GMT+0000 (Coordinated Universal Time)
+//Mon Jul 15 2024 02:10:14 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
 NAME = "红旗智联";
