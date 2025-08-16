@@ -1,674 +1,495 @@
-//Sat Aug 16 2025 17:00:23 GMT+0000 (Coordinated Universal Time)
+//Sat Aug 16 2025 17:07:44 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-var _0xf55ceb = 9;
-const APPID = "wxc8c90950cf4546f6";
-_0xf55ceb = "dnefgj".split("").reverse().join("");
-const BASE_URL = "https://vip.foxech.com/index.php/api";
-const SECRET_KEY = "f05df1ea".split("").reverse().join("");
-var _0xf6a0e = 14;
-const args = process.argv.slice(2);
-_0xf6a0e = 13;
-const getArg = name => {
-  const index = args.indexOf(`--${name}`);
-  return index !== -1 && args[index + 1] ? args[index + 1] : null;
-};
-var _0xeg5cf = 9;
-const cmdWxid = getArg("dixw".split("").reverse().join(""));
-_0xeg5cf = "qknpff";
-var _0xg883ae;
-const isDebug = args.includes("--debug");
-_0xg883ae = 2;
-const wxidList = cmdWxid || process.env.TXX_WXID || "";
-function parseWxidList(wxidString) {
-  if (!wxidString) return [];
-  return wxidString.split("\n").map(wxid => wxid.trim()).filter(wxid => wxid.length > 0).filter(wxid => !wxid.startsWith("#"));
+const NOTIFY_ENABLE = 0,
+  $ = new Env("富士instax玩拍由我俱乐部");
+let ckName = "instax",
+  userCookie = checkEnv(($.isNode() ? process.env[ckName] : $.getdata(ckName)) || "");
+const notify = $.isNode() ? require("./sendNotify") : "",
+  wxcode = $.isNode() ? require("./wxcode") : null,
+  fs = $.isNode() ? require("fs") : null,
+  path = $.isNode() ? require("path") : null,
+  WXID_RAW = process.env.TXX_WXID || "",
+  WXID_LIST = WXID_RAW ? WXID_RAW.split("\n").filter(_0x2d5f1b => _0x2d5f1b.trim()) : [],
+  APPID = "wx3cb572fbf3aa30c8",
+  TOKEN_CACHE_FILE = "fushi_tokens.json";
+!(async () => {
+  console.log("==================================================\n 脚本执行 - 北京时间(UTC+8): " + new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 28800000).toLocaleString() + " \n==================================================");
+  $.log("\n=== 测试不带Authorization的接口请求 ===");
+  await testWithoutAuth();
+  await $.wait(2000);
+  if (WXID_LIST.length > 0 && wxcode) {
+    $.log("\n=== 使用微信code登录模式，共" + WXID_LIST.length + "个账号 ===");
+    for (let _0x2577f2 = 0; _0x2577f2 < WXID_LIST.length; _0x2577f2++) {
+      {
+        const _0x5a4273 = WXID_LIST[_0x2577f2].trim();
+        if (!_0x5a4273) continue;
+        $.log("\n🚀 账号【" + (_0x2577f2 + 1) + "】开始处理: " + _0x5a4273);
+        const _0xca4a2b = loadTokenCache();
+        if (_0xca4a2b[_0x5a4273]) {
+          $.log("找到缓存的token，验证有效性...");
+          $.token = _0xca4a2b[_0x5a4273];
+          const _0x15372b = await validateToken();
+          _0x15372b ? $.log("缓存token有效，直接使用") : ($.log("缓存token已失效，重新获取..."), await loginWithWxCode(_0x5a4273));
+        } else $.log("缓存中没有找到token，开始微信code登录"), await loginWithWxCode(_0x5a4273);
+        if ($.token && $.userId) {
+          await signIn();
+          await $.wait(3000);
+          await chance();
+        }
+        _0x2577f2 < WXID_LIST.length - 1 && (await $.wait(5000));
+      }
+    }
+  } else {
+    if (!userCookie?.["length"]) return console.log("没有找到CK哦");
+    let _0x2fbfa0 = 1;
+    for (let _0x49b086 of userCookie) {
+      $.log("\n🚀 user:【" + _0x2fbfa0 + "】 start work\n");
+      _0x2fbfa0++;
+      $.token = _0x49b086;
+      $.ckStatus = true;
+      $.userId = null;
+      await me();
+      await $.wait(3000);
+      $.userId && (await signIn(), await $.wait(3000), await chance());
+    }
+  }
+  if (NOTIFY_ENABLE === 1) await $.sendMsg($.logs.join("\n"));else {
+    $.log("通知已关闭，不发送通知");
+  }
+})().catch(_0x17be9b => console.log(_0x17be9b)).finally(() => $.done());
+function loadTokenCache() {
+  try {
+    if (fs && fs.existsSync(TOKEN_CACHE_FILE)) {
+      {
+        const _0x396d26 = fs.readFileSync(TOKEN_CACHE_FILE, "utf8"),
+          _0x28875c = JSON.parse(_0x396d26);
+        $.log("从缓存文件加载token: " + TOKEN_CACHE_FILE);
+        return _0x28875c;
+      }
+    }
+  } catch (_0x4be76b) {
+    $.log("读取token缓存失败: " + _0x4be76b.message);
+  }
+  return {};
 }
-const wxcode = require("./wxcode");
-var _0xc8794d = 8;
-const fs = require("fs");
-_0xc8794d = 7;
-var _0x_0x595;
-const path = require("path");
-_0x_0x595 = 4;
-var _0x9932b = 15;
-const crypto = require("crypto");
-_0x9932b = 15;
-var _0x7c98d;
-const scriptName = path.basename(__filename, ".js");
-_0x7c98d = 9;
-const TOKEN_CACHE_FILE = path.join(__dirname, `${scriptName}_tokens.json`);
-function generateToken(timestamp, openid = "") {
-  var _0x24de = 6;
-  const _0x7958f = timestamp + SECRET_KEY + openid;
-  _0x24de = 0;
-  return crypto.createHash("5dm".split("").reverse().join("")).update(_0x7958f).digest("hex");
+function saveTokenCache(_0x436ba9, _0x12381f) {
+  try {
+    if (!fs) return;
+    let _0x1041b3 = {};
+    if (fs.existsSync(TOKEN_CACHE_FILE)) {
+      {
+        const _0x554afa = fs.readFileSync(TOKEN_CACHE_FILE, "utf8");
+        _0x1041b3 = JSON.parse(_0x554afa);
+      }
+    }
+    _0x1041b3[_0x436ba9] = _0x12381f;
+    fs.writeFileSync(TOKEN_CACHE_FILE, JSON.stringify(_0x1041b3, null, 2));
+    $.log("token已保存到缓存文件: " + TOKEN_CACHE_FILE);
+  } catch (_0x310984) {
+    $.log("保存token缓存失败: " + _0x310984.message);
+  }
 }
-async function apiRequest(url, data = {}, openid = "") {
-  return new Promise((resolve, reject) => {
-    var _0x1eb = 15;
-    const _0x4_0xg05 = Date.now();
-    _0x1eb = 5;
-    const _0x1gcg = generateToken(_0x4_0xg05, openid);
-    var _0xa415b = 5;
-    const _0x2614ea = {
-      "timestamp": _0x4_0xg05,
-      "token": _0x1gcg,
-      "openid": openid,
-      "seat_code": "",
-      ...data
+async function loginWithWxCode(_0x5af22d) {
+  try {
+    $.log("开始获取微信code...");
+    const _0x30b794 = await wxcode.getWxCode(_0x5af22d, APPID);
+    if (!_0x30b794.success) {
+      $.log("获取微信code失败: " + _0x30b794.error);
+      return;
+    }
+    $.log("获取微信code成功: " + _0x30b794.code);
+    const _0x2cf135 = await getTokenWithCode(_0x30b794.code);
+    if (_0x2cf135.success) $.token = _0x2cf135.token, $.log("获取token成功，保存到缓存..."), saveTokenCache(_0x5af22d, _0x2cf135.token), $.log("开始获取用户信息..."), await me();else {
+      $.log("获取token失败: " + _0x2cf135.error);
+    }
+  } catch (_0x387903) {
+    $.log("微信code登录过程出错: " + _0x387903.message);
+  }
+}
+async function getTokenWithCode(_0x3a40cc) {
+  let _0x525c20 = {
+    "url": "https://instax.app.xcxd.net.cn/api/token",
+    "method": "POST",
+    "headers": {
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Accept-Language": "zh-CN,zh;q=0.9",
+      "Connection": "keep-alive",
+      "Content-Type": "application/json",
+      "Host": "instax.app.xcxd.net.cn",
+      "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x18003137) NetType/WIFI Language/zh_CN"
+    },
+    "data": JSON.stringify({
+      "mp_login_code": _0x3a40cc,
+      "grant_type": "mp_login_code"
+    })
+  };
+  try {
+    let {
+      data: _0x12e704
+    } = await Request(_0x525c20);
+    if (_0x12e704?.["error"] === false && _0x12e704.data?.["token"]) {
+      $.log("获取token成功");
+      return {
+        "success": true,
+        "token": _0x12e704.data.token,
+        "refresh_token": _0x12e704.data.refresh_token,
+        "expires_in": _0x12e704.data.expires_in
+      };
+    } else {
+      return {
+        "success": false,
+        "error": _0x12e704?.["message"] || "获取token失败"
+      };
+    }
+  } catch (_0x844bda) {
+    return {
+      "success": false,
+      "error": "请求失败: " + _0x844bda.message
     };
-    _0xa415b = 2;
-    const _0xab22e = {
-      "url": BASE_URL + url,
+  }
+}
+async function testWithoutAuth() {
+  $.log("测试不带Authorization的接口请求...");
+  let _0x4432d9 = {
+      "url": "https://instax.app.xcxd.net.cn/api/me",
+      "method": "GET",
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Host": "instax.app.xcxd.net.cn",
+        "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x18003137) NetType/WIFI Language/zh_CN"
+      }
+    },
+    {
+      data: _0xc2402a
+    } = await Request(_0x4432d9);
+  $.log("不带Authorization请求结果: " + JSON.stringify(_0xc2402a));
+  return _0xc2402a;
+}
+async function validateToken() {
+  try {
+    {
+      let _0x12f2b4 = {
+          "url": "https://instax.app.xcxd.net.cn/api/me",
+          "method": "GET",
+          "headers": {
+            "Accept": "*/*",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept-Language": "zh-CN,zh;q=0.9",
+            "Authorization": "Bearer " + $.token,
+            "Connection": "keep-alive",
+            "Content-Type": "application/json",
+            "Host": "instax.app.xcxd.net.cn",
+            "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/157/page-frame.html",
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x18003137) NetType/WIFI Language/zh_CN"
+          }
+        },
+        {
+          data: _0x35fec0
+        } = await Request(_0x12f2b4);
+      if (_0x35fec0 && _0x35fec0.error === false && _0x35fec0.data && _0x35fec0.data.user) {
+        $.userId = _0x35fec0.data.user.id;
+        return true;
+      } else return false;
+    }
+  } catch (_0x38f613) {
+    $.log("验证token时出错: " + _0x38f613.message);
+    return false;
+  }
+}
+async function me() {
+  let _0x34d38c = {
+      "url": "https://instax.app.xcxd.net.cn/api/me",
+      "method": "GET",
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Authorization": "Bearer " + $.token,
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Host": "instax.app.xcxd.net.cn",
+        "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309092b) XWEB/8555",
+        "xweb_xhr": "1"
+      }
+    },
+    {
+      data: _0x4c9cc9
+    } = await Request(_0x34d38c);
+  if (_0x4c9cc9?.["error"] == false && _0x4c9cc9.data?.["user"]) $.userId = _0x4c9cc9.data.user.id, $.log("[" + _0x4c9cc9.data.user.nickname + "] 当前积分[" + _0x4c9cc9.data.user.credit + "] 等级[" + _0x4c9cc9.data.user.user_level_id + "]");else {
+    {
+      const _0xf4a1c7 = _0x4c9cc9?.["message"] || "token可能已失效";
+      $.log("获取信息 失败[" + _0xf4a1c7 + "]");
+    }
+  }
+}
+async function signIn() {
+  let _0x32872d = {
+      "url": "https://instax.app.xcxd.net.cn/api/user/" + $.userId + "/sign-activity/23/sign",
       "method": "POST",
       "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Authorization": "Bearer " + $.token,
+        "Connection": "keep-alive",
         "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.49(0x18003137) NetType/WIFI Language/zh_CN"
+        "Host": "instax.app.xcxd.net.cn",
+        "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309092b) XWEB/8555",
+        "xweb_xhr": "1"
       },
-      "body": JSON.stringify(_0x2614ea),
-      "timeout": 30000
-    };
-    if (isDebug) {
-      console.log(`[DEBUG] API请求: ${url}`);
-      console.log(`[DEBUG] 请求数据:`, _0x2614ea);
-    }
-    var _0xc8f16e = 13;
-    const _0xb201fd = require("request")(_0xab22e, (error, response, body) => {
-      if (error) {
-        if (isDebug) console.log(`[DEBUG] 请求错误:`, error);
-        reject(new Error(`请求失败: ${error.message}`));
-        return;
-      }
-      if (isDebug) {
-        console.log(`[DEBUG] 响应状态码: ${response.statusCode}`);
-        console.log(`[DEBUG] 响应内容: ${body}`);
-      }
-      try {
-        var _0x5fee;
-        const _0xd81ba = JSON.parse(body);
-        _0x5fee = 13;
-        if (isDebug) {
-          console.log(`[DEBUG] API响应:`, _0xd81ba);
-        }
-        if (_0xd81ba.code === "200") {
-          resolve(_0xd81ba);
-        } else {
-          reject(new Error(_0xd81ba.msg || "请求失败"));
-        }
-      } catch (e) {
-        reject(new Error(`解析响应失败: ${e.message}, 原始响应: ${body}`));
-      }
-    });
-    _0xc8f16e = 2;
-    setTimeout(() => {
-      if (!_0xb201fd.response) {
-        _0xb201fd.abort();
-        reject(new Error("时超求请".split("").reverse().join("")));
-      }
-    }, 30000);
-  });
+      "data": JSON.stringify({})
+    },
+    {
+      data: _0x164e05
+    } = await Request(_0x32872d);
+  _0x164e05?.["error"] == false ? $.log("签到成功") : $.log("签到失败[" + _0x164e05 + "]");
 }
-class ScriptTemplate {
-  constructor(wxid) {
-    this.wxid = wxid;
-    this.appid = APPID;
-    this.isLogin = false;
-    this.wxCode = null;
-    this.openid = null;
-    this.mobileInfo = null;
-    this.userProfile = null;
-    this.cacheExpireTime = null;
-    this.userInfo = null;
-  }
-  loadTokenCache() {
-    try {
-      if (fs.existsSync(TOKEN_CACHE_FILE)) {
-        var _0x46g52b;
-        const cacheData = JSON.parse(fs.readFileSync(TOKEN_CACHE_FILE, "utf8"));
-        _0x46g52b = 2;
-        var _0xa99ec;
-        const userCache = cacheData[this.wxid];
-        _0xa99ec = 11;
-        if (userCache && userCache.cacheExpireTime > Date.now()) {
-          this.openid = userCache.openid;
-          this.cacheExpireTime = userCache.cacheExpireTime;
-          if (isDebug) {
-            console.log(`[DEBUG] 从缓存加载openid成功`);
-            console.log(`[DEBUG] OpenID: ${this.openid}`);
-            console.log(`[DEBUG] 缓存过期时间: ${new Date(this.cacheExpireTime).toLocaleString()}`);
+async function chance() {
+  let _0x1e4374 = {
+      "url": "https://instax.app.xcxd.net.cn/api/user/" + $.userId + "/draw-activities/41/chance",
+      "method": "GET",
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Authorization": "Bearer " + $.token,
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Host": "instax.app.xcxd.net.cn",
+        "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309092b) XWEB/8555",
+        "xweb_xhr": "1"
+      }
+    },
+    {
+      data: _0x1cf986
+    } = await Request(_0x1e4374);
+  if (_0x1cf986?.["error"] == false) {
+    {
+      $.log("查询抽奖次数 [" + _0x1cf986.data + "]");
+      for (let _0x26e5eb = 0; _0x26e5eb < _0x1cf986.data; _0x26e5eb++) {
+        await $.wait(3000);
+        await draw();
+      }
+    }
+  } else $.log("查询抽奖次数 失败[" + _0x1cf986.message + "]");
+}
+async function draw() {
+  let _0x223265 = {
+      "url": "https://instax.app.xcxd.net.cn/api/user/" + $.userId + "/draw-activities/41/draw",
+      "method": "POST",
+      "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Authorization": "Bearer " + $.token,
+        "Connection": "keep-alive",
+        "Content-Type": "application/json",
+        "Host": "instax.app.xcxd.net.cn",
+        "Referer": "https://servicewechat.com/wx3cb572fbf3aa30c8/134/page-frame.html",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "cross-site",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF WindowsWechat(0x6309092b) XWEB/8555",
+        "xweb_xhr": "1"
+      },
+      "data": JSON.stringify({})
+    },
+    {
+      data: _0x192c60
+    } = await Request(_0x223265);
+  if (_0x192c60?.["error"] == false) {
+    $.log("抽奖成功 [" + _0x192c60.data.record.desc + "]");
+  } else $.log("抽奖失败[" + _0x192c60.message + "]");
+}
+function checkEnv(_0x2417e0) {
+  const _0x2bc95d = ["&", "\n"];
+  let _0x461fb2 = _0x2417e0.split(_0x2bc95d.find(_0x5e6b3d => _0x2417e0.includes(_0x5e6b3d)) || "\n").filter(_0x196e86 => _0x196e86);
+  console.log("共找到" + _0x461fb2.length + "个账号");
+  return _0x461fb2;
+}
+function Env(_0x22e3da, _0x52e9a8) {
+  return new class {
+    constructor(_0x164ae4, _0x47f5a1) {
+      {
+        this.name = _0x164ae4;
+        this.logs = [];
+        this.logSeparator = "\n";
+        this.startTime = new Date().getTime();
+        Object.assign(this, _0x47f5a1);
+        this.log("", "🔔" + this.name + ",开始!");
+      }
+    }
+    ["isNode"]() {
+      return "undefined" != typeof module && !!module.exports;
+    }
+    ["isQuanX"]() {
+      return "undefined" != typeof $task;
+    }
+    ["queryStr"](_0xf43f92) {
+      return Object.entries(_0xf43f92).map(([_0x4cafa2, _0x3d6b07]) => _0x4cafa2 + "=" + (typeof _0x3d6b07 === "object" ? JSON.stringify(_0x3d6b07) : _0x3d6b07)).join("&");
+    }
+    ["getURLParams"](_0x5a28e9) {
+      {
+        const _0x3c3dd9 = {},
+          _0x4a557e = _0x5a28e9.split("?")[1];
+        if (_0x4a557e) {
+          {
+            const _0x1e112c = _0x4a557e.split("&");
+            _0x1e112c.forEach(_0x558c53 => {
+              {
+                const [_0x4771e3, _0x148c12] = _0x558c53.split("=");
+                _0x3c3dd9[_0x4771e3] = _0x148c12;
+              }
+            });
           }
-          return true;
-        } else if (userCache) {
-          if (isDebug) console.log(`[DEBUG] 缓存数据已过期`);
+        }
+        return _0x3c3dd9;
+      }
+    }
+    ["isJSONString"](_0x130d47) {
+      try {
+        return JSON.parse(_0x130d47) && typeof JSON.parse(_0x130d47) === "object";
+      } catch (_0x61b7b4) {
+        return false;
+      }
+    }
+    ["isJson"](_0x39895b) {
+      var _0x350fb5 = typeof _0x39895b == "object" && Object.prototype.toString.call(_0x39895b).toLowerCase() == "[object object]" && !_0x39895b.length;
+      return _0x350fb5;
+    }
+    async ["sendMsg"](_0x5568b4) {
+      if (!_0x5568b4) return;
+      if (this.isNode()) await notify.sendNotify(this.name, _0x5568b4);else {
+        this.msg(this.name, "", _0x5568b4);
+      }
+    }
+    ["randomNumber"](_0x197404) {
+      {
+        const _0x46f667 = "0123456789";
+        return Array.from({
+          "length": _0x197404
+        }, () => _0x46f667[Math.floor(Math.random() * _0x46f667.length)]).join("");
+      }
+    }
+    ["randomString"](_0x43b617) {
+      const _0x434a3e = "abcdefghijklmnopqrstuvwxyz0123456789";
+      return Array.from({
+        "length": _0x43b617
+      }, () => _0x434a3e[Math.floor(Math.random() * _0x434a3e.length)]).join("");
+    }
+    ["uuid"]() {
+      return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (_0x3bab8b) {
+        var _0x3bd5a8 = Math.random() * 16 | 0,
+          _0x5a7c53 = _0x3bab8b == "x" ? _0x3bd5a8 : _0x3bd5a8 & 3 | 8;
+        return _0x5a7c53.toString(16);
+      });
+    }
+    ["time"](_0x113c0c) {
+      {
+        let _0x10ef76 = {
+          "M+": new Date().getMonth() + 1,
+          "d+": new Date().getDate(),
+          "H+": new Date().getHours(),
+          "m+": new Date().getMinutes(),
+          "s+": new Date().getSeconds(),
+          "q+": Math.floor((new Date().getMonth() + 3) / 3),
+          "S": new Date().getMilliseconds()
+        };
+        /(y+)/.test(_0x113c0c) && (_0x113c0c = _0x113c0c.replace(RegExp.$1, (new Date().getFullYear() + "").substr(4 - RegExp.$1.length)));
+        for (let _0x5f5980 in _0x10ef76) {
+          new RegExp("(" + _0x5f5980 + ")").test(_0x113c0c) && (_0x113c0c = _0x113c0c.replace(RegExp.$1, 1 == RegExp.$1.length ? _0x10ef76[_0x5f5980] : ("00" + _0x10ef76[_0x5f5980]).substr(("" + _0x10ef76[_0x5f5980]).length)));
+        }
+        return _0x113c0c;
+      }
+    }
+    ["msg"](_0x21e0ff = _0x22e3da, _0x4bca2e = "", _0x3c3fda = "", _0x30584c) {
+      const _0x2afed7 = _0x51b68c => {
+        if (!_0x51b68c) return _0x51b68c;else {
+          if (typeof _0x51b68c === "string") return this.isQuanX() ? {
+            "open-url": _0x51b68c
+          } : undefined;else {
+            if (typeof _0x51b68c === "object" && (_0x51b68c["open-url"] || _0x51b68c["media-url"])) {
+              return this.isQuanX() ? _0x51b68c : undefined;
+            } else return undefined;
+          }
+        }
+      };
+      if (!this.isMute) {
+        if (this.isQuanX()) {
+          $notify(_0x21e0ff, _0x4bca2e, _0x3c3fda, _0x2afed7(_0x30584c));
         }
       }
-    } catch (error) {
-      if (isDebug) console.log(`[DEBUG] 读取缓存失败: ${error.message}`);
+      let _0x115ec5 = ["", "==============📣系统通知📣=============="];
+      _0x115ec5.push(_0x21e0ff);
+      _0x4bca2e ? _0x115ec5.push(_0x4bca2e) : "";
+      _0x3c3fda ? _0x115ec5.push(_0x3c3fda) : "";
+      console.log(_0x115ec5.join("\n"));
+      this.logs = this.logs.concat(_0x115ec5);
     }
-    return false;
-  }
-  saveTokenCache() {
-    try {
-      var _0xb768fc = 4;
-      let cacheData = {};
-      _0xb768fc = "gccdfk";
-      if (fs.existsSync(TOKEN_CACHE_FILE)) {
+    ["log"](..._0x1be0dd) {
+      _0x1be0dd.length > 0 && (this.logs = [...this.logs, ..._0x1be0dd]);
+      console.log(_0x1be0dd.join(this.logSeparator));
+    }
+    ["logErr"](_0x4f69d9, _0x3deeaa) {
+      {
+        const _0x10466d = !this.isQuanX();
+        _0x10466d ? this.log("", "❗️" + this.name + ",错误!", _0x4f69d9.stack) : this.log("", "❗️" + this.name + ",错误!", _0x4f69d9);
+      }
+    }
+    ["wait"](_0x19d097) {
+      return new Promise(_0x36b95e => setTimeout(_0x36b95e, _0x19d097));
+    }
+    ["done"](_0x177749 = {}) {
+      {
+        const _0x46c0b5 = new Date().getTime(),
+          _0x2f48be = (_0x46c0b5 - this.startTime) / 1000;
+        this.log("", "🔔" + this.name + ",结束!🕛 " + _0x2f48be + "秒");
+        this.log();
+        this.isNode() && process.exit(1);
+        this.isQuanX() && $done(_0x177749);
+      }
+    }
+  }(_0x22e3da, _0x52e9a8);
+}
+async function Request(_0x28d910) {
+  if ($.isNode()) {
+    {
+      const _0x17eec9 = require("axios");
+      Request = async _0xdd92bc => {
         try {
-          cacheData = JSON.parse(fs.readFileSync(TOKEN_CACHE_FILE, "utf8"));
-        } catch (e) {
-          if (isDebug) console.log(`[DEBUG] 现有缓存文件格式错误，将重新创建`);
+          return await _0x17eec9.request(_0xdd92bc);
+        } catch (_0xb819c0) {
+          return _0xb819c0 && _0xb819c0.response ? _0xb819c0.response.data : "请求失败";
         }
-      }
-      const expireTime = Date.now() + 31536000000;
-      cacheData[this.wxid] = {
-        "openid": this.openid,
-        "cacheExpireTime": expireTime,
-        "updateTime": Date.now()
       };
-      this.cacheExpireTime = expireTime;
-      fs.writeFileSync(TOKEN_CACHE_FILE, JSON.stringify(cacheData, null, 2), "utf8");
-      if (isDebug) {
-        console.log(`[DEBUG] 缓存保存成功`);
-        console.log(`[DEBUG] 缓存文件: ${TOKEN_CACHE_FILE}`);
-        console.log(`[DEBUG] 过期时间: ${new Date(expireTime).toLocaleString()}`);
-      }
-    } catch (error) {
-      console.log(`❌ 保存缓存失败: ${error.message}`);
     }
   }
-  async getWxCodeAndLogin() {
-    if (isDebug) console.log(`[DEBUG] 开始获取微信授权码...`);
-    var _0x4ee;
-    const codeResult = await wxcode.getWxCode(this.wxid, this.appid);
-    _0x4ee = 9;
-    if (!codeResult.success) {
-      console.log(`获取授权码失败：${codeResult.error}`);
-      return false;
-    }
-    this.wxCode = codeResult.code;
-    if (isDebug) console.log(`[DEBUG] 获取授权码成功：${this.wxCode}`);
-    this.isLogin = true;
-    return true;
-  }
-  async getUserOpenid() {
-    const result = await wxcode.getOpenid(this.wxid, this.appid);
-    if (result.success) {
-      this.openid = result.openid;
-      if (isDebug) console.log(`[DEBUG] 获取openid成功：${this.openid}`);
-      return this.openid;
-    } else {
-      console.log(`获取openid失败：${result.error}`);
-      return null;
-    }
-  }
-  async getMobileInfo() {
-    const result = await wxcode.getmobile(this.wxid, this.appid);
-    if (result.success) {
-      this.mobileInfo = result;
-      if (isDebug) console.log(`[DEBUG] 获取手机号加密数据成功`);
-      return this.mobileInfo;
-    } else {
-      console.log(`获取手机号失败：${result.error}`);
-      return null;
-    }
-  }
-  async getUserProfile() {
-    var _0x888a = 15;
-    const cloudFunctionData = JSON.stringify({
-      "api_name": "webapi_getuserprofile",
-      "data": {
-        "app_version": 68,
-        "desc": "用于获取您的个人信息",
-        "lang": "en",
-        "version": "3.7.12"
-      },
-      "env": 1,
-      "operate_directly": false,
-      "show_confirm": true,
-      "tid": Date.now() * 1000000 + Math.floor(Math.random() * 1000000),
-      "with_credentials": true
-    });
-    _0x888a = 13;
-    var _0x6d75a;
-    const result = await wxcode.getUserInfo(this.wxid, this.appid, cloudFunctionData);
-    _0x6d75a = 0;
-    if (result.success) {
-      if (isDebug) console.log(`[DEBUG] 获取用户个人信息成功`);
-      try {
-        var _0xe8dg;
-        const userInfo = JSON.parse(result.rawData.data);
-        _0xe8dg = 9;
-        if (isDebug) {
-          console.log(`[DEBUG] 用户信息:`, {
-            "nickName": userInfo.nickName,
-            "gender": userInfo.gender,
-            "avatarUrl": userInfo.avatarUrl,
-            "city": userInfo.city,
-            "province": userInfo.province,
-            "country": userInfo.country
-          });
-        }
-        this.userProfile = {
-          "success": true,
-          "userInfo": userInfo,
-          "signature": result.signature,
-          "encryptedData": result.encryptedData,
-          "iv": result.iv
-        };
-        return this.userProfile;
-      } catch (e) {
-        console.log(`解析用户信息失败：${e.message}`);
-        return {
-          "success": false,
-          "error": e.message
-        };
-      }
-    } else {
-      console.log(`获取用户个人信息失败：${result.error}`);
-      return null;
-    }
-  }
-  async loginToRobam() {
+  $.isQuanX() && (Request = async _0x37b1c9 => {
     try {
-      if (isDebug) console.log(`[DEBUG] 开始老板微商城登录...`);
-      var _0x2_0x4f2 = 1;
-      const loginData = {
-        "code": this.wxCode,
-        "invite_code": "",
-        "sinvite_code": ""
-      };
-      _0x2_0x4f2 = 6;
-      const result = await apiRequest("/common/get_openid", loginData);
-      if (result.data && result.data.userinfo) {
-        this.userInfo = result.data.userinfo;
-        this.openid = result.data.userinfo.openid;
-        if (isDebug) {
-          console.log(`[DEBUG] 登录成功，用户信息:`, {
-            "openid": this.openid,
-            "nickname": this.userInfo.nickname,
-            "mobile": this.userInfo.mobile,
-            "score": this.userInfo.total_score,
-            "is_vip": this.userInfo.is_vip
-          });
-        }
-        console.log(`✅ 登录成功！用户：${this.userInfo.nickname}，积分：${this.userInfo.total_score}`);
-        return true;
-      } else {
-        console.log(`❌ 登录失败：未获取到用户信息`);
-        return false;
-      }
-    } catch (error) {
-      console.log(`❌ 登录失败：${error.message}`);
-      return false;
+      return await $task.fetch(_0x37b1c9);
+    } catch (_0x4fc339) {
+      return _0x4fc339 && _0x4fc339.error ? _0x4fc339.error : "请求失败";
     }
-  }
-  async dailySign() {
-    try {
-      if (!this.openid) {
-        console.log(`❌ 签到失败：未登录`);
-        return false;
-      }
-      if (isDebug) console.log(`[DEBUG] 开始签到...`);
-      const result = await apiRequest("/member/user_sign", {}, this.openid);
-      if (result.data) {
-        const {
-          "score": score,
-          "percent": percent
-        } = result.data;
-        console.log(`✅ 签到成功！获得积分：${score}，签到进度：${percent}%`);
-        return true;
-      } else {
-        console.log(`❌ 签到失败：未获取到签到结果`);
-        return false;
-      }
-    } catch (error) {
-      if (error.message.includes("已签到")) {
-        console.log(`ℹ️ 今日已签到`);
-        return true;
-      } else {
-        console.log(`❌ 签到失败：${error.message}`);
-        return false;
-      }
-    }
-  }
-  async getTaskList() {
-    try {
-      if (isDebug) console.log(`[DEBUG] 获取任务列表...`);
-      var _0x4966c = 0;
-      const result = await apiRequest("/member/get_member_score_mission_list", {
-        "page": 1,
-        "limit": 10000
-      }, this.openid);
-      _0x4966c = 18;
-      if (result.data && result.data.list) {
-        if (isDebug) {
-          console.log(`[DEBUG] 获取到${result.data.list.length}个任务`);
-        }
-        return result.data.list;
-      } else {
-        console.log(`❌ 获取任务列表失败`);
-        return [];
-      }
-    } catch (error) {
-      console.log(`❌ 获取任务列表失败：${error.message}`);
-      return [];
-    }
-  }
-  async browseProducts() {
-    try {
-      if (isDebug) console.log(`[DEBUG] 开始浏览商品任务...`);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      var _0x8ea = 14;
-      const result = await apiRequest("tsil_sdoog_teg/nommoc/".split("").reverse().join(""), {
-        "page": 1,
-        "limit": 10,
-        "cid": "",
-        "keyword": ""
-      }, this.openid);
-      _0x8ea = 7;
-      if (result.data && result.data.list && result.data.list.length > 0) {
-        var _0xf45ccb = 13;
-        const products = result.data.list.slice(0, 3);
-        _0xf45ccb = 11;
-        for (let i = 0; i < products.length; i++) {
-          var _0x5b5b = 5;
-          const product = products[i];
-          _0x5b5b = 16;
-          if (isDebug) console.log(`[DEBUG] 浏览商品${i + 1}: ${product.title}`);
-          await apiRequest("/common/get_goods_detail", {
-            "id": product.id
-          }, this.openid);
-          await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-        console.log(`✅ 浏览商品任务完成！已浏览${products.length}个商品`);
-        return true;
-      } else {
-        console.log(`❌ 浏览商品任务失败：未获取到商品列表`);
-        return false;
-      }
-    } catch (error) {
-      console.log(`❌ 浏览商品任务失败：${error.message}`);
-      return false;
-    }
-  }
-  async browseSeckill() {
-    try {
-      if (isDebug) console.log(`[DEBUG] 开始逛秒杀活动任务...`);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      var _0x942cb;
-      const result = await apiRequest("/common/get_ms_goods_list", {
-        "page": 1,
-        "limit": 10
-      }, this.openid);
-      _0x942cb = 8;
-      if (result.data && result.data.list) {
-        if (isDebug) console.log(`[DEBUG] 获取到${result.data.list.length}个秒杀商品`);
-        const seckillGoods = result.data.list.slice(0, 3);
-        for (let i = 0; i < seckillGoods.length; i++) {
-          const goods = seckillGoods[i];
-          if (isDebug) console.log(`[DEBUG] 浏览秒杀商品${i + 1}: ${goods.title}`);
-          await new Promise(resolve => setTimeout(resolve, 1500));
-        }
-        console.log(`✅ 逛秒杀活动任务完成！浏览了${seckillGoods.length}个秒杀商品`);
-        return true;
-      } else {
-        console.log(`✅ 逛秒杀活动任务完成！（无秒杀商品）`);
-        return true;
-      }
-    } catch (error) {
-      console.log(`❌ 逛秒杀活动任务失败：${error.message}`);
-      return false;
-    }
-  }
-  async readArticles() {
-    try {
-      if (isDebug) console.log(`[DEBUG] 开始阅读文章任务...`);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      var _0xff885c;
-      const result = await apiRequest("tsil_swen_teg/nommoc/".split("").reverse().join(""), {
-        "page": 1,
-        "limit": 10,
-        "cid": ""
-      }, this.openid);
-      _0xff885c = 1;
-      if (result.data && result.data.list && result.data.list.length > 0) {
-        var _0xc38d5a = 9;
-        const articles = result.data.list.slice(0, 3);
-        _0xc38d5a = 7;
-        var _0xcg453b;
-        let readCount = 0;
-        _0xcg453b = 7;
-        for (let i = 0; i < articles.length; i++) {
-          var _0xd917dd;
-          const article = articles[i];
-          _0xd917dd = "ncedad".split("").reverse().join("");
-          if (isDebug) console.log(`[DEBUG] 阅读文章${i + 1}: ${article.title}`);
-          try {
-            await apiRequest("liated_swen_teg/nommoc/".split("").reverse().join(""), {
-              "id": article.id
-            }, this.openid);
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            await apiRequest("/member/read_article", {
-              "id": article.id,
-              "article_num": i + 1
-            }, this.openid);
-            readCount++;
-            if (isDebug) console.log(`[DEBUG] 文章${i + 1}阅读完成，获得积分`);
-            await new Promise(resolve => setTimeout(resolve, 2000));
-          } catch (error) {
-            if (isDebug) console.log(`[DEBUG] 文章${i + 1}阅读失败: ${error.message}`);
-            continue;
-          }
-        }
-        console.log(`✅ 阅读文章任务完成！已阅读${readCount}篇文章，获得${readCount > 0 ? "5" : "0"}积分`);
-        return readCount > 0;
-      } else {
-        console.log(`❌ 阅读文章任务失败：未获取到文章列表`);
-        return false;
-      }
-    } catch (error) {
-      console.log(`❌ 阅读文章任务失败：${error.message}`);
-      return false;
-    }
-  }
-  async executeDailyTasks() {
-    try {
-      console.log(`\n📋 开始执行每日任务...`);
-      const taskList = await this.getTaskList();
-      if (taskList.length === 0) {
-        console.log(`❌ 未获取到任务列表，跳过任务执行`);
-        return;
-      }
-      const dailyTasks = taskList.filter(task => task.type === 2 && task.is_over === 0);
-      if (dailyTasks.length === 0) {
-        console.log(`✅ 所有每日任务已完成！`);
-        return;
-      }
-      console.log(`📝 发现${dailyTasks.length}个未完成的每日任务`);
-      let completedCount = 0;
-      let totalScore = 0;
-      for (const task of dailyTasks) {
-        console.log(`\n🎯 执行任务：${task.title} (${task.score}积分)`);
-        var _0xd2eeb;
-        let success = false;
-        _0xd2eeb = 1;
-        switch (task.id) {
-          case 7:
-            success = await this.browseProducts();
-            break;
-          case 8:
-            success = await this.browseSeckill();
-            break;
-          case 12:
-            success = await this.readArticles();
-            break;
-          case 16:
-            success = await this.dailySign();
-            break;
-          default:
-            console.log(`⚠️ 暂不支持任务ID ${task.id}: ${task.title}`);
-            continue;
-        }
-        if (success) {
-          completedCount++;
-          totalScore += parseInt(task.score);
-        }
-        await new Promise(resolve => setTimeout(resolve, 3000));
-      }
-      console.log(`\n🎉 每日任务执行完成！`);
-      console.log(`✅ 完成任务数：${completedCount}/${dailyTasks.length}`);
-      console.log(`🏆 预计获得积分：${totalScore}分`);
-    } catch (error) {
-      console.log(`❌ 执行每日任务失败：${error.message}`);
-    }
-  }
-  async validateCache() {
-    if (!this.isLogin || !this.wxCode) return false;
-    if (isDebug) console.log(`[DEBUG] 验证缓存数据有效性...`);
-    try {
-      const testResult = await wxcode.getOpenid(this.wxid, this.appid);
-      if (testResult.success) {
-        if (isDebug) console.log(`[DEBUG] 缓存数据验证通过`);
-        return true;
-      }
-    } catch (error) {
-      if (isDebug) console.log(`[DEBUG] 缓存数据验证失败: ${error.message}`);
-    }
-    if (isDebug) console.log(`[DEBUG] 缓存数据已失效`);
-    this.isLogin = false;
-    return false;
-  }
-  async performFullLogin() {
-    if (isDebug) console.log(`[DEBUG] 执行完整的数据获取流程...`);
-    var _0x3_0x477;
-    const loginSuccess = await this.getWxCodeAndLogin();
-    _0x3_0x477 = 12;
-    if (!loginSuccess) {
-      console.log(`[${this.wxid}] 获取授权码失败，跳过`);
-      return false;
-    }
-    this.saveTokenCache();
-    return true;
-  }
-  async run() {
-    try {
-      const cacheLoaded = this.loadTokenCache();
-      if (cacheLoaded) {
-        console.log(`📦 使用缓存的数据`);
-        var _0xc5eb9c = 3;
-        const cacheValid = await this.validateCache();
-        _0xc5eb9c = 11;
-        if (!cacheValid) {
-          console.log(`⚠️ 缓存的数据已失效，重新获取...`);
-          const fullLoginSuccess = await this.performFullLogin();
-          if (!fullLoginSuccess) {
-            console.log(`[${this.wxid}] 完整登录失败，跳过`);
-            return;
-          }
-        } else {
-          console.log(`✅ 缓存的数据有效`);
-        }
-      } else {
-        const fullLoginSuccess = await this.performFullLogin();
-        if (!fullLoginSuccess) {
-          print(`[${this.wxid}] 完整登录失败，跳过`, true);
-          return;
-        }
-      }
-      console.log(`\n🏪 开始老板微商城任务...`);
-      if (!this.openid) {
-        console.log(`📱 开始登录老板微商城...`);
-        const loginSuccess = await this.loginToRobam();
-        if (!loginSuccess) {
-          console.log(`❌ 登录失败，跳过后续任务`);
-          return;
-        }
-        this.saveTokenCache();
-      } else {
-        console.log(`✅ 使用缓存的openid: ${this.openid}`);
-      }
-      await this.executeDailyTasks();
-      console.log(`\n🎉 老板微商城任务完成！`);
-    } catch (error) {
-      console.log(`[${this.wxid}] 脚本执行出错：${error.message}`);
-      if (isDebug) {
-        console.error(error);
-      }
-    }
-  }
+  });
+  return await Request(_0x28d910);
 }
-async function main() {
-  console.log(`🔔 脚本开始执行`);
-  if (isDebug) {
-    console.log(`[DEBUG] 调试模式已开启`);
-    console.log(`[DEBUG] APPID: ${APPID}`);
-  }
-  if (!wxidList) {
-    console.log(`❌ 未设置环境变量 TXX_WXID 或命令行参数 --wxid`);
-    return;
-  }
-  const _0x4b291f = cmdWxid ? [cmdWxid] : parseWxidList(wxidList);
-  if (_0x4b291f.length === 0) {
-    console.log(`❌ 没有找到有效的wxid`);
-    return;
-  }
-  console.log(`📋 共找到 ${_0x4b291f.length} 个有效账号`);
-  if (isDebug) {
-    console.log(`[DEBUG] 账号列表: ${_0x4b291f.join(" ,".split("").reverse().join(""))}`);
-  }
-  for (let i = 0; i < _0x4b291f.length; i++) {
-    const _0x35c7c = _0x4b291f[i];
-    console.log(`\n🚀 [${i + 1}/${_0x4b291f.length}] 开始处理账号: ${_0x35c7c}`);
-    try {
-      var _0x48c;
-      const _0xcc19fc = new ScriptTemplate(_0x35c7c);
-      _0x48c = 9;
-      await _0xcc19fc.run();
-      console.log(`✅ [${i + 1}/${_0x4b291f.length}] 账号 ${_0x35c7c} 处理完成`);
-    } catch (error) {
-      console.log(`❌ [${i + 1}/${_0x4b291f.length}] 账号 ${_0x35c7c} 处理失败: ${error.message}`);
-      if (isDebug) {
-        console.error(error);
-      }
-    }
-    console.log("─".repeat(60));
-    if (i < _0x4b291f.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-  }
-  console.log(`\n🎉 所有账号处理完成！`);
-  if (NOTICE_SWITCH && notice) {
-    await sendMsg(notice);
-  }
-}
-let notice = "";
-function print(msg, is_notice = false) {
-  let _0x0bc = `${msg}`;
-  console.log(_0x0bc);
-  if (NOTICE_SWITCH && is_notice) {
-    notice += `${_0x0bc}\n`;
-  }
-}
-async function sendMsg(message) {
-  try {
-    var _0xb3920b = 13;
-    let _0x93g4d = "";
-    _0xb3920b = "lkkhil";
-    try {
-      _0x93g4d = require("./sendNotify");
-    } catch (e) {
-      try {
-        _0x93g4d = require("../sendNotify");
-      } catch (e2) {
-        console.log("❌ 未找到sendNotify模块，无法发送通知");
-        return;
-      }
-    }
-    await _0x93g4d.sendNotify(scriptName, message);
-    console.log("功成送发知通 \uDCE2\uD83D".split("").reverse().join(""));
-  } catch (error) {
-    console.log(`❌ 通知发送失败: ${error.message}`);
-  }
-}
-main().catch(console.error);
