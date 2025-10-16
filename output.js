@@ -1,926 +1,3227 @@
-//Tue Oct 14 2025 16:24:23 GMT+0000 (Coordinated Universal Time)
+//Thu Oct 16 2025 12:41:18 GMT+0000 (Coordinated Universal Time)
 //Base:<url id="cv1cref6o68qmpt26ol0" type="url" status="parsed" title="GitHub - echo094/decode-js: JS混淆代码的AST分析工具 AST analysis tool for obfuscated JS code" wc="2165">https://github.com/echo094/decode-js</url>
 //Modify:<url id="cv1cref6o68qmpt26olg" type="url" status="parsed" title="GitHub - smallfawn/decode_action: 世界上本来不存在加密，加密的人多了，也便成就了解密" wc="741">https://github.com/smallfawn/decode_action</url>
-const _0x37bac8 = require("request"),
-  _0x102fef = require("querystring"),
-  {
-    SocksProxyAgent: _0x154ba1
-  } = require("socks-proxy-agent");
-process.noDeprecation = true;
-(!process.env.km || process.env.km.trim() === "") && (console.log("❌ 未检测到 km 环境变量，请先在环境变量中新增 km 变量（极速版卡密）"), process.exit(1));
-function _0x7d331a() {
-  const _0x2967f5 = ["正在观看广告", "认真观看中...", "浏览广告内容", "模拟用户行为", "观看视频广告", "保持活跃状态", "广告浏览中", "正常观看时长"];
-  return _0x2967f5[Math.floor(Math.random() * _0x2967f5.length)];
-}
-const _0x2e477b = process.env.DEV_MODE === "1" || process.env.DEV_MODE === "true";
-function _0x349a11() {
-  const _0x1af3ee = process.env.Task;
-  if (!_0x1af3ee) return console.log("未设置Task环境变量，将执行所有任务 (food, box, look)"), ["food", "box", "look"];
-  const _0x30c845 = _0x1af3ee.split(",").map(_0x138d3c => _0x138d3c.trim().toLowerCase()).filter(Boolean),
-    _0x490684 = ["food", "box", "look"],
-    _0x25e0f2 = _0x30c845.filter(_0x1fc157 => _0x490684.includes(_0x1fc157));
-  if (_0x25e0f2.length === 0) return console.log("Task环境变量中没有有效任务，将执行所有任务 (food, box, look)"), ["food", "box", "look"];
-  console.log("从Task环境变量中解析到要执行的任务: " + _0x25e0f2.join(", "));
-  return _0x25e0f2;
-}
-function _0x4eff69(_0x475f41) {
-  const _0x354d00 = String(_0x475f41 || "").trim().split("#");
-  if (_0x354d00.length < 2) return null;
-  const _0xf03b3f = _0x354d00[0],
-    _0x4b14cf = _0x354d00.slice(1, _0x354d00.length - (_0x354d00.length >= 3 ? 1 : 0)).join("#");
-  let _0x52e1bd = null;
-  if (_0x354d00.length >= 3) {
-    {
-      const _0x18c2a5 = _0x354d00[_0x354d00.length - 1].trim();
-      if (_0x18c2a5.includes("|")) {
-        console.log("开始解析代理格式: " + _0x18c2a5);
-        const _0x10785f = _0x18c2a5.split("|");
-        if (_0x10785f.length >= 2) {
-          {
-            const [_0x24f0c7, _0x412b9e, _0x52d5b5, _0x4d5cfa] = _0x10785f;
-            _0x52e1bd = "socks5://" + _0x52d5b5 + ":" + _0x4d5cfa + "@" + _0x24f0c7 + ":" + _0x412b9e;
-          }
+const $ = new Env('小米刷步');
+!function (t) {
+  "object" == typeof exports && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define(t) : (global = "undefined" != typeof globalThis ? globalThis : global || self, global.Buffer = t());
+}(function () {
+  function t(r, e, n) {
+    function i(o, u) {
+      if (!e[o]) {
+        if (!r[o]) {
+          var s = "function" == typeof require && require;
+          if (!u && s) return s(o, true);
+          if (f) return f(o, true);
+          var h = new Error("Cannot find module '" + o + "'");
+          throw h.code = "MODULE_NOT_FOUND", h;
         }
-      } else _0x52e1bd = /^socks5:\/\/.+/i.test(_0x18c2a5) ? _0x18c2a5 : null;
-      !_0x52e1bd && console.log("⚠️ 代理字段不是 socks5:// URL，忽略：" + _0x18c2a5);
+        var a = e[o] = {
+          exports: {}
+        };
+        r[o][0].call(a.exports, function (t) {
+          var e = r[o][1][t];
+          return i(e || t);
+        }, a, a.exports, t, r, e, n);
+      }
+      return e[o].exports;
     }
+    let o = {};
+    for (var f = "function" == typeof require && require, u = 0; u < n.length; u++) Object.assign(o, i(n[u]));
+    return o;
   }
-  return {
-    "salt": _0x4b14cf,
-    "cookie": _0xf03b3f,
-    "proxyUrl": _0x52e1bd
-  };
-}
-function _0x5ebbb4() {
-  const _0x461040 = [],
-    _0x48766a = new Set();
-  let _0x449276 = 0;
-  const _0x1c71f3 = parseInt(process.env.MAX_KSCK_INDEX || "666", 10) || 666;
-  console.log("开始检查 ksck1 到 ksck" + _0x1c71f3 + " 环境变量...");
-  for (let _0x552d11 = 1; _0x552d11 <= _0x1c71f3; _0x552d11++) {
-    {
-      const _0x14672f = "ksck" + _0x552d11,
-        _0xbb89bb = process.env[_0x14672f];
-      if (_0xbb89bb) {
-        {
-          const _0xe60112 = _0xbb89bb.trim();
-          if (!_0x48766a.has(_0xe60112)) {
-            {
-              const _0x4661c0 = _0x4eff69(_0xe60112);
-              if (_0x4661c0) _0x4661c0.index = ++_0x449276, _0x4661c0.source = _0x14672f, _0x461040.push(_0x4661c0), _0x48766a.add(_0xe60112);else {
-                console.log("⚠️ " + _0x14672f + " 格式错误，忽略: " + _0xe60112);
+  const r = {
+    1: [function (t, r, e) {
+      "use strict";
+
+      function n(t) {
+        var r = t.length;
+        if (r % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+        var e = t.indexOf("=");
+        -1 === e && (e = r);
+        var n = e === r ? 0 : 4 - e % 4;
+        return [e, n];
+      }
+      function i(t) {
+        var r = n(t),
+          e = r[0],
+          i = r[1];
+        return 3 * (e + i) / 4 - i;
+      }
+      function o(t, r, e) {
+        return 3 * (r + e) / 4 - e;
+      }
+      function f(t) {
+        var r,
+          e,
+          i = n(t),
+          f = i[0],
+          u = i[1],
+          s = new p(o(t, f, u)),
+          h = 0,
+          a = u > 0 ? f - 4 : f;
+        for (e = 0; e < a; e += 4) r = c[t.charCodeAt(e)] << 18 | c[t.charCodeAt(e + 1)] << 12 | c[t.charCodeAt(e + 2)] << 6 | c[t.charCodeAt(e + 3)], s[h++] = r >> 16 & 255, s[h++] = r >> 8 & 255, s[h++] = 255 & r;
+        return 2 === u && (r = c[t.charCodeAt(e)] << 2 | c[t.charCodeAt(e + 1)] >> 4, s[h++] = 255 & r), 1 === u && (r = c[t.charCodeAt(e)] << 10 | c[t.charCodeAt(e + 1)] << 4 | c[t.charCodeAt(e + 2)] >> 2, s[h++] = r >> 8 & 255, s[h++] = 255 & r), s;
+      }
+      function u(t) {
+        return a[t >> 18 & 63] + a[t >> 12 & 63] + a[t >> 6 & 63] + a[63 & t];
+      }
+      function s(t, r, e) {
+        for (var n, i = [], o = r; o < e; o += 3) n = (t[o] << 16 & 16711680) + (t[o + 1] << 8 & 65280) + (255 & t[o + 2]), i.push(u(n));
+        return i.join("");
+      }
+      function h(t) {
+        for (var r, e = t.length, n = e % 3, i = [], o = 16383, f = 0, u = e - n; f < u; f += o) i.push(s(t, f, f + o > u ? u : f + o));
+        return 1 === n ? (r = t[e - 1], i.push(a[r >> 2] + a[r << 4 & 63] + "==")) : 2 === n && (r = (t[e - 2] << 8) + t[e - 1], i.push(a[r >> 10] + a[r >> 4 & 63] + a[r << 2 & 63] + "=")), i.join("");
+      }
+      e.byteLength = i, e.toByteArray = f, e.fromByteArray = h;
+      for (var a = [], c = [], p = "undefined" != typeof Uint8Array ? Uint8Array : Array, l = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", y = 0, g = l.length; y < g; ++y) a[y] = l[y], c[l.charCodeAt(y)] = y;
+      c["-".charCodeAt(0)] = 62, c["_".charCodeAt(0)] = 63;
+    }, {}],
+    2: [function (t, r, e) {
+      (function (r) {
+        (function () {
+          "use strict";
+
+          function r() {
+            try {
+              var t = new Uint8Array(1);
+              return t.__proto__ = {
+                __proto__: Uint8Array.prototype,
+                foo: function () {
+                  return 42;
+                }
+              }, 42 === t.foo();
+            } catch (t) {
+              return false;
+            }
+          }
+          function n(t) {
+            if (t > G) throw new RangeError('The value "' + t + '" is invalid for option "size"');
+            var r = new Uint8Array(t);
+            return r.__proto__ = i.prototype, r;
+          }
+          function i(t, r, e) {
+            if ("number" == typeof t) {
+              if ("string" == typeof r) throw new TypeError('The "string" argument must be of type string. Received type number');
+              return s(t);
+            }
+            return o(t, r, e);
+          }
+          function o(t, r, e) {
+            if ("string" == typeof t) return h(t, r);
+            if (ArrayBuffer.isView(t)) return a(t);
+            if (null == t) throw TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof t);
+            if (W(t, ArrayBuffer) || t && W(t.buffer, ArrayBuffer)) return c(t, r, e);
+            if ("number" == typeof t) throw new TypeError('The "value" argument must not be of type number. Received type number');
+            var n = t.valueOf && t.valueOf();
+            if (null != n && n !== t) return i.from(n, r, e);
+            var o = p(t);
+            if (o) return o;
+            if ("undefined" != typeof Symbol && null != Symbol.toPrimitive && "function" == typeof t[Symbol.toPrimitive]) return i.from(t[Symbol.toPrimitive]("string"), r, e);
+            throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof t);
+          }
+          function f(t) {
+            if ("number" != typeof t) throw new TypeError('"size" argument must be of type number');
+            if (t < 0) throw new RangeError('The value "' + t + '" is invalid for option "size"');
+          }
+          function u(t, r, e) {
+            return f(t), t <= 0 ? n(t) : undefined !== r ? "string" == typeof e ? n(t).fill(r, e) : n(t).fill(r) : n(t);
+          }
+          function s(t) {
+            return f(t), n(t < 0 ? 0 : 0 | l(t));
+          }
+          function h(t, r) {
+            if ("string" == typeof r && "" !== r || (r = "utf8"), !i.isEncoding("utf8")) throw new TypeError("Unknown encoding: utf8");
+            var e = 0 | g(t, "utf8"),
+              o = n(e),
+              f = o.write(t, "utf8");
+            return f !== e && (o = o.slice(0, f)), o;
+          }
+          function a(t) {
+            for (var r = t.length < 0 ? 0 : 0 | l(t.length), e = n(r), i = 0; i < r; i += 1) e[i] = 255 & t[i];
+            return e;
+          }
+          function c(t, r, e) {
+            if (r < 0 || t.byteLength < r) throw new RangeError('"offset" is outside of buffer bounds');
+            if (t.byteLength < r + (e || 0)) throw new RangeError('"length" is outside of buffer bounds');
+            var n;
+            return n = undefined === r && undefined === e ? new Uint8Array(t) : undefined === e ? new Uint8Array(t, r) : new Uint8Array(t, r, e), n.__proto__ = i.prototype, n;
+          }
+          function p(t) {
+            if (i.isBuffer(t)) {
+              var r = 0 | l(t.length),
+                e = n(r);
+              return 0 === e.length ? e : (t.copy(e, 0, 0, r), e);
+            }
+            return undefined !== t.length ? "number" != typeof t.length || X(t.length) ? n(0) : a(t) : "Buffer" === t.type && Array.isArray(t.data) ? a(t.data) : undefined;
+          }
+          function l(t) {
+            if (t >= G) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + G.toString(16) + " bytes");
+            return 0 | t;
+          }
+          function y(t) {
+            return +t != t && (t = 0), i.alloc(+t);
+          }
+          function g(t, r) {
+            if (i.isBuffer(t)) return t.length;
+            if (ArrayBuffer.isView(t) || W(t, ArrayBuffer)) return t.byteLength;
+            if ("string" != typeof t) throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type ' + typeof t);
+            var e = t.length,
+              n = arguments.length > 2 && true === arguments[2];
+            if (!n && 0 === e) return 0;
+            for (var o = false;;) switch (r) {
+              case "ascii":
+              case "latin1":
+              case "binary":
+                return e;
+              case "utf8":
+              case "utf-8":
+                return D(t).length;
+              case "ucs2":
+              case "ucs-2":
+              case "utf16le":
+              case "utf-16le":
+                return 2 * e;
+              case "hex":
+                return e >>> 1;
+              case "base64":
+                return Y(t).length;
+              default:
+                if (o) return n ? -1 : D(t).length;
+                r = ("" + r).toLowerCase(), o = true;
+            }
+          }
+          function w(t, r, e) {
+            var n = false;
+            if ((undefined === r || r < 0) && (r = 0), r > this.length) return "";
+            if ((undefined === e || e > this.length) && (e = this.length), e <= 0) return "";
+            if (e >>>= 0, r >>>= 0, e <= r) return "";
+            for (t || (t = "utf8");;) switch (t) {
+              case "hex":
+                return R(this, r, e);
+              case "utf8":
+              case "utf-8":
+                return I(this, r, e);
+              case "ascii":
+                return C(this, r, e);
+              case "latin1":
+              case "binary":
+                return L(this, r, e);
+              case "base64":
+                return _(this, r, e);
+              case "ucs2":
+              case "ucs-2":
+              case "utf16le":
+              case "utf-16le":
+                return x(this, r, e);
+              default:
+                if (n) throw new TypeError("Unknown encoding: " + t);
+                t = (t + "").toLowerCase(), n = true;
+            }
+          }
+          function d(t, r, e) {
+            var n = t[r];
+            t[r] = t[e], t[e] = n;
+          }
+          function v(t, r, e, n, o) {
+            if (0 === t.length) return -1;
+            if ("string" == typeof e ? (n = e, e = 0) : e > 2147483647 ? e = 2147483647 : e < -2147483648 && (e = -2147483648), e = +e, X(e) && (e = o ? 0 : t.length - 1), e < 0 && (e = t.length + e), e >= t.length) {
+              if (o) return -1;
+              e = t.length - 1;
+            } else if (e < 0) {
+              if (!o) return -1;
+              e = 0;
+            }
+            if ("string" == typeof r && (r = i.from(r, n)), i.isBuffer(r)) return 0 === r.length ? -1 : b(t, r, e, n, o);
+            if ("number" == typeof r) return r &= 255, "function" == typeof Uint8Array.prototype.indexOf ? o ? Uint8Array.prototype.indexOf.call(t, r, e) : Uint8Array.prototype.lastIndexOf.call(t, r, e) : b(t, [r], e, n, o);
+            throw new TypeError("val must be string, number or Buffer");
+          }
+          function b(t, r, e, n, i) {
+            function o(t, r) {
+              return 1 === u ? t[r] : t.readUInt16BE(r * u);
+            }
+            var f,
+              u = 1,
+              s = t.length,
+              h = r.length;
+            if (undefined !== n && (n = String(n).toLowerCase(), "ucs2" === n || "ucs-2" === n || "utf16le" === n || "utf-16le" === n)) {
+              if (t.length < 2 || r.length < 2) return -1;
+              u = 2, s /= 2, h /= 2, e /= 2;
+            }
+            if (i) {
+              var a = -1;
+              for (f = e; f < s; f++) if (o(t, f) === o(r, -1 === a ? 0 : f - a)) {
+                if (-1 === a && (a = f), f - a + 1 === h) return a * u;
+              } else -1 !== a && (f -= f - a), a = -1;
+            } else for (e + h > s && (e = s - h), f = e; f >= 0; f--) {
+              for (var c = true, p = 0; p < h; p++) if (o(t, f + p) !== o(r, p)) {
+                c = false;
+                break;
+              }
+              if (c) return f;
+            }
+            return -1;
+          }
+          function m(t, r, e, n) {
+            e = Number(e) || 0;
+            var i = t.length - e;
+            n ? (n = Number(n), n > i && (n = i)) : n = i;
+            var o = r.length;
+            n > o / 2 && (n = o / 2);
+            for (var f = 0; f < n; ++f) {
+              var u = parseInt(r.substr(2 * f, 2), 16);
+              if (X(u)) return f;
+              t[e + f] = u;
+            }
+            return f;
+          }
+          function E(t, r, e, n) {
+            return V(D(r, t.length - e), t, e, n);
+          }
+          function A(t, r, e, n) {
+            return V(q(r), t, e, n);
+          }
+          function B(t, r, e, n) {
+            return A(t, r, e, n);
+          }
+          function U(t, r, e, n) {
+            return V(Y(r), t, e, n);
+          }
+          function T(t, r, e, n) {
+            return V(F(r, t.length - e), t, e, n);
+          }
+          function _(t, r, e) {
+            return 0 === r && e === t.length ? J.fromByteArray(t) : J.fromByteArray(t.slice(r, e));
+          }
+          function I(t, r, e) {
+            e = Math.min(t.length, e);
+            for (var n = [], i = r; i < e;) {
+              var o,
+                f,
+                u,
+                s,
+                h = t[i],
+                a = null,
+                c = h > 239 ? 4 : h > 223 ? 3 : h > 191 ? 2 : 1;
+              if (i + c <= e) switch (c) {
+                case 1:
+                  h < 128 && (a = h);
+                  break;
+                case 2:
+                  o = t[i + 1], 128 == (192 & o) && (s = (31 & h) << 6 | 63 & o, s > 127 && (a = s));
+                  break;
+                case 3:
+                  o = t[i + 1], f = t[i + 2], 128 == (192 & o) && 128 == (192 & f) && (s = (15 & h) << 12 | (63 & o) << 6 | 63 & f, s > 2047 && (s < 55296 || s > 57343) && (a = s));
+                  break;
+                case 4:
+                  o = t[i + 1], f = t[i + 2], u = t[i + 3], 128 == (192 & o) && 128 == (192 & f) && 128 == (192 & u) && (s = (15 & h) << 18 | (63 & o) << 12 | (63 & f) << 6 | 63 & u, s > 65535 && s < 1114112 && (a = s));
+              }
+              null === a ? (a = 65533, c = 1) : a > 65535 && (a -= 65536, n.push(a >>> 10 & 1023 | 55296), a = 56320 | 1023 & a), n.push(a), i += c;
+            }
+            return S(n);
+          }
+          function S(t) {
+            var r = t.length;
+            if (r <= H) return String.fromCharCode.apply(String, t);
+            for (var e = "", n = 0; n < r;) e += String.fromCharCode.apply(String, t.slice(n, n += H));
+            return e;
+          }
+          function C(t, r, e) {
+            var n = "";
+            e = Math.min(t.length, e);
+            for (var i = r; i < e; ++i) n += String.fromCharCode(127 & t[i]);
+            return n;
+          }
+          function L(t, r, e) {
+            var n = "";
+            e = Math.min(t.length, e);
+            for (var i = r; i < e; ++i) n += String.fromCharCode(t[i]);
+            return n;
+          }
+          function R(t, r, e) {
+            var n = t.length;
+            (!r || r < 0) && (r = 0), (!e || e < 0 || e > n) && (e = n);
+            for (var i = "", o = r; o < e; ++o) i += z(t[o]);
+            return i;
+          }
+          function x(t, r, e) {
+            for (var n = t.slice(r, e), i = "", o = 0; o < n.length; o += 2) i += String.fromCharCode(n[o] + 256 * n[o + 1]);
+            return i;
+          }
+          function M(t, r, e) {
+            if (t % 1 != 0 || t < 0) throw new RangeError("offset is not uint");
+            if (t + r > e) throw new RangeError("Trying to access beyond buffer length");
+          }
+          function O(t, r, e, n, o, f) {
+            if (!i.isBuffer(t)) throw new TypeError('"buffer" argument must be a Buffer instance');
+            if (r > o || r < f) throw new RangeError('"value" argument is out of bounds');
+            if (e + n > t.length) throw new RangeError("Index out of range");
+          }
+          function k(t, r, e, n, i, o) {
+            if (e + n > t.length) throw new RangeError("Index out of range");
+            if (e < 0) throw new RangeError("Index out of range");
+          }
+          function N(t, r, e, n, i) {
+            return r = +r, e >>>= 0, i || k(t, r, e, 4, 3.4028234663852886e38, -3.4028234663852886e38), Z.write(t, r, e, n, 23, 4), e + 4;
+          }
+          function P(t, r, e, n, i) {
+            return r = +r, e >>>= 0, i || k(t, r, e, 8, 1.7976931348623157e308, -1.7976931348623157e308), Z.write(t, r, e, n, 52, 8), e + 8;
+          }
+          function j(t) {
+            if (t = t.split("=")[0], t = t.trim().replace(K, ""), t.length < 2) return "";
+            for (; t.length % 4 != 0;) t += "=";
+            return t;
+          }
+          function z(t) {
+            return t < 16 ? "0" + t.toString(16) : t.toString(16);
+          }
+          function D(t, r) {
+            var e;
+            r = r || Infinity;
+            for (var n = t.length, i = null, o = [], f = 0; f < n; ++f) {
+              if (e = t.charCodeAt(f), e > 55295 && e < 57344) {
+                if (!i) {
+                  if (e > 56319) {
+                    (r -= 3) > -1 && o.push(239, 191, 189);
+                    continue;
+                  }
+                  if (f + 1 === n) {
+                    (r -= 3) > -1 && o.push(239, 191, 189);
+                    continue;
+                  }
+                  i = e;
+                  continue;
+                }
+                if (e < 56320) {
+                  (r -= 3) > -1 && o.push(239, 191, 189), i = e;
+                  continue;
+                }
+                e = 65536 + (i - 55296 << 10 | e - 56320);
+              } else i && (r -= 3) > -1 && o.push(239, 191, 189);
+              if (i = null, e < 128) {
+                if ((r -= 1) < 0) break;
+                o.push(e);
+              } else if (e < 2048) {
+                if ((r -= 2) < 0) break;
+                o.push(e >> 6 | 192, 63 & e | 128);
+              } else if (e < 65536) {
+                if ((r -= 3) < 0) break;
+                o.push(e >> 12 | 224, e >> 6 & 63 | 128, 63 & e | 128);
+              } else {
+                if (!(e < 1114112)) throw new Error("Invalid code point");
+                if ((r -= 4) < 0) break;
+                o.push(e >> 18 | 240, e >> 12 & 63 | 128, e >> 6 & 63 | 128, 63 & e | 128);
               }
             }
-          } else console.log("⚠️ " + _0x14672f + " 配置重复，忽略: " + _0xe60112);
-        }
-      }
-    }
-  }
-  const ksckValue = process.env.ksck;
-  if (ksckValue) {
-    console.log("检测到 ksck 环境变量，解析中...");
-    const _0x3feb9c = ksckValue.split("&").map(_0x57de05 => _0x57de05.trim()).filter(Boolean);
-    console.log("从 ksck 环境变量中解析到 " + _0x3feb9c.length + " 个配置");
-    for (const _0xd8dcc6 of _0x3feb9c) {
-      if (!_0x48766a.has(_0xd8dcc6)) {
-        const _0x3573b6 = _0x4eff69(_0xd8dcc6);
-        if (_0x3573b6) {
-          _0x3573b6.index = ++_0x449276;
-          _0x3573b6.source = "ksck";
-          _0x461040.push(_0x3573b6);
-          _0x48766a.add(_0xd8dcc6);
-        } else console.log("⚠️ ksck 配置格式错误，忽略: " + _0xd8dcc6);
-      } else console.log("⚠️ ksck 配置重复，忽略: " + _0xd8dcc6);
-    }
-  }
-  _0x461040.length === 0 ? console.log("❌ 未找到任何有效的账号配置（检查 ksck 或 ksck1 到 ksck" + _0x1c71f3 + "）") : console.log("✅ 共加载 " + _0x461040.length + " 个有效账号配置");
-  return _0x461040;
-}
-const _0x3f130a = _0x5ebbb4(),
-  _0x1cc5fd = _0x3f130a.length,
-  _0x148174 = _0x349a11(),
-  _0x4e935a = parseInt(process.env.COIN_LIMIT || "500000", 10) || 500000,
-  _0x5a97d3 = parseInt(process.env.ROUNDS || "50", 10) || 35,
-  _0x19e8ac = parseInt(process.env.LOW_REWARD_THRESHOLD || "10", 10) || 10,
-  _0x4235c4 = parseInt(process.env.LOW_REWARD_LIMIT || "3", 10) || 3;
-console.log("================================================================================");
-console.log("                                  ⭐ 快手至尊金币至尊PLUS版 ⭐                                ");
-console.log("                            🏆 安全稳定 · 高效收益 · 尊贵体验 🏆                        ");
-console.log("                            🏆 tg频道 · https://t.me/+4ccNiabMEJkxZDVl 🏆                        ");
-console.log("                           🏆 赞助购买https://new.lqfaka.com/shop/IMSZZ90F🏆                       ");
-console.log("                           🏆 代理购买5r一月http://www.tianxingip.com/proxy/index/index/code/6350550/p/2457.html🏆                       ");
-console.log("================🎉 系统初始化完成，快手至尊金币版启动成功！🎉");
-console.log("💎 检测到环境变量配置：" + _0x1cc5fd + "个账号");
-console.log("🎯 将执行以下任务：" + _0x148174.join(", "));
-console.log("[备注：金币阈值配置为 " + _0x4e935a + " 金币（COIN_LIMIT=" + (process.env.COIN_LIMIT || "默认") + ")，轮数配置为 " + _0x5a97d3 + " 轮（ROUNDS=" + (process.env.ROUNDS || "默认") + ")，低奖励阈值 " + _0x19e8ac + " 金币（LOW_REWARD_THRESHOLD=" + (process.env.LOW_REWARD_THRESHOLD || "默认") + ")，低奖励上限 " + _0x4235c4 + " 次（LOW_REWARD_LIMIT=" + (process.env.LOW_REWARD_LIMIT || "默认") + ")]");
-_0x1cc5fd > (process.env.MAX_CONCURRENCY || 999) && (console.log("错误: 检测到 " + _0x1cc5fd + " 个账号配置，最多只允许" + (process.env.MAX_CONCURRENCY || 999) + "个"), process.exit(1));
-const _0x19687b = "http://110.42.98.174:32081",
-  _0xe56128 = _0x19687b + "/sign_modified.php",
-  _0x470574 = _0x19687b + "/queue_status";
-function _0x1e8edf() {
-  try {
-    const _0x51e7e2 = _0x27d6f9 => {
-        {
-          const _0x2af614 = "0123456789abcdef";
-          let _0x2e7fe6 = "";
-          for (let _0x4c9224 = 0; _0x4c9224 < _0x27d6f9; _0x4c9224++) {
-            _0x2e7fe6 += _0x2af614.charAt(Math.floor(Math.random() * _0x2af614.length));
+            return o;
           }
-          return _0x2e7fe6;
-        }
-      },
-      _0x194bd1 = _0x51e7e2(16),
-      _0x464cf9 = "ANDROID_" + _0x194bd1;
-    return _0x464cf9;
-  } catch (_0xf6d95a) {
-    {
-      console.log("生成did失败: " + _0xf6d95a.message);
-      const _0x4bc5eb = Date.now().toString(16).toUpperCase();
-      return "ANDROID_" + _0x4bc5eb.substring(0, 16);
-    }
-  }
-}
-async function _0x5e9c79(_0x167349, _0x1b1a5e = null, _0x4c8067 = "Unknown Request") {
-  const _0x1725ae = {
-    ..._0x167349
-  };
-  if (_0x1b1a5e) try {
-    _0x1725ae.agent = new _0x154ba1(_0x1b1a5e);
-    _0x2e477b && console.log("[调试] " + _0x4c8067 + " 使用代理: " + _0x1b1a5e);
-  } catch (_0x2f1cf1) {
-    console.log("[错误] " + _0x4c8067 + " 代理URL无效(" + _0x2f1cf1.message + ")，尝试直连模式");
-    _0x2e477b && console.log("[调试] 代理无效，自动切换到直连模式");
-  } else {
-    if (_0x2e477b) {
-      console.log("[调试] 未配置代理，使用直连模式");
-    }
-  }
-  if (_0x2e477b) {
-    {
-      const _0x20abd6 = _0x1725ae.method || "GET";
-      console.log("[调试] " + _0x4c8067 + " -> " + _0x20abd6 + " " + _0x1725ae.url);
-    }
-  }
-  return new Promise(_0x4f4c13 => {
-    _0x37bac8(_0x1725ae, (_0x2b871c, _0x5949d1, _0x48747e) => {
-      if (_0x2b871c) return _0x2b871c.name === "AggregateError" && Array.isArray(_0x2b871c.errors) ? console.log("[调试] " + _0x4c8067 + " 请求错误: AggregateError\n" + _0x2b871c.errors.map((_0x76e706, _0x19f244) => "  [" + _0x19f244 + "] " + (_0x76e706?.["message"] || _0x76e706)).join("\n")) : console.log("[调试] " + _0x4c8067 + " 请求错误: " + (_0x2b871c.message || String(_0x2b871c))), _0x4f4c13(null);
-      if (!_0x5949d1 || _0x5949d1.statusCode !== 200) {
-        {
-          const _0x1b7acb = _0x5949d1 ? _0x5949d1.statusCode : "无响应";
-          console.log("[调试] " + _0x4c8067 + " HTTP状态码异常: " + _0x1b7acb);
-          return _0x4f4c13(null);
-        }
-      }
-      try {
-        _0x4f4c13(JSON.parse(_0x48747e));
-      } catch {
-        _0x4f4c13(_0x48747e);
-      }
-    });
-  });
-}
-async function _0x3b128c(_0xab800c, _0x4d1feb = "代理连通性检测") {
-  if (!_0xab800c) return {
-    "ok": true,
-    "msg": "✅ 未配置代理（直连模式）",
-    "ip": "localhost"
-  };
-  const _0x4c8e60 = await _0x5e9c79({
-    "method": "GET",
-    "url": "https://ipinfo.io/json",
-    "headers": {
-      "User-Agent": "ProxyTester/1.0"
-    },
-    "timeout": 8000
-  }, _0xab800c, _0x4d1feb + " → ipinfo.io");
-  if (!_0x4c8e60) return {
-    "ok": false,
-    "msg": "❌ 无法通过代理访问 ipinfo.io",
-    "ip": ""
-  };
-  const _0x5506c1 = _0x4c8e60.ip || _0x4c8e60.ip_address || "";
-  return {
-    "ok": true,
-    "msg": "✅ SOCKS5代理正常，出口IP: " + (_0x5506c1 || "未知"),
-    "ip": _0x5506c1 || "未知"
-  };
-}
-const _0x3c5aec = new Set();
-async function _0x35dd3c(_0x419251, _0x89a922, _0x196f0c = "?") {
-  const _0x598966 = "https://nebula.kuaishou.com/rest/n/nebula/activity/earn/overview/basicInfo?source=bottom_guide_first",
-    _0x2fdee2 = await _0x5e9c79({
-      "method": "GET",
-      "url": _0x598966,
-      "headers": {
-        "Host": "nebula.kuaishou.com",
-        "User-Agent": "kwai-android aegon/3.56.0",
-        "Cookie": _0x419251,
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      "timeout": 12000
-    }, _0x89a922, "账号[" + _0x196f0c + "] 获取基本信息");
-  if (_0x2fdee2 && _0x2fdee2.result === 1 && _0x2fdee2.data) {
-    return {
-      "nickname": _0x2fdee2.data.userData?.["nickname"] || null,
-      "totalCoin": _0x2fdee2.data.totalCoin ?? null,
-      "allCash": _0x2fdee2.data.allCash ?? null
-    };
-  }
-  return null;
-}
-function _0x5939f2(_0x2fe819, _0x45e14f) {
-  _0x2fe819 = String(_0x2fe819);
-  if (_0x2fe819.length >= _0x45e14f) return _0x2fe819.substring(0, _0x45e14f);
-  const _0x1c5328 = _0x45e14f - _0x2fe819.length,
-    _0x53ce86 = Math.floor(_0x1c5328 / 2),
-    _0x1cd57d = _0x1c5328 - _0x53ce86;
-  return " ".repeat(_0x53ce86) + _0x2fe819 + " ".repeat(_0x1cd57d);
-}
-class _0x48a3f0 {
-  constructor({
-    index: _0x49257e,
-    salt: _0x266dba,
-    cookie: _0x351d39,
-    nickname = "",
-    proxyUrl = null,
-    tasksToExecute = ["food", "box", "look"]
-  }) {
-    this.index = _0x49257e;
-    this.salt = _0x266dba;
-    this.cookie = _0x351d39;
-    this.nickname = nickname || "账号" + _0x49257e;
-    this.proxyUrl = proxyUrl;
-    this.coinLimit = parseInt(process.env.COIN_LIMIT || "500000", 10) || 500000;
-    this.lowRewardThreshold = parseInt(process.env.LOW_REWARD_THRESHOLD || "10", 10) || 10;
-    this.lowRewardLimit = parseInt(process.env.LOW_REWARD_LIMIT || "3", 10) || 3;
-    this.coinExceeded = false;
-    this.tasksToExecute = tasksToExecute;
-    this.extractCookieInfo();
-    this.headers = {
-      "Host": "nebula.kuaishou.com",
-      "Connection": "keep-alive",
-      "User-Agent": "Mozilla/5.0 (Linux; Android 10; MI 8 Lite Build/QKQ1.190910.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.101 Mobile Safari/537.36",
-      "Cookie": this.cookie,
-      "content-type": "application/json"
-    };
-    this.taskReportPath = "/rest/r/ad/task/report";
-    this.startTime = Date.now();
-    this.endTime = this.startTime - 30000;
-    this.queryParams = "mod=Xiaomi(MI 11)&appver=" + this.appver + "&egid=" + this.egid + "&did=" + this.did;
-    this.taskConfigs = {
-      "box": {
-        "name": "宝箱广告",
-        "businessId": 606,
-        "posId": 20346,
-        "subPageId": 100024064,
-        "requestSceneType": 1,
-        "taskType": 1
-      },
-      "look": {
-        "name": "看广告得金币",
-        "businessId": 672,
-        "posId": 24067,
-        "subPageId": 100026367,
-        "requestSceneType": 1,
-        "taskType": 1
-      },
-      "food": {
-        "name": "饭补广告",
-        "businessId": 9362,
-        "posId": 24067,
-        "subPageId": 100026367,
-        "requestSceneType": 7,
-        "taskType": 2
-      }
-    };
-    this.taskStats = {};
-    this.tasksToExecute.forEach(_0x14c0d2 => {
-      this.taskConfigs[_0x14c0d2] && (this.taskStats[_0x14c0d2] = {
-        "success": 0,
-        "failed": 0,
-        "totalReward": 0
-      });
-    });
-    this.lowRewardStreak = 0;
-    this.stopAllTasks = false;
-    this.taskLimitReached = {};
-    this.tasksToExecute.forEach(_0x3631af => {
-      this.taskConfigs[_0x3631af] && (this.taskLimitReached[_0x3631af] = false);
-    });
-  }
-  async ["checkCoinLimit"]() {
-    try {
-      const _0xd86c94 = await _0x35dd3c(this.cookie, this.proxyUrl, this.index);
-      if (_0xd86c94 && _0xd86c94.totalCoin) {
-        const _0x163803 = parseInt(_0xd86c94.totalCoin);
-        if (_0x163803 >= this.coinLimit) return console.log("⚠️ 账号[" + this.nickname + "] 金币已达 " + _0x163803 + "，超过 " + this.coinLimit + " 阈值，将停止任务 [备注：超过金币阈值（COIN_LIMIT=" + (process.env.COIN_LIMIT || "默认500000") + ")]"), this.coinExceeded = true, this.stopAllTasks = true, true;
-      }
-      return false;
-    } catch (_0x1d54f3) {
-      console.log("账号[" + this.nickname + "] 金币检查异常: " + _0x1d54f3.message);
-      return false;
-    }
-  }
-  ["extractCookieInfo"]() {
-    try {
-      {
-        const _0x1ccb94 = this.cookie.match(/egid=([^;]+)/),
-          _0x4c8826 = this.cookie.match(/did=([^;]+)/),
-          _0x59239a = this.cookie.match(/userId=([^;]+)/),
-          _0x482284 = this.cookie.match(/kuaishou\.api_st=([^;]+)/),
-          _0xa5dce3 = this.cookie.match(/appver=([^;]+)/);
-        this.egid = _0x1ccb94 ? _0x1ccb94[1] : "";
-        this.did = _0x4c8826 ? _0x4c8826[1] : "";
-        this.userId = _0x59239a ? _0x59239a[1] : "";
-        this.kuaishouApiSt = _0x482284 ? _0x482284[1] : "";
-        this.appver = _0xa5dce3 ? _0xa5dce3[1] : "13.7.20.10468";
-        if (!this.egid || !this.did) {
-          console.log("账号[" + this.nickname + "] cookie格式可能无 egid 或 did，但继续尝试...");
-        }
-      }
-    } catch (_0x2b26d4) {
-      console.log("账号[" + this.nickname + "] 解析cookie失败: " + _0x2b26d4.message);
-    }
-  }
-  ["getTaskStats"]() {
-    return this.taskStats;
-  }
-  ["printTaskStats"]() {
-    console.log("\n账号[" + this.nickname + "] 任务执行统计:");
-    for (const [_0x1fc6bd, _0x50bcbd] of Object.entries(this.taskStats)) {
-      const _0x1e496c = this.taskConfigs[_0x1fc6bd].name;
-      console.log("  " + _0x1e496c + ": 成功" + _0x50bcbd.success + "次, 失败" + _0x50bcbd.failed + "次, 总奖励" + _0x50bcbd.totalReward + "金币");
-    }
-  }
-  async ["retryOperation"](_0x3ee071, _0x95f4aa, _0x527e13 = 3, _0x1bc615 = 2000) {
-    let _0x4ca973 = 0,
-      _0x53d955 = null;
-    while (_0x4ca973 < _0x527e13) {
-      {
-        try {
-          const _0x38734e = await _0x3ee071();
-          if (_0x38734e) return _0x38734e;
-          _0x53d955 = new Error(_0x95f4aa + " 返回空结果");
-        } catch (_0x336bb6) {
-          _0x53d955 = _0x336bb6;
-          console.log("账号[" + this.nickname + "] " + _0x95f4aa + " 异常: " + _0x336bb6.message);
-        }
-        _0x4ca973++;
-        _0x4ca973 < _0x527e13 && (console.log("账号[" + this.nickname + "] " + _0x95f4aa + " 失败，重试 " + _0x4ca973 + "/" + _0x527e13), await new Promise(_0x3ec577 => setTimeout(_0x3ec577, _0x1bc615)));
-      }
-    }
-    _0x2e477b && _0x53d955 && console.log("[调试] " + _0x95f4aa + " 最终失败: " + _0x53d955.message);
-    return null;
-  }
-  async ["getAdInfo"](_0x1b4ef2) {
-    try {
-      {
-        const _0x3dabca = "/rest/e/reward/mixed/ad",
-          _0x3a3c85 = {
-            "encData": "|encData|",
-            "sign": "|sign|",
-            "cs": "false",
-            "client_key": "2ac2a76d",
-            "videoModelCrowdTag": "1_23",
-            "os": "android",
-            "kuaishou.api_st": this.kuaishouApiSt,
-            "uQaTag": "1##swLdgl:99#ecPp:-9#cmNt:-0#cmHs:-3#cmMnsl:-0"
-          },
-          _0x1753af = {
-            "earphoneMode": "1",
-            "mod": "Xiaomi(23116PN5BC)",
-            "appver": this.appver,
-            "isp": "CUCC",
-            "language": "zh-cn",
-            "ud": this.userId,
-            "did_tag": "0",
-            "net": "WIFI",
-            "kcv": "1599",
-            "app": "0",
-            "kpf": "ANDROID_PHONE",
-            "ver": "11.6",
-            "android_os": "0",
-            "boardPlatform": "pineapple",
-            "kpn": "NEBULA",
-            "androidApiLevel": "35",
-            "country_code": "cn",
-            "sys": "ANDROID_15",
-            "sw": "1080",
-            "sh": "2400",
-            "abi": "arm64",
-            "userRecoBit": "0"
-          },
-          _0xe7770c = {
-            "appInfo": {
-              "appId": "kuaishou_nebula",
-              "name": "快手极速版",
-              "packageName": "com.kuaishou.nebula",
-              "version": this.appver,
-              "versionCode": -1
-            },
-            "deviceInfo": {
-              "osType": 1,
-              "osVersion": "15",
-              "deviceId": this.did,
-              "screenSize": {
-                "width": 1080,
-                "height": 2249
-              },
-              "ftt": ""
-            },
-            "userInfo": {
-              "userId": this.userId,
-              "age": 0,
-              "gender": ""
-            },
-            "impInfo": [{
-              "pageId": 11101,
-              "subPageId": _0x1b4ef2.subPageId,
-              "action": 0,
-              "browseType": 3,
-              "impExtData": "{}",
-              "mediaExtData": "{}"
-            }]
-          },
-          _0x2bbf9c = Buffer.from(JSON.stringify(_0xe7770c)).toString("base64"),
-          _0x4745a6 = await this.generateSignature2(_0x3dabca, _0x102fef.stringify({
-            ..._0x1753af,
-            ..._0x3a3c85
-          }), this.salt, _0x2bbf9c);
-        if (!_0x4745a6) {
-          console.log("❌ 账号[" + this.nickname + "] 生成签名失败，无法获取" + _0x1b4ef2.name);
-          return null;
-        }
-        const _0x38fcfa = {
-          ..._0x1753af,
-          "sig": _0x4745a6.sig,
-          "__NS_sig3": _0x4745a6.__NS_sig3,
-          "__NS_xfalcon": "",
-          "__NStokensig": _0x4745a6.__NStokensig
-        };
-        _0x3a3c85.encData = _0x4745a6.encData;
-        _0x3a3c85.sign = _0x4745a6.sign;
-        const _0xfa52e5 = "https://api.e.kuaishou.com" + _0x3dabca + "?" + _0x102fef.stringify(_0x38fcfa),
-          _0x564d31 = await _0x5e9c79({
-            "method": "POST",
-            "url": _0xfa52e5,
-            "headers": {
-              "Host": "api.e.kuaishou.com",
-              "User-Agent": "kwai-android aegon/3.56.0",
-              "Cookie": "kuaishou_api_st=" + this.kuaishouApiSt
-            },
-            "form": _0x3a3c85,
-            "timeout": 12000
-          }, this.proxyUrl, "账号[" + this.nickname + "] 获取广告");
-        if (!_0x564d31) return null;
-        if (_0x564d31.errorMsg === "OK" && _0x564d31.feeds && _0x564d31.feeds[0] && _0x564d31.feeds[0].ad) {
-          const _0x3e083b = _0x564d31.feeds[0].caption || _0x564d31.feeds[0].ad?.["caption"] || "";
-          _0x3e083b && console.log("✅ 账号[" + this.nickname + "] 成功获取到广告信息：" + _0x3e083b);
-          const _0x1c67af = _0x564d31.feeds[0].exp_tag || "",
-            _0x455415 = _0x1c67af.split("/")[1]?.["split"]("_")?.[0] || "";
-          return {
-            "cid": _0x564d31.feeds[0].ad.creativeId,
-            "llsid": _0x455415
+          function q(t) {
+            for (var r = [], e = 0; e < t.length; ++e) r.push(255 & t.charCodeAt(e));
+            return r;
+          }
+          function F(t, r) {
+            for (var e, n, i, o = [], f = 0; f < t.length && !((r -= 2) < 0); ++f) e = t.charCodeAt(f), n = e >> 8, i = e % 256, o.push(i), o.push(n);
+            return o;
+          }
+          function Y(t) {
+            return J.toByteArray(j(t));
+          }
+          function V(t, r, e, n) {
+            for (var i = 0; i < n && !(i + e >= r.length || i >= t.length); ++i) r[i + e] = t[i];
+            return i;
+          }
+          function W(t, r) {
+            return t instanceof r || null != t && null != t.constructor && null != t.constructor.name && t.constructor.name === r.name;
+          }
+          function X(t) {
+            return t != t;
+          }
+          var J = t("base64-js"),
+            Z = t("ieee754");
+          e.Buffer = i, e.SlowBuffer = y, e.INSPECT_MAX_BYTES = 50;
+          var G = 2147483647;
+          e.kMaxLength = G, i.TYPED_ARRAY_SUPPORT = r(), i.TYPED_ARRAY_SUPPORT || "undefined" == typeof console || "function" != typeof console.error || console.error("This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support."), Object.defineProperty(i.prototype, "parent", {
+            enumerable: true,
+            get: function () {
+              if (i.isBuffer(this)) return this.buffer;
+            }
+          }), Object.defineProperty(i.prototype, "offset", {
+            enumerable: true,
+            get: function () {
+              if (i.isBuffer(this)) return this.byteOffset;
+            }
+          }), "undefined" != typeof Symbol && null != Symbol.species && i[Symbol.species] === i && Object.defineProperty(i, Symbol.species, {
+            value: null,
+            configurable: true,
+            enumerable: false,
+            writable: false
+          }), i.poolSize = 8192, i.from = function (t, r, e) {
+            return o(t, r, e);
+          }, i.prototype.__proto__ = Uint8Array.prototype, i.__proto__ = Uint8Array, i.alloc = function (t, r, e) {
+            return u(t, r, e);
+          }, i.allocUnsafe = function (t) {
+            return s(t);
+          }, i.allocUnsafeSlow = function (t) {
+            return s(t);
+          }, i.isBuffer = function (t) {
+            return null != t && true === t._isBuffer && t !== i.prototype;
+          }, i.compare = function (t, r) {
+            if (W(t, Uint8Array) && (t = i.from(t, t.offset, t.byteLength)), W(r, Uint8Array) && (r = i.from(r, r.offset, r.byteLength)), !i.isBuffer(t) || !i.isBuffer(r)) throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');
+            if (t === r) return 0;
+            for (var e = t.length, n = r.length, o = 0, f = Math.min(e, n); o < f; ++o) if (t[o] !== r[o]) {
+              e = t[o], n = r[o];
+              break;
+            }
+            return e < n ? -1 : n < e ? 1 : 0;
+          }, i.isEncoding = function (t) {
+            switch (String(t).toLowerCase()) {
+              case "hex":
+              case "utf8":
+              case "utf-8":
+              case "ascii":
+              case "latin1":
+              case "binary":
+              case "base64":
+              case "ucs2":
+              case "ucs-2":
+              case "utf16le":
+              case "utf-16le":
+                return true;
+              default:
+                return false;
+            }
+          }, i.concat = function (t, r) {
+            if (!Array.isArray(t)) throw new TypeError('"list" argument must be an Array of Buffers');
+            if (0 === t.length) return i.alloc(0);
+            var e;
+            if (undefined === r) for (r = 0, e = 0; e < t.length; ++e) r += t[e].length;
+            var n = i.allocUnsafe(r),
+              o = 0;
+            for (e = 0; e < t.length; ++e) {
+              var f = t[e];
+              if (W(f, Uint8Array) && (f = i.from(f)), !i.isBuffer(f)) throw new TypeError('"list" argument must be an Array of Buffers');
+              f.copy(n, o), o += f.length;
+            }
+            return n;
+          }, i.byteLength = g, i.prototype._isBuffer = true, i.prototype.swap16 = function () {
+            var t = this.length;
+            if (t % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
+            for (var r = 0; r < t; r += 2) d(this, r, r + 1);
+            return this;
+          }, i.prototype.swap32 = function () {
+            var t = this.length;
+            if (t % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
+            for (var r = 0; r < t; r += 4) d(this, r, r + 3), d(this, r + 1, r + 2);
+            return this;
+          }, i.prototype.swap64 = function () {
+            var t = this.length;
+            if (t % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
+            for (var r = 0; r < t; r += 8) d(this, r, r + 7), d(this, r + 1, r + 6), d(this, r + 2, r + 5), d(this, r + 3, r + 4);
+            return this;
+          }, i.prototype.toString = function () {
+            var t = this.length;
+            return 0 === t ? "" : 0 === arguments.length ? I(this, 0, t) : w.apply(this, arguments);
+          }, i.prototype.toLocaleString = i.prototype.toString, i.prototype.equals = function (t) {
+            if (!i.isBuffer(t)) throw new TypeError("Argument must be a Buffer");
+            return this === t || 0 === i.compare(this, t);
+          }, i.prototype.inspect = function () {
+            var t = "",
+              r = e.INSPECT_MAX_BYTES;
+            return t = this.toString("hex", 0, r).replace(/(.{2})/g, "$1 ").trim(), this.length > r && (t += " ... "), "<Buffer " + t + ">";
+          }, i.prototype.compare = function (t, r, e, n, o) {
+            if (W(t, Uint8Array) && (t = i.from(t, t.offset, t.byteLength)), !i.isBuffer(t)) throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type ' + typeof t);
+            if (undefined === r && (r = 0), undefined === e && (e = t ? t.length : 0), undefined === n && (n = 0), undefined === o && (o = this.length), r < 0 || e > t.length || n < 0 || o > this.length) throw new RangeError("out of range index");
+            if (n >= o && r >= e) return 0;
+            if (n >= o) return -1;
+            if (r >= e) return 1;
+            if (r >>>= 0, e >>>= 0, n >>>= 0, o >>>= 0, this === t) return 0;
+            for (var f = o - n, u = e - r, s = Math.min(f, u), h = this.slice(n, o), a = t.slice(r, e), c = 0; c < s; ++c) if (h[c] !== a[c]) {
+              f = h[c], u = a[c];
+              break;
+            }
+            return f < u ? -1 : u < f ? 1 : 0;
+          }, i.prototype.includes = function (t, r, e) {
+            return -1 !== this.indexOf(t, r, e);
+          }, i.prototype.indexOf = function (t, r, e) {
+            return v(this, t, r, e, true);
+          }, i.prototype.lastIndexOf = function (t, r, e) {
+            return v(this, t, r, e, false);
+          }, i.prototype.write = function (t, r, e, n) {
+            if (undefined === r) n = "utf8", e = this.length, r = 0;else if (undefined === e && "string" == typeof r) n = r, e = this.length, r = 0;else {
+              if (!isFinite(r)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+              r >>>= 0, isFinite(e) ? (e >>>= 0, undefined === n && (n = "utf8")) : (n = e, e = undefined);
+            }
+            var i = this.length - r;
+            if ((undefined === e || e > i) && (e = i), t.length > 0 && (e < 0 || r < 0) || r > this.length) throw new RangeError("Attempt to write outside buffer bounds");
+            n || (n = "utf8");
+            for (var o = false;;) switch (n) {
+              case "hex":
+                return m(this, t, r, e);
+              case "utf8":
+              case "utf-8":
+                return E(this, t, r, e);
+              case "ascii":
+                return A(this, t, r, e);
+              case "latin1":
+              case "binary":
+                return B(this, t, r, e);
+              case "base64":
+                return U(this, t, r, e);
+              case "ucs2":
+              case "ucs-2":
+              case "utf16le":
+              case "utf-16le":
+                return T(this, t, r, e);
+              default:
+                if (o) throw new TypeError("Unknown encoding: " + n);
+                n = ("" + n).toLowerCase(), o = true;
+            }
+          }, i.prototype.toJSON = function () {
+            return {
+              type: "Buffer",
+              data: Array.prototype.slice.call(this._arr || this, 0)
+            };
           };
-        }
-        if (_0x2e477b) {
-          console.log("[调试] getAdInfo 原始响应:", JSON.stringify(_0x564d31));
-        }
-        return null;
-      }
-    } catch (_0x555ff1) {
-      console.log("❌ 账号[" + this.nickname + "] 获取广告异常: " + _0x555ff1.message);
-      return null;
-    }
-  }
-  async ["generateSignature"](_0x1fdf91, _0x293124, _0x132a64, _0x1e406d) {
-    try {
-      const _0x15de85 = JSON.stringify({
-          "businessId": _0x1e406d.businessId,
-          "endTime": this.endTime,
-          "extParams": "",
-          "mediaScene": "video",
-          "neoInfos": [{
-            "creativeId": _0x1fdf91,
-            "extInfo": "",
-            "llsid": _0x293124,
-            "requestSceneType": _0x1e406d.requestSceneType,
-            "taskType": _0x1e406d.taskType,
-            "watchExpId": "",
-            "watchStage": 0
-          }],
-          "pageId": 11101,
-          "posId": _0x1e406d.posId,
-          "reportType": 0,
-          "sessionId": "",
-          "startTime": this.startTime,
-          "subPageId": _0x1e406d.subPageId
-        }),
-        _0x21a8f6 = "bizStr=" + encodeURIComponent(_0x15de85) + "&cs=false&client_key=2ac2a76d",
-        _0x31c518 = this.queryParams + "&" + _0x21a8f6,
-        _0x196927 = await this.requestSignService({
-          "urlpath": this.taskReportPath,
-          "urldata": _0x31c518,
-          "api_client_salt": this.salt
-        }, "账号[" + this.nickname + "] 生成报告签名");
-      if (!_0x196927 || !_0x196927.data) {
-        return null;
-      }
-      return {
-        "sig": _0x196927.data.sig,
-        "sig3": _0x196927.data.__NS_sig3,
-        "sigtoken": _0x196927.data.__NStokensig,
-        "post": _0x21a8f6
-      };
-    } catch (_0x505848) {
-      console.log("❌ 账号[" + this.nickname + "] 生成签名异常: " + _0x505848.message);
-      return null;
-    }
-  }
-  async ["generateSignature2"](_0x476266, _0xd32c3b, _0x58c180, _0xc9570) {
-    const _0x3d5312 = await this.requestSignService({
-      "urlpath": _0x476266,
-      "urldata": _0xd32c3b,
-      "api_client_salt": _0x58c180,
-      "req_str": _0xc9570
-    }, "账号[" + this.nickname + "] 生成广告签名");
-    if (!_0x3d5312) return null;
-    return _0x3d5312.data || _0x3d5312;
-  }
-  async ["submitReport"](_0x539a4f, _0xe9a4c, _0x52840a, _0x565cd1, _0xb97a9b, _0x4a8408) {
-    try {
-      {
-        const _0x809499 = "https://api.e.kuaishou.com" + this.taskReportPath + "?" + (this.queryParams + "&sig=" + _0x539a4f + "&__NS_sig3=" + _0xe9a4c + "&__NS_xfalcon=&__NStokensig=" + _0x52840a),
-          _0x15c1e1 = await _0x5e9c79({
-            "method": "POST",
-            "url": _0x809499,
-            "headers": {
-              "Host": "api.e.kuaishou.cn",
-              "User-Agent": "kwai-android aegon/3.56.0",
-              "Cookie": this.cookie,
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            "body": _0x565cd1,
-            "timeout": 12000
-          }, this.proxyUrl, "账号[" + this.nickname + "] 提交任务");
-        if (!_0x15c1e1) return {
-          "success": false,
-          "reward": 0
-        };
-        if (_0x15c1e1.result === 1) {
-          const _0x56d9f5 = _0x15c1e1.data?.["neoAmount"] || 0;
-          console.log("💰 账号[" + this.nickname + "] " + _0x4a8408.name + _0x56d9f5 + "金币奖励！");
-          _0x56d9f5 <= this.lowRewardThreshold ? (this.lowRewardStreak++, console.log("⚠️ 账号[" + this.nickname + "] [备注：奖励低于 LOW_REWARD_THRESHOLD=" + this.lowRewardThreshold + "] 金币低于阈值, 模拟下载应用提升权重^^^^^^"), this.did = _0x1e8edf(), this.lowRewardStreak >= this.lowRewardLimit && (console.log("🏁 账号[" + this.nickname + "] 连续" + this.lowRewardLimit + "次奖励≤" + this.lowRewardThreshold + "，停止全部任务 [备注：连续低奖励达到上限 LOW_REWARD_LIMIT=" + this.lowRewardLimit + "]"), this.stopAllTasks = true)) : this.lowRewardStreak = 0;
-          return {
-            "success": true,
-            "reward": _0x56d9f5
+          var H = 4096;
+          i.prototype.slice = function (t, r) {
+            var e = this.length;
+            t = ~~t, r = undefined === r ? e : ~~r, t < 0 ? (t += e, t < 0 && (t = 0)) : t > e && (t = e), r < 0 ? (r += e, r < 0 && (r = 0)) : r > e && (r = e), r < t && (r = t);
+            var n = this.subarray(t, r);
+            return n.__proto__ = i.prototype, n;
+          }, i.prototype.readUIntLE = function (t, r, e) {
+            t >>>= 0, r >>>= 0, e || M(t, r, this.length);
+            for (var n = this[t], i = 1, o = 0; ++o < r && (i *= 256);) n += this[t + o] * i;
+            return n;
+          }, i.prototype.readUIntBE = function (t, r, e) {
+            t >>>= 0, r >>>= 0, e || M(t, r, this.length);
+            for (var n = this[t + --r], i = 1; r > 0 && (i *= 256);) n += this[t + --r] * i;
+            return n;
+          }, i.prototype.readUInt8 = function (t, r) {
+            return t >>>= 0, r || M(t, 1, this.length), this[t];
+          }, i.prototype.readUInt16LE = function (t, r) {
+            return t >>>= 0, r || M(t, 2, this.length), this[t] | this[t + 1] << 8;
+          }, i.prototype.readUInt16BE = function (t, r) {
+            return t >>>= 0, r || M(t, 2, this.length), this[t] << 8 | this[t + 1];
+          }, i.prototype.readUInt32LE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), (this[t] | this[t + 1] << 8 | this[t + 2] << 16) + 16777216 * this[t + 3];
+          }, i.prototype.readUInt32BE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), 16777216 * this[t] + (this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3]);
+          }, i.prototype.readIntLE = function (t, r, e) {
+            t >>>= 0, r >>>= 0, e || M(t, r, this.length);
+            for (var n = this[t], i = 1, o = 0; ++o < r && (i *= 256);) n += this[t + o] * i;
+            return i *= 128, n >= i && (n -= Math.pow(2, 8 * r)), n;
+          }, i.prototype.readIntBE = function (t, r, e) {
+            t >>>= 0, r >>>= 0, e || M(t, r, this.length);
+            for (var n = r, i = 1, o = this[t + --n]; n > 0 && (i *= 256);) o += this[t + --n] * i;
+            return i *= 128, o >= i && (o -= Math.pow(2, 8 * r)), o;
+          }, i.prototype.readInt8 = function (t, r) {
+            return t >>>= 0, r || M(t, 1, this.length), 128 & this[t] ? -1 * (255 - this[t] + 1) : this[t];
+          }, i.prototype.readInt16LE = function (t, r) {
+            t >>>= 0, r || M(t, 2, this.length);
+            var e = this[t] | this[t + 1] << 8;
+            return 32768 & e ? 4294901760 | e : e;
+          }, i.prototype.readInt16BE = function (t, r) {
+            t >>>= 0, r || M(t, 2, this.length);
+            var e = this[t + 1] | this[t] << 8;
+            return 32768 & e ? 4294901760 | e : e;
+          }, i.prototype.readInt32LE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), this[t] | this[t + 1] << 8 | this[t + 2] << 16 | this[t + 3] << 24;
+          }, i.prototype.readInt32BE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), this[t] << 24 | this[t + 1] << 16 | this[t + 2] << 8 | this[t + 3];
+          }, i.prototype.readFloatLE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), Z.read(this, t, true, 23, 4);
+          }, i.prototype.readFloatBE = function (t, r) {
+            return t >>>= 0, r || M(t, 4, this.length), Z.read(this, t, false, 23, 4);
+          }, i.prototype.readDoubleLE = function (t, r) {
+            return t >>>= 0, r || M(t, 8, this.length), Z.read(this, t, true, 52, 8);
+          }, i.prototype.readDoubleBE = function (t, r) {
+            return t >>>= 0, r || M(t, 8, this.length), Z.read(this, t, false, 52, 8);
+          }, i.prototype.writeUIntLE = function (t, r, e, n) {
+            if (t = +t, r >>>= 0, e >>>= 0, !n) {
+              var i = Math.pow(2, 8 * e) - 1;
+              O(this, t, r, e, i, 0);
+            }
+            var o = 1,
+              f = 0;
+            for (this[r] = 255 & t; ++f < e && (o *= 256);) this[r + f] = t / o & 255;
+            return r + e;
+          }, i.prototype.writeUIntBE = function (t, r, e, n) {
+            if (t = +t, r >>>= 0, e >>>= 0, !n) {
+              var i = Math.pow(2, 8 * e) - 1;
+              O(this, t, r, e, i, 0);
+            }
+            var o = e - 1,
+              f = 1;
+            for (this[r + o] = 255 & t; --o >= 0 && (f *= 256);) this[r + o] = t / f & 255;
+            return r + e;
+          }, i.prototype.writeUInt8 = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 1, 255, 0), this[r] = 255 & t, r + 1;
+          }, i.prototype.writeUInt16LE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 2, 65535, 0), this[r] = 255 & t, this[r + 1] = t >>> 8, r + 2;
+          }, i.prototype.writeUInt16BE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 2, 65535, 0), this[r] = t >>> 8, this[r + 1] = 255 & t, r + 2;
+          }, i.prototype.writeUInt32LE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 4, 4294967295, 0), this[r + 3] = t >>> 24, this[r + 2] = t >>> 16, this[r + 1] = t >>> 8, this[r] = 255 & t, r + 4;
+          }, i.prototype.writeUInt32BE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 4, 4294967295, 0), this[r] = t >>> 24, this[r + 1] = t >>> 16, this[r + 2] = t >>> 8, this[r + 3] = 255 & t, r + 4;
+          }, i.prototype.writeIntLE = function (t, r, e, n) {
+            if (t = +t, r >>>= 0, !n) {
+              var i = Math.pow(2, 8 * e - 1);
+              O(this, t, r, e, i - 1, -i);
+            }
+            var o = 0,
+              f = 1,
+              u = 0;
+            for (this[r] = 255 & t; ++o < e && (f *= 256);) t < 0 && 0 === u && 0 !== this[r + o - 1] && (u = 1), this[r + o] = (t / f >> 0) - u & 255;
+            return r + e;
+          }, i.prototype.writeIntBE = function (t, r, e, n) {
+            if (t = +t, r >>>= 0, !n) {
+              var i = Math.pow(2, 8 * e - 1);
+              O(this, t, r, e, i - 1, -i);
+            }
+            var o = e - 1,
+              f = 1,
+              u = 0;
+            for (this[r + o] = 255 & t; --o >= 0 && (f *= 256);) t < 0 && 0 === u && 0 !== this[r + o + 1] && (u = 1), this[r + o] = (t / f >> 0) - u & 255;
+            return r + e;
+          }, i.prototype.writeInt8 = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 1, 127, -128), t < 0 && (t = 255 + t + 1), this[r] = 255 & t, r + 1;
+          }, i.prototype.writeInt16LE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 2, 32767, -32768), this[r] = 255 & t, this[r + 1] = t >>> 8, r + 2;
+          }, i.prototype.writeInt16BE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 2, 32767, -32768), this[r] = t >>> 8, this[r + 1] = 255 & t, r + 2;
+          }, i.prototype.writeInt32LE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 4, 2147483647, -2147483648), this[r] = 255 & t, this[r + 1] = t >>> 8, this[r + 2] = t >>> 16, this[r + 3] = t >>> 24, r + 4;
+          }, i.prototype.writeInt32BE = function (t, r, e) {
+            return t = +t, r >>>= 0, e || O(this, t, r, 4, 2147483647, -2147483648), t < 0 && (t = 4294967295 + t + 1), this[r] = t >>> 24, this[r + 1] = t >>> 16, this[r + 2] = t >>> 8, this[r + 3] = 255 & t, r + 4;
+          }, i.prototype.writeFloatLE = function (t, r, e) {
+            return N(this, t, r, true, e);
+          }, i.prototype.writeFloatBE = function (t, r, e) {
+            return N(this, t, r, false, e);
+          }, i.prototype.writeDoubleLE = function (t, r, e) {
+            return P(this, t, r, true, e);
+          }, i.prototype.writeDoubleBE = function (t, r, e) {
+            return P(this, t, r, false, e);
+          }, i.prototype.copy = function (t, r, e, n) {
+            if (!i.isBuffer(t)) throw new TypeError("argument should be a Buffer");
+            if (e || (e = 0), n || 0 === n || (n = this.length), r >= t.length && (r = t.length), r || (r = 0), n > 0 && n < e && (n = e), n === e) return 0;
+            if (0 === t.length || 0 === this.length) return 0;
+            if (r < 0) throw new RangeError("targetStart out of bounds");
+            if (e < 0 || e >= this.length) throw new RangeError("Index out of range");
+            if (n < 0) throw new RangeError("sourceEnd out of bounds");
+            n > this.length && (n = this.length), t.length - r < n - e && (n = t.length - r + e);
+            var o = n - e;
+            if (this === t && "function" == typeof Uint8Array.prototype.copyWithin) this.copyWithin(r, e, n);else if (this === t && e < r && r < n) for (var f = o - 1; f >= 0; --f) t[f + r] = this[f + e];else Uint8Array.prototype.set.call(t, this.subarray(e, n), r);
+            return o;
+          }, i.prototype.fill = function (t, r, e, n) {
+            if ("string" == typeof t) {
+              if ("string" == typeof r ? (n = r, r = 0, e = this.length) : "string" == typeof e && (n = e, e = this.length), undefined !== n && "string" != typeof n) throw new TypeError("encoding must be a string");
+              if ("string" == typeof n && !i.isEncoding(n)) throw new TypeError("Unknown encoding: " + n);
+              if (1 === t.length) {
+                var o = t.charCodeAt(0);
+                ("utf8" === n && o < 128 || "latin1" === n) && (t = o);
+              }
+            } else "number" == typeof t && (t &= 255);
+            if (r < 0 || this.length < r || this.length < e) throw new RangeError("Out of range index");
+            if (e <= r) return this;
+            var f;
+            if (r >>>= 0, e = undefined === e ? this.length : e >>> 0, t || (t = 0), "number" == typeof t) for (f = r; f < e; ++f) this[f] = t;else {
+              var u = i.isBuffer(t) ? t : i.from(t, n),
+                s = u.length;
+              if (0 === s) throw new TypeError('The value "' + t + '" is invalid for argument "value"');
+              for (f = 0; f < e - r; ++f) this[f + r] = u[f % s];
+            }
+            return this;
           };
+          var K = /[^+/0-9A-Za-z-_]/g;
+        }).call(this);
+      }).call(this, t("buffer").Buffer);
+    }, {
+      buffer: 2,
+      ieee754: 3,
+      "base64-js": 1
+    }],
+    3: [function (t, r, e) {
+      e.read = function (t, r, e, n, i) {
+        var o,
+          f,
+          u = 8 * i - n - 1,
+          s = (1 << u) - 1,
+          h = s >> 1,
+          a = -7,
+          c = e ? i - 1 : 0,
+          p = e ? -1 : 1,
+          l = t[r + c];
+        for (c += p, o = l & (1 << -a) - 1, l >>= -a, a += u; a > 0; o = 256 * o + t[r + c], c += p, a -= 8);
+        for (f = o & (1 << -a) - 1, o >>= -a, a += n; a > 0; f = 256 * f + t[r + c], c += p, a -= 8);
+        if (0 === o) o = 1 - h;else {
+          if (o === s) return f ? NaN : Infinity * (l ? -1 : 1);
+          f += Math.pow(2, n), o -= h;
         }
-        if ([20107, 20108, 1003, 415].includes(_0x15c1e1.result)) return console.log("⚠️ 账号[" + this.nickname + "] " + _0x4a8408.name + " 已达上限"), this.taskLimitReached[_0xb97a9b] = true, {
-          "success": false,
-          "reward": 0
-        };
-        console.log("❌ 账号[" + this.nickname + "] " + _0x4a8408.name + " 奖励失败，result=" + _0x15c1e1.result + " msg=" + (_0x15c1e1.data || ""));
-        _0x2e477b && console.log("[调试] submitReport 原始响应:", JSON.stringify(_0x15c1e1));
-        return {
-          "success": false,
-          "reward": 0
-        };
-      }
-    } catch (_0x542fb2) {
-      console.log("❌ 账号[" + this.nickname + "] 提交任务异常: " + _0x542fb2.message);
-      return {
-        "success": false,
-        "reward": 0
+        return (l ? -1 : 1) * f * Math.pow(2, o - n);
+      }, e.write = function (t, r, e, n, i, o) {
+        var f,
+          u,
+          s,
+          h = 8 * o - i - 1,
+          a = (1 << h) - 1,
+          c = a >> 1,
+          p = 23 === i ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
+          l = n ? 0 : o - 1,
+          y = n ? 1 : -1,
+          g = r < 0 || 0 === r && 1 / r < 0 ? 1 : 0;
+        for (r = Math.abs(r), isNaN(r) || r === Infinity ? (u = isNaN(r) ? 1 : 0, f = a) : (f = Math.floor(Math.log(r) / Math.LN2), r * (s = Math.pow(2, -f)) < 1 && (f--, s *= 2), r += f + c >= 1 ? p / s : p * Math.pow(2, 1 - c), r * s >= 2 && (f++, s /= 2), f + c >= a ? (u = 0, f = a) : f + c >= 1 ? (u = (r * s - 1) * Math.pow(2, i), f += c) : (u = r * Math.pow(2, c - 1) * Math.pow(2, i), f = 0)); i >= 8; t[e + l] = 255 & u, l += y, u /= 256, i -= 8);
+        for (f = f << i | u, h += i; h > 0; t[e + l] = 255 & f, l += y, f /= 256, h -= 8);
+        t[e + l - y] |= 128 * g;
       };
+    }, {}]
+  };
+  return t(r, {}, [2]).Buffer;
+});
+typeof require !== 'undefined' && require('dotenv').config();
+$.message = [];
+$.isTrue = val => val === 'true' || val === true;
+$.qs = {
+  parse(ele, con_1, con_2) {
+    con_1 = con_1 || "&", con_2 = con_2 || "=";
+    for (var temp = ele.split(con_1), obj = {}, n = temp.length, i = 0; i < n; i++) {
+      var tempKey = temp[i].split(con_2);
+      obj[tempKey[0]] = tempKey[1];
     }
+    return obj;
+  },
+  stringify(ele, con_1, con_2) {
+    con_1 = con_1 || "&", con_2 = con_2 || "=";
+    var str = "";
+    for (var key in ele) str += key + con_2 + ele[key] + con_1;
+    return str = str.substr(0, str.length - 1);
+  },
+  escape(str) {
+    return encodeURIComponent(str);
+  },
+  unescape(str) {
+    return decodeURIComponent(str);
   }
-  async ["requestSignService"](_0x660410, _0x48bb24) {
-    const _0x14ce99 = (process.env.km || "").trim();
-    if (!_0x14ce99) return null;
-    const _0x5c6166 = await _0x5e9c79({
-      "method": "POST",
-      "url": _0xe56128 + "?card_key=" + encodeURIComponent(_0x14ce99),
-      "headers": {
-        "Content-Type": "application/json",
-        "User-Agent": "Mozilla/5.0",
-        "X-Card-Key": _0x14ce99
-      },
-      "body": JSON.stringify(_0x660410),
-      "timeout": 15000
-    }, null, _0x48bb24 + "（签名服务）");
-    if (!_0x5c6166) return null;
-    if (_0x5c6166.success && _0x5c6166.status === "queued" && _0x5c6166.queue_id) {
-      const _0x413c52 = await this.pollQueueStatus(_0x5c6166.queue_id);
-      if (_0x413c52 && _0x413c52.success && (_0x413c52.status === "completed" || _0x413c52.status === "processed")) {
-        return _0x413c52;
+};
+const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+const ObjectKeys2LowerCase = obj => Object.fromEntries(Object.entries(obj).map(([k, v]) => [k.toLowerCase(), v]));
+const is_debug = $.isTrue($.isNode() ? process.env.XIAOMI_STEP_DEBUG : $.getdata('xiaomi_step_debug'));
+const enable_increment_mode = $.isTrue($.isNode() ? process.env.XIAOMI_STEP_INCREMENT_MODE : $.getdata('xiaomi_step_increment_mode'));
+const run_count = $.isNode() ? process.env.XIAOMI_STEP_RUN_COUNT : $.getdata('xiaomi_step_run_count') || 1;
+const usernames = ($.isNode() ? process.env.XIAOMI_STEP_USERNAME : $.getdata('xiaomi_step_username')) || '';
+const passwords = ($.isNode() ? process.env.XIAOMI_STEP_PASSWORD : $.getdata('xiaomi_step_password')) || '';
+const space = ($.isNode() ? process.env.XIAOMI_STEP_SPACE : $.getdata('xiaomi_step_space')) || '10000-19999';
+const step = ($.isNode() ? process.env.XIAOMI_STEP_STEP : $.getdata('xiaomi_step_step')) || '';
+var increment_list = $.toObj($.getdata(`xiaomi_step_increment_cache_list`) || '[]');
+const useSpace = step ? false : true;
+const logger = createLogger(is_debug);
+!(async () => {
+  if (!usernames || !passwords) throw new Error('❌请先配置小米账号(手机号)和密码');
+  const userArr = usernames.split('&&');
+  const pwdArr = passwords.split('&&');
+  const spaceArr = space.split('&');
+  const stepArr = step.split('&').filter(Boolean);
+  if (userArr.length !== pwdArr.length) throw new Error('❌账号和密码数量不匹配, 请检查');
+  if (spaceArr.length > 1 && spaceArr.length !== userArr.length) throw new Error('❌区间数量不匹配, 请检查');
+  if (stepArr.length > 1 && stepArr.length !== userArr.length) throw new Error('❌步数数量不匹配, 请检查');
+  logger.info(`用户开启${enable_increment_mode ? '递增' : '常规'}模式`);
+  for (let i = 0; i < userArr.length; i++) {
+    const username = userArr[i];
+    const password = pwdArr[i];
+    const userType = username.includes('@') ? 'email' : 'phone';
+    const user = userType === 'phone' ? username.slice(0, 3) + '****' + username.slice(-4) : username.slice(0, 2) + '****' + username.slice(username.indexOf('@'));
+    const range = spaceArr.length > 1 ? spaceArr[i] : space;
+    const maxStep = useSpace ? random(...range.split('-').map(i => parseInt(i))) : stepArr.length > 1 ? stepArr[i] : step;
+    const startTime = $.time('yyyy-MM-dd HH:mm:ss', Date.now());
+    logger.debug(`[${user}] 执行时间: ${startTime}`);
+    const sec = random(1000, 2000);
+    i !== 0 && logger.debug(`[${user}] 随机等待${sec}毫秒`);
+    i !== 0 && (await $.wait(sec));
+    if (enable_increment_mode) {
+      const id = `${username}_${$.time('yyyyMMdd')}`;
+      $.cacheIndex = increment_list.findIndex(i => i.id === id);
+      if ($.cacheIndex == -1) {
+        increment_list = increment_list.filter(i => i.id.split('_')[0] !== username);
+        const randoms = getRandomSteps(maxStep);
+        logger.debug(`[${user}] 生成的随机步数值: ${randoms}`);
+        increment_list.push({
+          id,
+          steps: randoms.map(step => ({
+            step,
+            finished: false
+          })),
+          maxStep
+        });
+        logger.debug('缓存数组', increment_list);
+        $.setdata($.toStr(increment_list), 'xiaomi_step_increment_cache_list');
+        $.cacheIndex = increment_list.findIndex(i => i.id === id);
       }
-      console.log("账号[" + this.nickname + "] 签名失败: " + (_0x413c52?.["error"] || _0x413c52?.["status"] || "未知"));
-      return null;
-    }
-    if (_0x5c6166.success && (!_0x5c6166.status || _0x5c6166.status === "processed" || _0x5c6166.status === "completed")) return _0x5c6166;
-    console.log("账号[" + this.nickname + "] 签名失败: " + (_0x5c6166.error || _0x5c6166.message || _0x5c6166.status || "未知"));
-    return null;
-  }
-  async ["pollQueueStatus"](_0xefc5e0, _0x101e72 = 30000, _0x4821cd = 2000) {
-    const _0x3f81f3 = Date.now();
-    while (Date.now() - _0x3f81f3 < _0x101e72) {
-      const _0x559b1d = await _0x5e9c79({
-        "method": "GET",
-        "url": _0x470574 + "?queue_id=" + encodeURIComponent(_0xefc5e0),
-        "headers": {
-          "User-Agent": "Mozilla/5.0"
-        },
-        "timeout": 10000
-      }, null, "账号[" + this.nickname + "] 签名排队");
-      if (_0x559b1d?.["success"]) {
-        if (_0x559b1d.status === "completed" || _0x559b1d.status === "processed") return _0x559b1d;
-        if (_0x559b1d.status === "failed") return _0x559b1d;
-      }
-      await new Promise(_0xa46bff => setTimeout(_0xa46bff, _0x4821cd));
-    }
-    return {
-      "success": false,
-      "status": "failed",
-      "error": "queue_timeout"
-    };
-  }
-  async ["executeTask"](_0x34ef73) {
-    const _0x11d6f6 = this.taskConfigs[_0x34ef73];
-    if (!_0x11d6f6) return console.log("❌ 账号[" + this.nickname + "] 未知任务: " + _0x34ef73), false;
-    if (this.taskLimitReached[_0x34ef73]) return false;
-    try {
-      const _0x2d83b9 = await this.retryOperation(() => this.getAdInfo(_0x11d6f6), "获取" + _0x11d6f6.name + "信息", 3);
-      if (!_0x2d83b9) return this.taskStats[_0x34ef73].failed++, false;
-      const _0x3cdce6 = Math.floor(Math.random() * 10000) + 30000;
-      console.log("🔍 账号[" + this.nickname + "] ==>" + _0x11d6f6.name + " " + _0x7d331a() + " " + Math.round(_0x3cdce6 / 1000) + " 秒");
-      await new Promise(_0x5dbe07 => setTimeout(_0x5dbe07, _0x3cdce6));
-      const _0x4eb227 = await this.retryOperation(() => this.generateSignature(_0x2d83b9.cid, _0x2d83b9.llsid, _0x34ef73, _0x11d6f6), "生成" + _0x11d6f6.name + "签名", 3);
-      if (!_0x4eb227) return this.taskStats[_0x34ef73].failed++, false;
-      const _0x49f7c8 = await this.retryOperation(() => this.submitReport(_0x4eb227.sig, _0x4eb227.sig3, _0x4eb227.sigtoken, _0x4eb227.post, _0x34ef73, _0x11d6f6), "提交" + _0x11d6f6.name + "报告", 3);
-      if (_0x49f7c8?.["success"]) return this.taskStats[_0x34ef73].success++, this.taskStats[_0x34ef73].totalReward += _0x49f7c8.reward || 0, true;
-      this.taskStats[_0x34ef73].failed++;
-      return false;
-    } catch (_0x54debf) {
-      console.log("❌ 账号[" + this.nickname + "] 任务异常(" + _0x34ef73 + "): " + _0x54debf.message);
-      this.taskStats[_0x34ef73].failed++;
-      return false;
-    }
-  }
-  async ["executeAllTasksByPriority"]() {
-    const _0x547e79 = {};
-    for (const _0x290a9f of this.tasksToExecute) {
-      if (this.stopAllTasks) break;
-      if (!this.taskConfigs[_0x290a9f]) {
-        console.log("⚠️ 账号[" + this.nickname + "] 跳过未知任务: " + _0x290a9f);
+      if (increment_list.find(i => i.id === id).steps.every(i => i.finished)) {
+        logger.error(`[${user}] 今日步数已完成, 无需继续执行`);
         continue;
       }
-      console.log("🚀 账号[" + this.nickname + "] 开始任务：" + this.taskConfigs[_0x290a9f].name);
-      _0x547e79[_0x290a9f] = await this.executeTask(_0x290a9f);
-      if (this.stopAllTasks) break;
-      if (_0x290a9f !== this.tasksToExecute[this.tasksToExecute.length - 1]) {
-        {
-          const _0x2b69a6 = Math.floor(Math.random() * 8000) + 7000;
-          console.log("⏱ 账号[" + this.nickname + "] 下一个任务，随机等待 " + Math.round(_0x2b69a6 / 1000) + " 秒");
-          await new Promise(_0x5a461d => setTimeout(_0x5a461d, _0x2b69a6));
-        }
-      }
+      $.currentRunIndex = increment_list.find(i => i.id === id).steps.findIndex(i => !i.finished);
+      $.step = increment_list.find(i => i.id === id).steps[$.currentRunIndex].step;
+      logger.debug(`[${user}]`, `当前执行步数: ${$.step}步`, `需要执行总步数: ${increment_list[$.cacheIndex].maxStep}步`, `当前次数: ${$.currentRunIndex + 1}`, `需要运行总次数: ${run_count}`);
+    } else {
+      $.step = maxStep;
+      logger.debug(`[${user}] 修改步数: ${$.step}`);
     }
-    return _0x547e79;
+    try {
+      var xiaomi = new Xiaomi(username, password, $.step, userType);
+      var code = await xiaomi.getCode();
+      var {
+        loginToken,
+        userId
+      } = await xiaomi.doLogin(code);
+      var appToken = await xiaomi.getAppToken(loginToken);
+      await xiaomi.doStep(appToken, userId);
+    } catch (e) {
+      await SendNotify($.name, '', `❌账号: ${user} 任务执行失败, 请打开调试模式查看日志!`);
+      logger.error(`[${user}] 执行失败`, e);
+      continue;
+    }
+    $.message.push(`登陆账号: ${user}`);
+    $.message.push(`当前模式: ${enable_increment_mode ? '递增' : '常规'}`);
+    useSpace && $.message.push(`设置区间: ${spaceArr.length > 1 ? spaceArr[i] : space}`);
+    $.message.push(`运行时间: ${startTime}`);
+    if (enable_increment_mode) {
+      increment_list[$.cacheIndex].steps[$.currentRunIndex].finished = true;
+      logger.debug('执行完成', increment_list);
+      let content = `执行结果: 成功修改步数${$.step}步`;
+      $.setdata($.toStr(increment_list), 'xiaomi_step_increment_cache_list');
+      if ($.currentRunIndex === increment_list[$.cacheIndex].steps.length - 1) {
+        logger.debug(`[${user}] 今日步数已完成, 总合计执行:${increment_list[$.cacheIndex].maxStep}步`);
+        content += `, 任务完成`;
+      } else {
+        const index = $.currentRunIndex + 1;
+        const nextStep = increment_list[$.cacheIndex].steps[index].step;
+        logger.debug(`[${user}] 下次执行步数: ${nextStep}, 总合计执行: ${increment_list[$.cacheIndex].maxStep}步`);
+        content += `, 还剩${increment_list[$.cacheIndex].maxStep - $.step}步需要执行`;
+      }
+      $.message.push(content);
+    } else {
+      $.message.push(`执行结果: 成功修改步数${$.step}步`);
+    }
+    logger.debug(`[${user}] 执行完成`);
+    await SendNotify($.name, '', $.message.join('\n').replace(/\n$/, ''));
+    logger.debug(`[${user}] 执行完成`);
+    $.message = [];
   }
-}
-async function _0x1da865(_0x51278e, _0x299357, _0x43955f) {
-  const _0xd7d890 = new Array(_0x51278e.length);
-  let _0x3d1b10 = 0;
-  async function _0xad384d() {
-    while (true) {
-      {
-        const _0x17fd1e = _0x3d1b10++;
-        if (_0x17fd1e >= _0x51278e.length) {
-          return;
+})().catch(e => logger.error(`执行异常: ${e}`)).finally(() => $.done());
+function Xiaomi(user, pwd, step, userType) {
+  return new class {
+    constructor(user, pwd) {
+      this.username = user;
+      this.password = pwd;
+      this.step = Number(step);
+      this.userType = userType;
+    }
+    async getTimeByTaobao() {
+      const url = 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp';
+      const {
+        data: {
+          t: time
         }
-        const _0x253f54 = _0x51278e[_0x17fd1e];
-        try {
-          _0xd7d890[_0x17fd1e] = await _0x43955f(_0x253f54, _0x17fd1e);
-        } catch (_0x23174b) {
-          console.log("并发执行异常（index=" + (_0x17fd1e + 1) + "）：" + _0x23174b.message);
-          _0xd7d890[_0x17fd1e] = null;
-        }
-      }
+      } = await fetchData(url);
+      return time;
     }
-  }
-  const _0x4259b2 = Array.from({
-    "length": Math.min(_0x299357, _0x51278e.length)
-  }, _0xad384d);
-  await Promise.all(_0x4259b2);
-  return _0xd7d890;
-}
-async function _0x598c47(_0xd4c15c, _0x181a2c = _0x5a97d3) {
-  console.log("账号[" + _0xd4c15c.index + "]" + (_0xd4c15c.remark ? "（" + _0xd4c15c.remark + "）" : "") + " [备注：本账号将执行最多 " + _0x181a2c + " 轮任务]");
-  if (_0xd4c15c.proxyUrl) {
-    {
-      console.log("账号[" + _0xd4c15c.index + "]" + (_0xd4c15c.remark ? "（" + _0xd4c15c.remark + "）" : "") + " 🔌 测试代理连接中...");
-      const _0x4930d8 = await _0x3b128c(_0xd4c15c.proxyUrl, "账号[" + _0xd4c15c.index + "]");
-      console.log("  - " + (_0x4930d8.ok ? "✅ 代理验证通过，IP: " + _0x4930d8.ip : "❌ 代理验证失败") + ": " + _0x4930d8.msg);
-      if (_0x4930d8.ok && _0x4930d8.ip && _0x4930d8.ip !== "localhost") {
-        _0x3c5aec.has(_0x4930d8.ip) && (console.log("\n⚠️ 存在相同代理IP（" + _0x4930d8.ip + "），请立即检查！"), process.exit(1));
-        _0x3c5aec.add(_0x4930d8.ip);
-      }
+    async getTimeBySuning() {
+      const url = 'https://f.m.suning.com/api/ct.do';
+      const {
+        currentTime
+      } = await fetchData(url);
+      return currentTime;
     }
-  } else console.log("账号[" + _0xd4c15c.index + "] 未配置代理，走直连");
-  console.log("账号[" + _0xd4c15c.index + "]" + (_0xd4c15c.remark ? "（" + _0xd4c15c.remark + "）" : "") + " 🔍 获取账号信息中...");
-  let _0x24de86 = await _0x35dd3c(_0xd4c15c.cookie, _0xd4c15c.proxyUrl, _0xd4c15c.index),
-    _0x4c26ad = _0x24de86?.["nickname"] || "账号" + _0xd4c15c.index;
-  if (_0x24de86) {
-    {
-      const _0x27bdaa = _0x24de86.totalCoin != null ? _0x24de86.totalCoin : "未知",
-        _0x5a83a4 = _0x24de86.allCash != null ? _0x24de86.allCash : "未知";
-      console.log("账号[" + _0x4c26ad + "] ✅ 登录成功，💰 当前金币: " + _0x27bdaa + "，💸 当前余额: " + _0x5a83a4);
-    }
-  } else console.log("账号[" + _0x4c26ad + "] ❌ 基本信息获取失败，继续执行");
-  const _0x389453 = new _0x48a3f0({
-    ..._0xd4c15c,
-    "nickname": _0x4c26ad,
-    "tasksToExecute": _0x148174
-  });
-  await _0x389453.checkCoinLimit();
-  if (_0x389453.coinExceeded) {
-    {
-      console.log("账号[" + _0x389453.nickname + "] 初始金币已超过阈值，不执行任务");
-      const _0x18c756 = await _0x35dd3c(_0xd4c15c.cookie, _0xd4c15c.proxyUrl, _0xd4c15c.index),
-        _0x2967ee = _0x24de86?.["totalCoin"] || 0,
-        _0x438491 = _0x18c756?.["totalCoin"] || 0,
-        _0x6af133 = _0x438491 - _0x2967ee,
-        _0x118285 = _0x24de86?.["allCash"] || 0,
-        _0x23d0c9 = _0x18c756?.["allCash"] || 0,
-        _0x592b46 = _0x23d0c9 - _0x118285;
-      return {
-        "index": _0xd4c15c.index,
-        "nickname": _0x4c26ad,
-        "initialCoin": _0x2967ee,
-        "finalCoin": _0x438491,
-        "coinChange": _0x6af133,
-        "initialCash": _0x118285,
-        "finalCash": _0x23d0c9,
-        "cashChange": _0x592b46,
-        "stats": _0x389453.getTaskStats(),
-        "coinLimitExceeded": true
+    async getCode() {
+      const username = this.userType === 'email' ? encodeURIComponent(this.username) : `+86${this.username}`;
+      const query = Object.entries({
+        client_id: 'HuaMi',
+        country_code: 'CN',
+        emailOrPhone: username,
+        password: this.password,
+        r: 'A76391236B3067C26137A285235D581D2026266D010000003CC0790401000000',
+        redirect_uri: 'https://s3-us-west-2.amazonaws.com/hm-registration/successsignin.html',
+        state: 'REDIRECTION',
+        t: `${Date.now()}`,
+        token: ['access', 'refresh']
+      }).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+      const body = ENCRYPT_FN().encrypt(query);
+      const options = {
+        url: 'https://api-user.zepp.com/v2/registrations/tokens',
+        followRedirect: false,
+        body,
+        headers: {
+          app_name: 'com.xiaomi.hm.health',
+          shouldHookRedirection: 'YES',
+          'X-Hm-Ekv': '1',
+          'X-Request-Id': function () {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+              const r = Math.random() * 16 | 0;
+              const v = c === 'x' ? r : r & 0x3 | 0x8;
+              return v.toString(16);
+            });
+          }(),
+          cv: '6.14.0',
+          timezone: 'Asia/Shanghai',
+          appplatform: 'ios_phone',
+          country: 'CN',
+          'User-Agent': 'ZeppLife/6.14.0 (iPhone; iOS 26.1; Scale/3.00)'
+        },
+        timeout: 5e3
       };
+      if ($.isQuanX()) {
+        delete options.body;
+        options.bodyBytes = body;
+      }
+      const {
+        statusCode,
+        headers
+      } = await $.http.post(options);
+      if (statusCode !== 303) {
+        throw new Error(`[${this.username}]登录token接口请求失败`);
+      }
+      const location = headers?.location || headers?.Location;
+      if (!location) {
+        throw new Error(`[${this.username}]获取重定向链接失败`);
+      }
+      const {
+        searchParams
+      } = new URL(location);
+      const error = searchParams.get('error');
+      if (error) {
+        throw new Error(`[${this.username}]密码错误`);
+      }
+      const access = searchParams.get('access') || searchParams.get('refresh');
+      if (!access) {
+        throw new Error(`[${this.username}]获取access失败`);
+      }
+      return access;
+    }
+    async doLogin(code) {
+      const options = {
+        url: 'https://account.huami.com/v2/client/login',
+        type: 'post',
+        headers: {
+          'User-Agent': 'MiFit/4.6.0 (iPhone; iOS 14.0.1; Scale/2.00)'
+        },
+        body: {
+          app_name: 'com.xiaomi.hm.health',
+          app_version: '4.6.0',
+          code,
+          country_code: 'CN',
+          device_id: '2C8B4939-0CCD-4E94-8CBA-CB8EA6E613A1',
+          device_model: 'phone',
+          grant_type: 'access_token',
+          third_name: this.userType === 'phone' ? 'huami_phone' : 'email'
+        }
+      };
+      try {
+        const data = await fetchData(options);
+        logger.debug('获取登录参数', data);
+        const {
+          token_info: {
+            login_token: loginToken,
+            user_id: userId
+          }
+        } = data;
+        return {
+          loginToken,
+          userId
+        };
+      } catch (e) {
+        throw new Error('获取登录参数失败', e);
+      }
+    }
+    async getAppToken(token) {
+      var options = {
+        url: `https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token=${token}&os_version=4.1.0`,
+        headers: {
+          'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 9; MI 6 MIUI/20.6.18)'
+        }
+      };
+      const data = await fetchData(options);
+      logger.debug('获取appToken参数', data);
+      const {
+        result,
+        token_info
+      } = data;
+      if (result === 'ok') {
+        var {
+          app_token: appToken
+        } = token_info;
+        return appToken;
+      } else {
+        throw new Error('获取appToken失败');
+      }
+    }
+    async doStep(appToken, userId) {
+      const _ts = await this.getTimeBySuning();
+      const today = $.time('yyyy-MM-dd');
+      let dataJson = $.toObj($.qs.unescape(__json()))[0];
+      dataJson.date = today;
+      dataJson.summary = dataJson.summary.replace(/ttl\":(.*?),\"dis/, `ttl\":${this.step},\"dis`);
+      const dataStr = $.qs.escape($.toStr([dataJson]));
+      const options = {
+        url: `https://api-mifit-cn.huami.com/v1/data/band_data.json?&t=${_ts}`,
+        type: 'post',
+        headers: {
+          apptoken: appToken
+        },
+        body: {
+          userid: userId,
+          last_sync_data_time: 1597306380,
+          device_type: 0,
+          last_deviceid: 'DA932FFFFE8816E7',
+          data_json: dataStr
+        }
+      };
+      try {
+        const {
+          code,
+          message
+        } = await fetchData(options);
+        logger.debug('刷步结果', {
+          code,
+          message
+        });
+        if (code == 1) {
+          return true;
+        } else {
+          throw new Error(message);
+        }
+      } catch (e) {
+        throw new Error('刷步失败', e);
+      }
+    }
+  }(user, pwd);
+}
+function getRandomSteps(maxValue, length = run_count) {
+  const increment = maxValue / length;
+  const result = [];
+  for (let i = 1; i <= length; i++) {
+    result.push(Math.round(increment * i));
+  }
+  return result;
+}
+function createLogger(t) {
+  return new class {
+    constructor(t) {
+      this.isDebug = t, this.logs = [];
+    }
+    getVarType(t) {
+      return Object.prototype.toString.call(t).slice(8, -1).toLowerCase();
+    }
+    formatter(t) {
+      const e = this.getVarType(t);
+      switch (e) {
+        case "string":
+        case "number":
+        case "boolean":
+          return t;
+        case "array":
+        case "object":
+          return JSON.stringify(t);
+        default:
+          return String(t);
+      }
+    }
+    log(t, ...e) {
+      const r = e.map(t => this.formatter(t)).join("\n");
+      this.logs.push(r), console.log(t + "\n" + r);
+    }
+    info(...t) {
+      this.log("----------ℹ️INFO-----------", ...t);
+    }
+    debug(...t) {
+      this.isDebug && this.log("----------🛠️DEBUG----------", ...t);
+    }
+    warn(...t) {
+      this.log("==========⚠️WARN===========", ...t);
+    }
+    error(...t) {
+      this.log("**********❌ERROR**********", ...t);
+    }
+  }(t);
+}
+async function fetchData(e) {
+  if ("string" == typeof e && (e = {
+    url: e
+  }), !e?.url) throw new Error("[发送请求] 缺少 url 参数");
+  try {
+    const {
+        url: t,
+        type: o,
+        headers: r,
+        body: s,
+        params: i,
+        dataType: a = "form",
+        deviceType: n = "mobile",
+        resultType: p = "data"
+      } = e,
+      c = o ? o.toLowerCase() : "get",
+      l = t.concat("post" === c ? "?" + $.qs.stringify(i) : ""),
+      u = ObjectKeys2LowerCase(r || {});
+    u?.["user-agent"] || Object.assign(u, {
+      "user-agent": "pc" === n ? "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299" : "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"
+    }), "json" === a && Object.assign(u, {
+      "content-type": "application/json;charset=UTF-8"
+    });
+    const y = e?.timeout ? $.isSurge() ? e.timeout / 1e3 : e.timeout : 5e3,
+      m = "post" === c && s && (("json" === e.dataType ? $.toStr : $.qs.stringify)("object" == typeof s ? s : "") || s),
+      b = {
+        ...e,
+        ...(e?.ops ? e.opts : {}),
+        url: l,
+        headers: u,
+        ...("post" === c && {
+          body: m
+        }),
+        ...("get" === c && i && {
+          params: i
+        }),
+        timeout: y
+      },
+      g = new Promise((e, t) => {
+        $[c](b, (o, r, s) => {
+          o ? t(o) : e("response" === p ? r : $.toObj(s) || s);
+        });
+      });
+    return $.isQuanX() ? await Promise.race([new Promise((e, t) => setTimeout(() => t(new Error("网络开小差了~")), y)), g]) : g;
+  } catch (e) {
+    throw new Error(e);
+  }
+}
+async function SendNotify(n, o = "", i = "", t = {}) {
+  const e = "undefined" != typeof $app && "undefined" != typeof $http,
+    s = t["open-url"],
+    f = t["media-url"];
+  if ($.isQuanX() && $notify(n, o, i, t), $.isSurge()) {
+    const t = f ? `${i}\n多媒体:${f}` : i;
+    $notification.post(n, o, t, {
+      url: s
+    });
+  }
+  if ($.isLoon()) {
+    const t = {};
+    s && (t.openUrl = s), f && (t.mediaUrl = f), "{}" === JSON.stringify(t) ? $notification.post(n, o, i) : $notification.post(n, o, i, t);
+  }
+  const c = `${i}${s ? `\n点击跳转: ${s}` : ""}${f ? `\n多媒体: ${f}` : ""}`;
+  if (e) {
+    require("push").schedule({
+      title: n,
+      body: `${o ? `${o}\n` : ""}${c}`
+    });
+  }
+  if ($.isNode()) try {
+    const i = require("./sendNotify");
+    await i.sendNotify(`${n}\n${o}`, c);
+  } catch (n) {
+    console.log("没有找到sendNotify.js文件");
+  }
+  console.log(`${n}\n${o}\n${c}\n\n`);
+}
+function __json() {
+  return '%5B%7B%22data_hr%22%3A%22%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9L%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FVv%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0v%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9e%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0n%5C%2Fa%5C%2F%5C%2F%5C%2FS%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0b%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F1FK%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FR%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9PTFFpaf9L%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FR%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0j%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9K%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FOv%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2Fzf%5C%2F%5C%2F%5C%2F86%5C%2Fzr%5C%2FOv88%5C%2Fzf%5C%2FPf%5C%2F%5C%2F%5C%2F0v%5C%2FS%5C%2F8%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FSf%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2Fz3%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0r%5C%2FOv%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FS%5C%2F9L%5C%2Fzb%5C%2FSf9K%5C%2F0v%5C%2FRf9H%5C%2Fzj%5C%2FSf9K%5C%2F0%5C%2F%5C%2FN%5C%2F%5C%2F%5C%2F%5C%2F0D%5C%2FSf83%5C%2Fzr%5C%2FPf9M%5C%2F0v%5C%2FOv9e%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FS%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2Fzv%5C%2F%5C%2Fz7%5C%2FO%5C%2F83%5C%2Fzv%5C%2FN%5C%2F83%5C%2Fzr%5C%2FN%5C%2F86%5C%2Fz%5C%2F%5C%2FNv83%5C%2Fzn%5C%2FXv84%5C%2Fzr%5C%2FPP84%5C%2Fzj%5C%2FN%5C%2F9e%5C%2Fzr%5C%2FN%5C%2F89%5C%2F03%5C%2FP%5C%2F89%5C%2Fz3%5C%2FQ%5C%2F9N%5C%2F0v%5C%2FTv9C%5C%2F0H%5C%2FOf9D%5C%2Fzz%5C%2FOf88%5C%2Fz%5C%2F%5C%2FPP9A%5C%2Fzr%5C%2FN%5C%2F86%5C%2Fzz%5C%2FNv87%5C%2F0D%5C%2FOv84%5C%2F0v%5C%2FO%5C%2F84%5C%2Fzf%5C%2FMP83%5C%2FzH%5C%2FNv83%5C%2Fzf%5C%2FN%5C%2F84%5C%2Fzf%5C%2FOf82%5C%2Fzf%5C%2FOP83%5C%2Fzb%5C%2FMv81%5C%2FzX%5C%2FR%5C%2F9L%5C%2F0v%5C%2FO%5C%2F9I%5C%2F0T%5C%2FS%5C%2F9A%5C%2Fzn%5C%2FPf89%5C%2Fzn%5C%2FNf9K%5C%2F07%5C%2FN%5C%2F83%5C%2Fzn%5C%2FNv83%5C%2Fzv%5C%2FO%5C%2F9A%5C%2F0H%5C%2FOf8%5C%2F%5C%2Fzj%5C%2FPP83%5C%2Fzj%5C%2FS%5C%2F87%5C%2Fzj%5C%2FNv84%5C%2Fzf%5C%2FOf83%5C%2Fzf%5C%2FOf83%5C%2Fzb%5C%2FNv9L%5C%2Fzj%5C%2FNv82%5C%2Fzb%5C%2FN%5C%2F85%5C%2Fzf%5C%2FN%5C%2F9J%5C%2Fzf%5C%2FNv83%5C%2Fzj%5C%2FNv84%5C%2F0r%5C%2FSv83%5C%2Fzf%5C%2FMP%5C%2F%5C%2F%5C%2Fzb%5C%2FMv82%5C%2Fzb%5C%2FOf85%5C%2Fz7%5C%2FNv8%5C%2F%5C%2F0r%5C%2FS%5C%2F85%5C%2F0H%5C%2FQP9B%5C%2F0D%5C%2FNf89%5C%2Fzj%5C%2FOv83%5C%2Fzv%5C%2FNv8%5C%2F%5C%2F0f%5C%2FSv9O%5C%2F0ZeXv%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F1X%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9B%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2FTP%5C%2F%5C%2F%5C%2F1b%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F0%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F9N%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2F%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%5C%2Fv7%2B%22%2C%22date%22%3A%222021-08-07%22%2C%22data%22%3A%5B%7B%22start%22%3A0%2C%22stop%22%3A1439%2C%22value%22%3A%22UA8AUBQAUAwAUBoAUAEAYCcAUBkAUB4AUBgAUCAAUAEAUBkAUAwAYAsAYB8AYB0AYBgAYCoAYBgAYB4AUCcAUBsAUB8AUBwAUBIAYBkAYB8AUBoAUBMAUCEAUCIAYBYAUBwAUCAAUBgAUCAAUBcAYBsAYCUAATIPYD0KECQAYDMAYB0AYAsAYCAAYDwAYCIAYB0AYBcAYCQAYB0AYBAAYCMAYAoAYCIAYCEAYCYAYBsAYBUAYAYAYCIAYCMAUB0AUCAAUBYAUCoAUBEAUC8AUB0AUBYAUDMAUDoAUBkAUC0AUBQAUBwAUA0AUBsAUAoAUCEAUBYAUAwAUB4AUAwAUCcAUCYAUCwKYDUAAUUlEC8IYEMAYEgAYDoAYBAAUAMAUBkAWgAAWgAAWgAAWgAAWgAAUAgAWgAAUBAAUAQAUA4AUA8AUAkAUAIAUAYAUAcAUAIAWgAAUAQAUAkAUAEAUBkAUCUAWgAAUAYAUBEAWgAAUBYAWgAAUAYAWgAAWgAAWgAAWgAAUBcAUAcAWgAAUBUAUAoAUAIAWgAAUAQAUAYAUCgAWgAAUAgAWgAAWgAAUAwAWwAAXCMAUBQAWwAAUAIAWgAAWgAAWgAAWgAAWgAAWgAAWgAAWgAAWREAWQIAUAMAWSEAUDoAUDIAUB8AUCEAUC4AXB4AUA4AWgAAUBIAUA8AUBAAUCUAUCIAUAMAUAEAUAsAUAMAUCwAUBYAWgAAWgAAWgAAWgAAWgAAWgAAUAYAWgAAWgAAWgAAUAYAWwAAWgAAUAYAXAQAUAMAUBsAUBcAUCAAWwAAWgAAWgAAWgAAWgAAUBgAUB4AWgAAUAcAUAwAWQIAWQkAUAEAUAIAWgAAUAoAWgAAUAYAUB0AWgAAWgAAUAkAWgAAWSwAUBIAWgAAUC4AWSYAWgAAUAYAUAoAUAkAUAIAUAcAWgAAUAEAUBEAUBgAUBcAWRYAUA0AWSgAUB4AUDQAUBoAXA4AUA8AUBwAUA8AUA4AUA4AWgAAUAIAUCMAWgAAUCwAUBgAUAYAUAAAUAAAUAAAUAAAUAAAUAAAUAAAUAAAUAAAWwAAUAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAeSEAeQ8AcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcBcAcAAAcAAAcCYOcBUAUAAAUAAAUAAAUAAAUAUAUAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcCgAeQAAcAAAcAAAcAAAcAAAcAAAcAYAcAAAcBgAeQAAcAAAcAAAegAAegAAcAAAcAcAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcCkAeQAAcAcAcAAAcAAAcAwAcAAAcAAAcAIAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcCIAeQAAcAAAcAAAcAAAcAAAcAAAeRwAeQAAWgAAUAAAUAAAUAAAUAAAUAAAcAAAcAAAcBoAeScAeQAAegAAcBkAeQAAUAAAUAAAUAAAUAAAUAAAUAAAcAAAcAAAcAAAcAAAcAAAcAAAegAAegAAcAAAcAAAcBgAeQAAcAAAcAAAcAAAcAAAcAAAcAkAegAAegAAcAcAcAAAcAcAcAAAcAAAcAAAcAAAcA8AeQAAcAAAcAAAeRQAcAwAUAAAUAAAUAAAUAAAUAAAUAAAcAAAcBEAcA0AcAAAWQsAUAAAUAAAUAAAUAAAUAAAcAAAcAoAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAYAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcBYAegAAcAAAcAAAegAAcAcAcAAAcAAAcAAAcAAAcAAAeRkAegAAegAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAEAcAAAcAAAcAAAcAUAcAQAcAAAcBIAeQAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcBsAcAAAcAAAcBcAeQAAUAAAUAAAUAAAUAAAUAAAUBQAcBYAUAAAUAAAUAoAWRYAWTQAWQAAUAAAUAAAUAAAcAAAcAAAcAAAcAAAcAAAcAMAcAAAcAQAcAAAcAAAcAAAcDMAeSIAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcAAAcBQAeQwAcAAAcAAAcAAAcAMAcAAAeSoAcA8AcDMAcAYAeQoAcAwAcFQAcEMAeVIAaTYAbBcNYAsAYBIAYAIAYAIAYBUAYCwAYBMAYDYAYCkAYDcAUCoAUCcAUAUAUBAAWgAAYBoAYBcAYCgAUAMAUAYAUBYAUA4AUBgAUAgAUAgAUAsAUAsAUA4AUAMAUAYAUAQAUBIAASsSUDAAUDAAUBAAYAYAUBAAUAUAUCAAUBoAUCAAUBAAUAoAYAIAUAQAUAgAUCcAUAsAUCIAUCUAUAoAUA4AUB8AUBkAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAAfgAA%22%2C%22tz%22%3A32%2C%22did%22%3A%22DA932FFFFE8816E7%22%2C%22src%22%3A24%7D%5D%2C%22summary%22%3A%22%7B%5C%22v%5C%22%3A6%2C%5C%22slp%5C%22%3A%7B%5C%22st%5C%22%3A1628296479%2C%5C%22ed%5C%22%3A1628296479%2C%5C%22dp%5C%22%3A0%2C%5C%22lt%5C%22%3A0%2C%5C%22wk%5C%22%3A0%2C%5C%22usrSt%5C%22%3A-1440%2C%5C%22usrEd%5C%22%3A-1440%2C%5C%22wc%5C%22%3A0%2C%5C%22is%5C%22%3A0%2C%5C%22lb%5C%22%3A0%2C%5C%22to%5C%22%3A0%2C%5C%22dt%5C%22%3A0%2C%5C%22rhr%5C%22%3A0%2C%5C%22ss%5C%22%3A0%7D%2C%5C%22stp%5C%22%3A%7B%5C%22ttl%5C%22%3A18272%2C%5C%22dis%5C%22%3A10627%2C%5C%22cal%5C%22%3A510%2C%5C%22wk%5C%22%3A41%2C%5C%22rn%5C%22%3A50%2C%5C%22runDist%5C%22%3A7654%2C%5C%22runCal%5C%22%3A397%2C%5C%22stage%5C%22%3A%5B%7B%5C%22start%5C%22%3A327%2C%5C%22stop%5C%22%3A341%2C%5C%22mode%5C%22%3A1%2C%5C%22dis%5C%22%3A481%2C%5C%22cal%5C%22%3A13%2C%5C%22step%5C%22%3A680%7D%2C%7B%5C%22start%5C%22%3A342%2C%5C%22stop%5C%22%3A367%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A2295%2C%5C%22cal%5C%22%3A95%2C%5C%22step%5C%22%3A2874%7D%2C%7B%5C%22start%5C%22%3A368%2C%5C%22stop%5C%22%3A377%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A1592%2C%5C%22cal%5C%22%3A88%2C%5C%22step%5C%22%3A1664%7D%2C%7B%5C%22start%5C%22%3A378%2C%5C%22stop%5C%22%3A386%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A1072%2C%5C%22cal%5C%22%3A51%2C%5C%22step%5C%22%3A1245%7D%2C%7B%5C%22start%5C%22%3A387%2C%5C%22stop%5C%22%3A393%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A1036%2C%5C%22cal%5C%22%3A57%2C%5C%22step%5C%22%3A1124%7D%2C%7B%5C%22start%5C%22%3A394%2C%5C%22stop%5C%22%3A398%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A488%2C%5C%22cal%5C%22%3A19%2C%5C%22step%5C%22%3A607%7D%2C%7B%5C%22start%5C%22%3A399%2C%5C%22stop%5C%22%3A414%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A2220%2C%5C%22cal%5C%22%3A120%2C%5C%22step%5C%22%3A2371%7D%2C%7B%5C%22start%5C%22%3A415%2C%5C%22stop%5C%22%3A427%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A1268%2C%5C%22cal%5C%22%3A59%2C%5C%22step%5C%22%3A1489%7D%2C%7B%5C%22start%5C%22%3A428%2C%5C%22stop%5C%22%3A433%2C%5C%22mode%5C%22%3A1%2C%5C%22dis%5C%22%3A152%2C%5C%22cal%5C%22%3A4%2C%5C%22step%5C%22%3A238%7D%2C%7B%5C%22start%5C%22%3A434%2C%5C%22stop%5C%22%3A444%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A2295%2C%5C%22cal%5C%22%3A95%2C%5C%22step%5C%22%3A2874%7D%2C%7B%5C%22start%5C%22%3A445%2C%5C%22stop%5C%22%3A455%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A1592%2C%5C%22cal%5C%22%3A88%2C%5C%22step%5C%22%3A1664%7D%2C%7B%5C%22start%5C%22%3A456%2C%5C%22stop%5C%22%3A466%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A1072%2C%5C%22cal%5C%22%3A51%2C%5C%22step%5C%22%3A1245%7D%2C%7B%5C%22start%5C%22%3A467%2C%5C%22stop%5C%22%3A477%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A1036%2C%5C%22cal%5C%22%3A57%2C%5C%22step%5C%22%3A1124%7D%2C%7B%5C%22start%5C%22%3A478%2C%5C%22stop%5C%22%3A488%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A488%2C%5C%22cal%5C%22%3A19%2C%5C%22step%5C%22%3A607%7D%2C%7B%5C%22start%5C%22%3A489%2C%5C%22stop%5C%22%3A499%2C%5C%22mode%5C%22%3A4%2C%5C%22dis%5C%22%3A2220%2C%5C%22cal%5C%22%3A120%2C%5C%22step%5C%22%3A2371%7D%2C%7B%5C%22start%5C%22%3A500%2C%5C%22stop%5C%22%3A511%2C%5C%22mode%5C%22%3A3%2C%5C%22dis%5C%22%3A1268%2C%5C%22cal%5C%22%3A59%2C%5C%22step%5C%22%3A1489%7D%2C%7B%5C%22start%5C%22%3A512%2C%5C%22stop%5C%22%3A522%2C%5C%22mode%5C%22%3A1%2C%5C%22dis%5C%22%3A152%2C%5C%22cal%5C%22%3A4%2C%5C%22step%5C%22%3A238%7D%5D%7D%2C%5C%22goal%5C%22%3A8000%2C%5C%22tz%5C%22%3A%5C%2228800%5C%22%7D%22%2C%22source%22%3A24%2C%22type%22%3A0%7D%5D';
+}
+function Env(e, t) {
+  class s {
+    constructor(e) {
+      this.env = e;
+    }
+    send(e, t = "GET") {
+      e = "string" == typeof e ? {
+        url: e
+      } : e;
+      let s = this.get;
+      "POST" === t && (s = this.post);
+      const i = new Promise((t, i) => {
+        s.call(this, e, (e, s, o) => {
+          e ? i(e) : t(s);
+        });
+      });
+      return e.timeout ? ((e, t = 1e3) => Promise.race([e, new Promise((e, s) => {
+        setTimeout(() => {
+          s(new Error("请求超时"));
+        }, t);
+      })]))(i, e.timeout) : i;
+    }
+    get(e) {
+      return this.send.call(this.env, e);
+    }
+    post(e) {
+      return this.send.call(this.env, e, "POST");
     }
   }
-  for (let _0x2b1999 = 0; _0x2b1999 < _0x181a2c; _0x2b1999++) {
-    {
-      const _0xafb26e = Math.floor(Math.random() * 8000) + 8000;
-      console.log("账号[" + _0x389453.nickname + "] ⌛ 第" + (_0x2b1999 + 1) + "轮，先随机等待 " + Math.round(_0xafb26e / 1000) + " 秒");
-      await new Promise(_0x2fe590 => setTimeout(_0x2fe590, _0xafb26e));
-      console.log("账号[" + _0x389453.nickname + "] 🚀 开始第" + (_0x2b1999 + 1) + "轮任务");
-      const _0x54b45e = await _0x389453.executeAllTasksByPriority();
-      Object.values(_0x54b45e).some(Boolean) ? console.log("账号[" + _0x389453.nickname + "] ✅ 第" + (_0x2b1999 + 1) + "轮执行完成") : console.log("账号[" + _0x389453.nickname + "] ⚠️ 第" + (_0x2b1999 + 1) + "轮没有成功任务");
-      if (_0x389453.stopAllTasks) {
+  return new class {
+    constructor(e, t) {
+      this.logLevels = {
+        debug: 0,
+        info: 1,
+        warn: 2,
+        error: 3
+      }, this.logLevelPrefixs = {
+        debug: "[DEBUG] ",
+        info: "[INFO] ",
+        warn: "[WARN] ",
+        error: "[ERROR] "
+      }, this.logLevel = "info", this.name = e, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = false, this.isNeedRewrite = false, this.logSeparator = "\n", this.encoding = "utf-8", this.startTime = new Date().getTime(), Object.assign(this, t), this.log("", `🔔${this.name}, 开始!`);
+    }
+    getEnv() {
+      return "undefined" != typeof $environment && $environment["surge-version"] ? "Surge" : "undefined" != typeof $environment && $environment["stash-version"] ? "Stash" : "undefined" != typeof module && module.exports ? "Node.js" : "undefined" != typeof $task ? "Quantumult X" : "undefined" != typeof $loon ? "Loon" : "undefined" != typeof $rocket ? "Shadowrocket" : undefined;
+    }
+    isNode() {
+      return "Node.js" === this.getEnv();
+    }
+    isQuanX() {
+      return "Quantumult X" === this.getEnv();
+    }
+    isSurge() {
+      return "Surge" === this.getEnv();
+    }
+    isLoon() {
+      return "Loon" === this.getEnv();
+    }
+    isShadowrocket() {
+      return "Shadowrocket" === this.getEnv();
+    }
+    isStash() {
+      return "Stash" === this.getEnv();
+    }
+    toObj(e, t = null) {
+      try {
+        return JSON.parse(e);
+      } catch {
+        return t;
+      }
+    }
+    toStr(e, t = null, ...s) {
+      try {
+        return JSON.stringify(e, ...s);
+      } catch {
+        return t;
+      }
+    }
+    getjson(e, t) {
+      let s = t;
+      if (this.getdata(e)) try {
+        s = JSON.parse(this.getdata(e));
+      } catch {}
+      return s;
+    }
+    setjson(e, t) {
+      try {
+        return this.setdata(JSON.stringify(e), t);
+      } catch {
+        return false;
+      }
+    }
+    getScript(e) {
+      return new Promise(t => {
+        this.get({
+          url: e
+        }, (e, s, i) => t(i));
+      });
+    }
+    runScript(e, t) {
+      return new Promise(s => {
+        let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
+        i = i ? i.replace(/\n/g, "").trim() : i;
+        let o = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
+        o = o ? 1 * o : 20, o = t && t.timeout ? t.timeout : o;
+        const [r, a] = i.split("@"),
+          n = {
+            url: `http://${a}/v1/scripting/evaluate`,
+            body: {
+              script_text: e,
+              mock_type: "cron",
+              timeout: o
+            },
+            headers: {
+              "X-Key": r,
+              Accept: "*/*"
+            },
+            policy: "DIRECT",
+            timeout: o
+          };
+        this.post(n, (e, t, i) => s(i));
+      }).catch(e => this.logErr(e));
+    }
+    loaddata() {
+      if (!this.isNode()) return {};
+      {
+        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+        const e = this.path.resolve(this.dataFile),
+          t = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(e),
+          i = !s && this.fs.existsSync(t);
+        if (!s && !i) return {};
         {
-          console.log("账号[" + _0x389453.nickname + "] 🏁 达到停止条件，终止后续轮次");
-          break;
+          const i = s ? e : t;
+          try {
+            return JSON.parse(this.fs.readFileSync(i));
+          } catch (e) {
+            return {};
+          }
         }
       }
-      if (_0x2b1999 < _0x181a2c - 1) {
-        const _0x343903 = Math.floor(Math.random() * 10000) + 10000;
-        console.log("账号[" + _0x389453.nickname + "] ⌛ 等待 " + Math.round(_0x343903 / 1000) + " 秒进入下一轮");
-        await new Promise(_0x5147ed => setTimeout(_0x5147ed, _0x343903));
+    }
+    writedata() {
+      if (this.isNode()) {
+        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+        const e = this.path.resolve(this.dataFile),
+          t = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(e),
+          i = !s && this.fs.existsSync(t),
+          o = JSON.stringify(this.data);
+        s ? this.fs.writeFileSync(e, o) : i ? this.fs.writeFileSync(t, o) : this.fs.writeFileSync(e, o);
       }
     }
+    lodash_get(e, t, s) {
+      const i = t.replace(/\[(\d+)\]/g, ".$1").split(".");
+      let o = e;
+      for (const e of i) if (o = Object(o)[e], undefined === o) return s;
+      return o;
+    }
+    lodash_set(e, t, s) {
+      return Object(e) !== e || (Array.isArray(t) || (t = t.toString().match(/[^.[\]]+/g) || []), t.slice(0, -1).reduce((e, s, i) => Object(e[s]) === e[s] ? e[s] : e[s] = Math.abs(t[i + 1]) >> 0 == +t[i + 1] ? [] : {}, e)[t[t.length - 1]] = s), e;
+    }
+    getdata(e) {
+      let t = this.getval(e);
+      if (/^@/.test(e)) {
+        const [, s, i] = /^@(.*?)\.(.*?)$/.exec(e),
+          o = s ? this.getval(s) : "";
+        if (o) try {
+          const e = JSON.parse(o);
+          t = e ? this.lodash_get(e, i, "") : t;
+        } catch (e) {
+          t = "";
+        }
+      }
+      return t;
+    }
+    setdata(e, t) {
+      let s = false;
+      if (/^@/.test(t)) {
+        const [, i, o] = /^@(.*?)\.(.*?)$/.exec(t),
+          r = this.getval(i),
+          a = i ? "null" === r ? null : r || "{}" : "{}";
+        try {
+          const t = JSON.parse(a);
+          this.lodash_set(t, o, e), s = this.setval(JSON.stringify(t), i);
+        } catch (t) {
+          const r = {};
+          this.lodash_set(r, o, e), s = this.setval(JSON.stringify(r), i);
+        }
+      } else s = this.setval(e, t);
+      return s;
+    }
+    getval(e) {
+      switch (this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+          return $persistentStore.read(e);
+        case "Quantumult X":
+          return $prefs.valueForKey(e);
+        case "Node.js":
+          return this.data = this.loaddata(), this.data[e];
+        default:
+          return this.data && this.data[e] || null;
+      }
+    }
+    setval(e, t) {
+      switch (this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+          return $persistentStore.write(e, t);
+        case "Quantumult X":
+          return $prefs.setValueForKey(e, t);
+        case "Node.js":
+          return this.data = this.loaddata(), this.data[t] = e, this.writedata(), true;
+        default:
+          return this.data && this.data[t] || null;
+      }
+    }
+    initGotEnv(e) {
+      this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar(), e && (e.headers = e.headers ? e.headers : {}, e && (e.headers = e.headers ? e.headers : {}, undefined === e.headers.cookie && undefined === e.headers.Cookie && undefined === e.cookieJar && (e.cookieJar = this.ckjar)));
+    }
+    get(e, t = () => {}) {
+      switch (e.headers && (delete e.headers["Content-Type"], delete e.headers["Content-Length"], delete e.headers["content-type"], delete e.headers["content-length"]), e.params && (e.url += "?" + this.queryStr(e.params)), undefined === e.followRedirect || e.followRedirect || ((this.isSurge() || this.isLoon()) && (e["auto-redirect"] = false), this.isQuanX() && (e.opts ? e.opts.redirection = false : e.opts = {
+        redirection: false
+      })), this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+        default:
+          this.isSurge() && this.isNeedRewrite && (e.headers = e.headers || {}, Object.assign(e.headers, {
+            "X-Surge-Skip-Scripting": false
+          })), $httpClient.get(e, (e, s, i) => {
+            !e && s && (s.body = i, s.statusCode = s.status ? s.status : s.statusCode, s.status = s.statusCode), t(e, s, i);
+          });
+          break;
+        case "Quantumult X":
+          this.isNeedRewrite && (e.opts = e.opts || {}, Object.assign(e.opts, {
+            hints: false
+          })), $task.fetch(e).then(e => {
+            const {
+              statusCode: s,
+              statusCode: i,
+              headers: o,
+              body: r,
+              bodyBytes: a
+            } = e;
+            t(null, {
+              status: s,
+              statusCode: i,
+              headers: o,
+              body: r,
+              bodyBytes: a
+            }, r, a);
+          }, e => t(e && e.error || "UndefinedError"));
+          break;
+        case "Node.js":
+          let s = require("iconv-lite");
+          this.initGotEnv(e), this.got(e).on("redirect", (e, t) => {
+            try {
+              if (e.headers["set-cookie"]) {
+                const s = e.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
+                s && this.ckjar.setCookieSync(s, null), t.cookieJar = this.ckjar;
+              }
+            } catch (e) {
+              this.logErr(e);
+            }
+          }).then(e => {
+            const {
+                statusCode: i,
+                statusCode: o,
+                headers: r,
+                rawBody: a
+              } = e,
+              n = s.decode(a, this.encoding);
+            t(null, {
+              status: i,
+              statusCode: o,
+              headers: r,
+              rawBody: a,
+              body: n
+            }, n);
+          }, e => {
+            const {
+              message: i,
+              response: o
+            } = e;
+            t(i, o, o && s.decode(o.rawBody, this.encoding));
+          });
+          break;
+      }
+    }
+    post(e, t = () => {}) {
+      const s = e.method ? e.method.toLocaleLowerCase() : "post";
+      switch (e.body && e.headers && !e.headers["Content-Type"] && !e.headers["content-type"] && (e.headers["content-type"] = "application/x-www-form-urlencoded"), e.headers && (delete e.headers["Content-Length"], delete e.headers["content-length"]), undefined === e.followRedirect || e.followRedirect || ((this.isSurge() || this.isLoon()) && (e["auto-redirect"] = false), this.isQuanX() && (e.opts ? e.opts.redirection = false : e.opts = {
+        redirection: false
+      })), this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+        default:
+          this.isSurge() && this.isNeedRewrite && (e.headers = e.headers || {}, Object.assign(e.headers, {
+            "X-Surge-Skip-Scripting": false
+          })), $httpClient[s](e, (e, s, i) => {
+            !e && s && (s.body = i, s.statusCode = s.status ? s.status : s.statusCode, s.status = s.statusCode), t(e, s, i);
+          });
+          break;
+        case "Quantumult X":
+          e.method = s, this.isNeedRewrite && (e.opts = e.opts || {}, Object.assign(e.opts, {
+            hints: false
+          })), $task.fetch(e).then(e => {
+            const {
+              statusCode: s,
+              statusCode: i,
+              headers: o,
+              body: r,
+              bodyBytes: a
+            } = e;
+            t(null, {
+              status: s,
+              statusCode: i,
+              headers: o,
+              body: r,
+              bodyBytes: a
+            }, r, a);
+          }, e => t(e && e.error || "UndefinedError"));
+          break;
+        case "Node.js":
+          let i = require("iconv-lite");
+          this.initGotEnv(e);
+          const {
+            url: o,
+            ...r
+          } = e;
+          this.got[s](o, r).then(e => {
+            const {
+                statusCode: s,
+                statusCode: o,
+                headers: r,
+                rawBody: a
+              } = e,
+              n = i.decode(a, this.encoding);
+            t(null, {
+              status: s,
+              statusCode: o,
+              headers: r,
+              rawBody: a,
+              body: n
+            }, n);
+          }, e => {
+            const {
+              message: s,
+              response: o
+            } = e;
+            t(s, o, o && i.decode(o.rawBody, this.encoding));
+          });
+          break;
+      }
+    }
+    time(e, t = null) {
+      const s = t ? new Date(t) : new Date();
+      let i = {
+        "M+": s.getMonth() + 1,
+        "d+": s.getDate(),
+        "H+": s.getHours(),
+        "m+": s.getMinutes(),
+        "s+": s.getSeconds(),
+        "q+": Math.floor((s.getMonth() + 3) / 3),
+        S: s.getMilliseconds()
+      };
+      /(y+)/.test(e) && (e = e.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
+      for (let t in i) new RegExp("(" + t + ")").test(e) && (e = e.replace(RegExp.$1, 1 == RegExp.$1.length ? i[t] : ("00" + i[t]).substr(("" + i[t]).length)));
+      return e;
+    }
+    queryStr(e) {
+      let t = "";
+      for (const s in e) {
+        let i = e[s];
+        null != i && "" !== i && ("object" == typeof i && (i = JSON.stringify(i)), t += `${s}=${i}&`);
+      }
+      return t = t.substring(0, t.length - 1), t;
+    }
+    msg(t = e, s = "", i = "", o = {}) {
+      const r = e => {
+        const {
+          $open: t,
+          $copy: s,
+          $media: i,
+          $mediaMime: o
+        } = e;
+        switch (typeof e) {
+          case undefined:
+            return e;
+          case "string":
+            switch (this.getEnv()) {
+              case "Surge":
+              case "Stash":
+              default:
+                return {
+                  url: e
+                };
+              case "Loon":
+              case "Shadowrocket":
+                return e;
+              case "Quantumult X":
+                return {
+                  "open-url": e
+                };
+              case "Node.js":
+                return;
+            }
+          case "object":
+            switch (this.getEnv()) {
+              case "Surge":
+              case "Stash":
+              case "Shadowrocket":
+              default:
+                {
+                  const r = {};
+                  let a = e.openUrl || e.url || e["open-url"] || t;
+                  a && Object.assign(r, {
+                    action: "open-url",
+                    url: a
+                  });
+                  let n = e["update-pasteboard"] || e.updatePasteboard || s;
+                  n && Object.assign(r, {
+                    action: "clipboard",
+                    text: n
+                  });
+                  let h = e.mediaUrl || e["media-url"] || i;
+                  if (h) {
+                    let e, t;
+                    if (h.startsWith("http")) ;else if (h.startsWith("data:")) {
+                      const [s] = h.split(";"),
+                        [, i] = h.split(",");
+                      e = i, t = s.replace("data:", "");
+                    } else {
+                      e = h, t = (e => {
+                        const t = {
+                          JVBERi0: "application/pdf",
+                          R0lGODdh: "image/gif",
+                          R0lGODlh: "image/gif",
+                          iVBORw0KGgo: "image/png",
+                          "/9j/": "image/jpg"
+                        };
+                        for (var s in t) if (0 === e.indexOf(s)) return t[s];
+                        return null;
+                      })(h);
+                    }
+                    Object.assign(r, {
+                      "media-url": h,
+                      "media-base64": e,
+                      "media-base64-mime": o ?? t
+                    });
+                  }
+                  return Object.assign(r, {
+                    "auto-dismiss": e["auto-dismiss"],
+                    sound: e.sound
+                  }), r;
+                }
+              case "Loon":
+                {
+                  const s = {};
+                  let o = e.openUrl || e.url || e["open-url"] || t;
+                  o && Object.assign(s, {
+                    openUrl: o
+                  });
+                  let r = e.mediaUrl || e["media-url"] || i;
+                  return r && Object.assign(s, {
+                    mediaUrl: r
+                  }), console.log(JSON.stringify(s)), s;
+                }
+              case "Quantumult X":
+                {
+                  const o = {};
+                  let r = e["open-url"] || e.url || e.openUrl || t;
+                  r && Object.assign(o, {
+                    "open-url": r
+                  });
+                  let a = e.mediaUrl || e["media-url"] || i;
+                  a && Object.assign(o, {
+                    "media-url": a
+                  });
+                  let n = e["update-pasteboard"] || e.updatePasteboard || s;
+                  return n && Object.assign(o, {
+                    "update-pasteboard": n
+                  }), console.log(JSON.stringify(o)), o;
+                }
+              case "Node.js":
+                return;
+            }
+          default:
+            return;
+        }
+      };
+      if (!this.isMute) switch (this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+        default:
+          $notification.post(t, s, i, r(o));
+          break;
+        case "Quantumult X":
+          $notify(t, s, i, r(o));
+          break;
+        case "Node.js":
+          break;
+      }
+      if (!this.isMuteLog) {
+        let e = ["", "==============📣系统通知📣=============="];
+        e.push(t), s && e.push(s), i && e.push(i), console.log(e.join("\n")), this.logs = this.logs.concat(e);
+      }
+    }
+    debug(...e) {
+      this.logLevels[this.logLevel] <= this.logLevels.debug && (e.length > 0 && (this.logs = [...this.logs, ...e]), console.log(`${this.logLevelPrefixs.debug}${e.map(e => e ?? String(e)).join(this.logSeparator)}`));
+    }
+    info(...e) {
+      this.logLevels[this.logLevel] <= this.logLevels.info && (e.length > 0 && (this.logs = [...this.logs, ...e]), console.log(`${this.logLevelPrefixs.info}${e.map(e => e ?? String(e)).join(this.logSeparator)}`));
+    }
+    warn(...e) {
+      this.logLevels[this.logLevel] <= this.logLevels.warn && (e.length > 0 && (this.logs = [...this.logs, ...e]), console.log(`${this.logLevelPrefixs.warn}${e.map(e => e ?? String(e)).join(this.logSeparator)}`));
+    }
+    error(...e) {
+      this.logLevels[this.logLevel] <= this.logLevels.error && (e.length > 0 && (this.logs = [...this.logs, ...e]), console.log(`${this.logLevelPrefixs.error}${e.map(e => e ?? String(e)).join(this.logSeparator)}`));
+    }
+    log(...e) {
+      e.length > 0 && (this.logs = [...this.logs, ...e]), console.log(e.map(e => e ?? String(e)).join(this.logSeparator));
+    }
+    logErr(e, t) {
+      switch (this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+        case "Quantumult X":
+        default:
+          this.log("", `❗️${this.name}, 错误!`, t, e);
+          break;
+        case "Node.js":
+          this.log("", `❗️${this.name}, 错误!`, t, undefined !== e.message ? e.message : e, e.stack);
+          break;
+      }
+    }
+    wait(e) {
+      return new Promise(t => setTimeout(t, e));
+    }
+    done(e = {}) {
+      const t = (new Date().getTime() - this.startTime) / 1e3;
+      switch (this.log("", `🔔${this.name}, 结束! 🕛 ${t} 秒`), this.log(), this.getEnv()) {
+        case "Surge":
+        case "Loon":
+        case "Stash":
+        case "Shadowrocket":
+        case "Quantumult X":
+        default:
+          $done(e);
+          break;
+        case "Node.js":
+          process.exit(1);
+      }
+    }
+  }(e, t);
+}
+function ENCRYPT_FN() {
+  var i = "undefined" != typeof globalThis ? globalThis : "undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : {};
+  var s = {
+      exports: {}
+    },
+    a = function e(i) {
+      if (i.__esModule) return i;
+      var s = i.default;
+      if ("function" == typeof s) {
+        var a = function t() {
+          return this instanceof t ? Reflect.construct(s, arguments, this.constructor) : s.apply(this, arguments);
+        };
+        a.prototype = s.prototype;
+      } else a = {};
+      return Object.defineProperty(a, "__esModule", {
+        value: true
+      }), Object.keys(i).forEach(function (s) {
+        var f = Object.getOwnPropertyDescriptor(i, s);
+        Object.defineProperty(a, s, f.get ? f : {
+          enumerable: true,
+          get: function () {
+            return i[s];
+          }
+        });
+      }), a;
+    }(Object.freeze({
+      __proto__: null,
+      default: {}
+    }));
+  s.exports = function () {
+    var s = s || function (s, f) {
+      var l;
+      if ("undefined" != typeof window && window.crypto && (l = window.crypto), "undefined" != typeof self && self.crypto && (l = self.crypto), "undefined" != typeof globalThis && globalThis.crypto && (l = globalThis.crypto), !l && "undefined" != typeof window && window.msCrypto && (l = window.msCrypto), !l && undefined !== i && i.crypto && (l = i.crypto), !l) try {
+        l = a;
+      } catch (i) {}
+      var o = function () {
+          if (l) {
+            if ("function" == typeof l.getRandomValues) try {
+              return l.getRandomValues(new Uint32Array(1))[0];
+            } catch (i) {}
+            if ("function" == typeof l.randomBytes) try {
+              return l.randomBytes(4).readInt32LE();
+            } catch (i) {}
+          }
+          throw new Error("Native crypto module could not be used to get secure random number.");
+        },
+        d = Object.create || function () {
+          function t() {}
+          return function (i) {
+            var s;
+            return t.prototype = i, s = new t(), t.prototype = null, s;
+          };
+        }(),
+        g = {},
+        v = g.lib = {},
+        w = v.Base = {
+          extend: function (i) {
+            var s = d(this);
+            return i && s.mixIn(i), s.hasOwnProperty("init") && this.init !== s.init || (s.init = function () {
+              s.$super.init.apply(this, arguments);
+            }), s.init.prototype = s, s.$super = this, s;
+          },
+          create: function () {
+            var i = this.extend();
+            return i.init.apply(i, arguments), i;
+          },
+          init: function () {},
+          mixIn: function (i) {
+            for (var s in i) i.hasOwnProperty(s) && (this[s] = i[s]);
+            i.hasOwnProperty("toString") && (this.toString = i.toString);
+          },
+          clone: function () {
+            return this.init.prototype.extend(this);
+          }
+        },
+        _ = v.WordArray = w.extend({
+          init: function (i, s) {
+            i = this.words = i || [], this.sigBytes = null != s ? s : 4 * i.length;
+          },
+          toString: function (i) {
+            return (i || E).stringify(this);
+          },
+          concat: function (i) {
+            var s = this.words,
+              a = i.words,
+              f = this.sigBytes,
+              l = i.sigBytes;
+            if (this.clamp(), f % 4) for (var d = 0; d < l; d++) {
+              var g = a[d >>> 2] >>> 24 - d % 4 * 8 & 255;
+              s[f + d >>> 2] |= g << 24 - (f + d) % 4 * 8;
+            } else for (var v = 0; v < l; v += 4) s[f + v >>> 2] = a[v >>> 2];
+            return this.sigBytes += l, this;
+          },
+          clamp: function () {
+            var i = this.words,
+              a = this.sigBytes;
+            i[a >>> 2] &= 4294967295 << 32 - a % 4 * 8, i.length = s.ceil(a / 4);
+          },
+          clone: function () {
+            var i = w.clone.call(this);
+            return i.words = this.words.slice(0), i;
+          },
+          random: function (i) {
+            for (var s = [], a = 0; a < i; a += 4) s.push(o());
+            return new _.init(s, i);
+          }
+        }),
+        A = g.enc = {},
+        E = A.Hex = {
+          stringify: function (i) {
+            for (var s = i.words, a = i.sigBytes, f = [], l = 0; l < a; l++) {
+              var d = s[l >>> 2] >>> 24 - l % 4 * 8 & 255;
+              f.push((d >>> 4).toString(16)), f.push((15 & d).toString(16));
+            }
+            return f.join("");
+          },
+          parse: function (i) {
+            for (var s = i.length, a = [], f = 0; f < s; f += 2) a[f >>> 3] |= parseInt(i.substr(f, 2), 16) << 24 - f % 8 * 4;
+            return new _.init(a, s / 2);
+          }
+        },
+        b = A.Latin1 = {
+          stringify: function (i) {
+            for (var s = i.words, a = i.sigBytes, f = [], l = 0; l < a; l++) {
+              var d = s[l >>> 2] >>> 24 - l % 4 * 8 & 255;
+              f.push(String.fromCharCode(d));
+            }
+            return f.join("");
+          },
+          parse: function (i) {
+            for (var s = i.length, a = [], f = 0; f < s; f++) a[f >>> 2] |= (255 & i.charCodeAt(f)) << 24 - f % 4 * 8;
+            return new _.init(a, s);
+          }
+        },
+        B = A.Utf8 = {
+          stringify: function (i) {
+            try {
+              return decodeURIComponent(escape(b.stringify(i)));
+            } catch (i) {
+              throw new Error("Malformed UTF-8 data");
+            }
+          },
+          parse: function (i) {
+            return b.parse(unescape(encodeURIComponent(i)));
+          }
+        },
+        R = v.BufferedBlockAlgorithm = w.extend({
+          reset: function () {
+            this._data = new _.init(), this._nDataBytes = 0;
+          },
+          _append: function (i) {
+            "string" == typeof i && (i = B.parse(i)), this._data.concat(i), this._nDataBytes += i.sigBytes;
+          },
+          _process: function (i) {
+            var a,
+              f = this._data,
+              l = f.words,
+              d = f.sigBytes,
+              g = this.blockSize,
+              v = d / (4 * g),
+              w = (v = i ? s.ceil(v) : s.max((0 | v) - this._minBufferSize, 0)) * g,
+              A = s.min(4 * w, d);
+            if (w) {
+              for (var E = 0; E < w; E += g) this._doProcessBlock(l, E);
+              a = l.splice(0, w), f.sigBytes -= A;
+            }
+            return new _.init(a, A);
+          },
+          clone: function () {
+            var i = w.clone.call(this);
+            return i._data = this._data.clone(), i;
+          },
+          _minBufferSize: 0
+        });
+      v.Hasher = R.extend({
+        cfg: w.extend(),
+        init: function (i) {
+          this.cfg = this.cfg.extend(i), this.reset();
+        },
+        reset: function () {
+          R.reset.call(this), this._doReset();
+        },
+        update: function (i) {
+          return this._append(i), this._process(), this;
+        },
+        finalize: function (i) {
+          return i && this._append(i), this._doFinalize();
+        },
+        blockSize: 16,
+        _createHelper: function (i) {
+          return function (s, a) {
+            return new i.init(a).finalize(s);
+          };
+        },
+        _createHmacHelper: function (i) {
+          return function (s, a) {
+            return new S.HMAC.init(i, a).finalize(s);
+          };
+        }
+      });
+      var S = g.algo = {};
+      return g;
+    }(Math);
+    return s;
+  }();
+  var f,
+    l = s.exports,
+    d = function r(i) {
+      return i && i.__esModule && Object.prototype.hasOwnProperty.call(i, "default") ? i.default : i;
+    }(l),
+    g = {
+      exports: {}
+    };
+  var v,
+    w = {
+      exports: {}
+    };
+  var _,
+    A = {
+      exports: {}
+    },
+    E = {
+      exports: {}
+    };
+  var b,
+    B,
+    R = {
+      exports: {}
+    };
+  function m() {
+    return B || (B = 1, A.exports = function (i) {
+      return function () {
+        var s = i,
+          a = s.lib,
+          f = a.Base,
+          l = a.WordArray,
+          d = s.algo,
+          g = d.MD5,
+          v = d.EvpKDF = f.extend({
+            cfg: f.extend({
+              keySize: 4,
+              hasher: g,
+              iterations: 1
+            }),
+            init: function (i) {
+              this.cfg = this.cfg.extend(i);
+            },
+            compute: function (i, s) {
+              for (var a, f = this.cfg, d = f.hasher.create(), g = l.create(), v = g.words, w = f.keySize, _ = f.iterations; v.length < w;) {
+                a && d.update(a), a = d.update(i).finalize(s), d.reset();
+                for (var A = 1; A < _; A++) a = d.finalize(a), d.reset();
+                g.concat(a);
+              }
+              return g.sigBytes = 4 * w, g;
+            }
+          });
+        s.EvpKDF = function (i, s, a) {
+          return v.create(a).compute(i, s);
+        };
+      }(), i.EvpKDF;
+    }(l, function y() {
+      return _ || (_ = 1, E.exports = function (i) {
+        return a = (s = i).lib, f = a.WordArray, l = a.Hasher, d = s.algo, g = [], v = d.SHA1 = l.extend({
+          _doReset: function () {
+            this._hash = new f.init([1732584193, 4023233417, 2562383102, 271733878, 3285377520]);
+          },
+          _doProcessBlock: function (i, s) {
+            for (var a = this._hash.words, f = a[0], l = a[1], d = a[2], v = a[3], w = a[4], _ = 0; _ < 80; _++) {
+              if (_ < 16) g[_] = 0 | i[s + _];else {
+                var A = g[_ - 3] ^ g[_ - 8] ^ g[_ - 14] ^ g[_ - 16];
+                g[_] = A << 1 | A >>> 31;
+              }
+              var E = (f << 5 | f >>> 27) + w + g[_];
+              E += _ < 20 ? 1518500249 + (l & d | ~l & v) : _ < 40 ? 1859775393 + (l ^ d ^ v) : _ < 60 ? (l & d | l & v | d & v) - 1894007588 : (l ^ d ^ v) - 899497514, w = v, v = d, d = l << 30 | l >>> 2, l = f, f = E;
+            }
+            a[0] = a[0] + f | 0, a[1] = a[1] + l | 0, a[2] = a[2] + d | 0, a[3] = a[3] + v | 0, a[4] = a[4] + w | 0;
+          },
+          _doFinalize: function () {
+            var i = this._data,
+              s = i.words,
+              a = 8 * this._nDataBytes,
+              f = 8 * i.sigBytes;
+            return s[f >>> 5] |= 128 << 24 - f % 32, s[14 + (f + 64 >>> 9 << 4)] = Math.floor(a / 4294967296), s[15 + (f + 64 >>> 9 << 4)] = a, i.sigBytes = 4 * s.length, this._process(), this._hash;
+          },
+          clone: function () {
+            var i = l.clone.call(this);
+            return i._hash = this._hash.clone(), i;
+          }
+        }), s.SHA1 = l._createHelper(v), s.HmacSHA1 = l._createHmacHelper(v), i.SHA1;
+        var s, a, f, l, d, g, v;
+      }(l)), E.exports;
+    }(), (b || (b = 1, R.exports = (s = (i = l).lib.Base, a = i.enc.Utf8, void (i.algo.HMAC = s.extend({
+      init: function (i, s) {
+        i = this._hasher = new i.init(), "string" == typeof s && (s = a.parse(s));
+        var f = i.blockSize,
+          l = 4 * f;
+        s.sigBytes > l && (s = i.finalize(s)), s.clamp();
+        for (var d = this._oKey = s.clone(), g = this._iKey = s.clone(), v = d.words, w = g.words, _ = 0; _ < f; _++) v[_] ^= 1549556828, w[_] ^= 909522486;
+        d.sigBytes = g.sigBytes = l, this.reset();
+      },
+      reset: function () {
+        var i = this._hasher;
+        i.reset(), i.update(this._iKey);
+      },
+      update: function (i) {
+        return this._hasher.update(i), this;
+      },
+      finalize: function (i) {
+        var s = this._hasher,
+          a = s.finalize(i);
+        return s.reset(), s.finalize(this._oKey.clone().concat(a));
+      }
+    })))), R.exports))), A.exports;
+    var i, s, a;
   }
-  const _0x37f047 = await _0x35dd3c(_0xd4c15c.cookie, _0xd4c15c.proxyUrl, _0xd4c15c.index),
-    _0x5e1d3a = _0x24de86?.["totalCoin"] || 0,
-    _0x5d5587 = _0x37f047?.["totalCoin"] || 0,
-    _0x2828e3 = _0x5d5587 - _0x5e1d3a,
-    _0x1ffe3d = _0x24de86?.["allCash"] || 0,
-    _0x9247be = _0x37f047?.["allCash"] || 0,
-    _0x3adb83 = _0x9247be - _0x1ffe3d;
-  _0x389453.printTaskStats();
+  var S;
+  !function (i) {
+    (function () {
+      var s = i,
+        a = s.lib.BlockCipher,
+        f = s.algo,
+        l = [],
+        d = [],
+        g = [],
+        v = [],
+        w = [],
+        _ = [],
+        A = [],
+        E = [],
+        b = [],
+        B = [];
+      !function () {
+        for (var i = [], s = 0; s < 256; s++) i[s] = s < 128 ? s << 1 : s << 1 ^ 283;
+        var a = 0,
+          f = 0;
+        for (s = 0; s < 256; s++) {
+          var R = f ^ f << 1 ^ f << 2 ^ f << 3 ^ f << 4;
+          R = R >>> 8 ^ 255 & R ^ 99, l[a] = R, d[R] = a;
+          var S = i[a],
+            x = i[S],
+            M = i[x],
+            O = 257 * i[R] ^ 16843008 * R;
+          g[a] = O << 24 | O >>> 8, v[a] = O << 16 | O >>> 16, w[a] = O << 8 | O >>> 24, _[a] = O, O = 16843009 * M ^ 65537 * x ^ 257 * S ^ 16843008 * a, A[R] = O << 24 | O >>> 8, E[R] = O << 16 | O >>> 16, b[R] = O << 8 | O >>> 24, B[R] = O, a ? (a = S ^ i[i[i[M ^ S]]], f ^= i[i[f]]) : a = f = 1;
+        }
+      }();
+      var R = [0, 1, 2, 4, 8, 16, 32, 64, 128, 27, 54],
+        S = f.AES = a.extend({
+          _doReset: function () {
+            if (!this._nRounds || this._keyPriorReset !== this._key) {
+              for (var i = this._keyPriorReset = this._key, s = i.words, a = i.sigBytes / 4, f = 4 * ((this._nRounds = a + 6) + 1), d = this._keySchedule = [], g = 0; g < f; g++) g < a ? d[g] = s[g] : (_ = d[g - 1], g % a ? a > 6 && g % a == 4 && (_ = l[_ >>> 24] << 24 | l[_ >>> 16 & 255] << 16 | l[_ >>> 8 & 255] << 8 | l[255 & _]) : (_ = l[(_ = _ << 8 | _ >>> 24) >>> 24] << 24 | l[_ >>> 16 & 255] << 16 | l[_ >>> 8 & 255] << 8 | l[255 & _], _ ^= R[g / a | 0] << 24), d[g] = d[g - a] ^ _);
+              for (var v = this._invKeySchedule = [], w = 0; w < f; w++) {
+                if (g = f - w, w % 4) var _ = d[g];else _ = d[g - 4];
+                v[w] = w < 4 || g <= 4 ? _ : A[l[_ >>> 24]] ^ E[l[_ >>> 16 & 255]] ^ b[l[_ >>> 8 & 255]] ^ B[l[255 & _]];
+              }
+            }
+          },
+          encryptBlock: function (i, s) {
+            this._doCryptBlock(i, s, this._keySchedule, g, v, w, _, l);
+          },
+          decryptBlock: function (i, s) {
+            var a = i[s + 1];
+            i[s + 1] = i[s + 3], i[s + 3] = a, this._doCryptBlock(i, s, this._invKeySchedule, A, E, b, B, d), a = i[s + 1], i[s + 1] = i[s + 3], i[s + 3] = a;
+          },
+          _doCryptBlock: function (i, s, a, f, l, d, g, v) {
+            for (var w = this._nRounds, _ = i[s] ^ a[0], A = i[s + 1] ^ a[1], E = i[s + 2] ^ a[2], b = i[s + 3] ^ a[3], B = 4, R = 1; R < w; R++) {
+              var S = f[_ >>> 24] ^ l[A >>> 16 & 255] ^ d[E >>> 8 & 255] ^ g[255 & b] ^ a[B++],
+                x = f[A >>> 24] ^ l[E >>> 16 & 255] ^ d[b >>> 8 & 255] ^ g[255 & _] ^ a[B++],
+                M = f[E >>> 24] ^ l[b >>> 16 & 255] ^ d[_ >>> 8 & 255] ^ g[255 & A] ^ a[B++],
+                O = f[b >>> 24] ^ l[_ >>> 16 & 255] ^ d[A >>> 8 & 255] ^ g[255 & E] ^ a[B++];
+              _ = S, A = x, E = M, b = O;
+            }
+            S = (v[_ >>> 24] << 24 | v[A >>> 16 & 255] << 16 | v[E >>> 8 & 255] << 8 | v[255 & b]) ^ a[B++], x = (v[A >>> 24] << 24 | v[E >>> 16 & 255] << 16 | v[b >>> 8 & 255] << 8 | v[255 & _]) ^ a[B++], M = (v[E >>> 24] << 24 | v[b >>> 16 & 255] << 16 | v[_ >>> 8 & 255] << 8 | v[255 & A]) ^ a[B++], O = (v[b >>> 24] << 24 | v[_ >>> 16 & 255] << 16 | v[A >>> 8 & 255] << 8 | v[255 & E]) ^ a[B++], i[s] = S, i[s + 1] = x, i[s + 2] = M, i[s + 3] = O;
+          },
+          keySize: 8
+        });
+      s.AES = a._createHelper(S);
+    })(), i.AES;
+  }(l, function u() {
+    return f || (f = 1, g.exports = function (i) {
+      return function () {
+        var s = i,
+          a = s.lib.WordArray;
+        function n(i, s, f) {
+          for (var l = [], d = 0, g = 0; g < s; g++) if (g % 4) {
+            var v = f[i.charCodeAt(g - 1)] << g % 4 * 2 | f[i.charCodeAt(g)] >>> 6 - g % 4 * 2;
+            l[d >>> 2] |= v << 24 - d % 4 * 8, d++;
+          }
+          return a.create(l, d);
+        }
+        s.enc.Base64 = {
+          stringify: function (i) {
+            var s = i.words,
+              a = i.sigBytes,
+              f = this._map;
+            i.clamp();
+            for (var l = [], d = 0; d < a; d += 3) for (var g = (s[d >>> 2] >>> 24 - d % 4 * 8 & 255) << 16 | (s[d + 1 >>> 2] >>> 24 - (d + 1) % 4 * 8 & 255) << 8 | s[d + 2 >>> 2] >>> 24 - (d + 2) % 4 * 8 & 255, v = 0; v < 4 && d + .75 * v < a; v++) l.push(f.charAt(g >>> 6 * (3 - v) & 63));
+            var w = f.charAt(64);
+            if (w) for (; l.length % 4;) l.push(w);
+            return l.join("");
+          },
+          parse: function (i) {
+            var s = i.length,
+              a = this._map,
+              f = this._reverseMap;
+            if (!f) {
+              f = this._reverseMap = [];
+              for (var l = 0; l < a.length; l++) f[a.charCodeAt(l)] = l;
+            }
+            var d = a.charAt(64);
+            if (d) {
+              var g = i.indexOf(d);
+              -1 !== g && (s = g);
+            }
+            return n(i, s, f);
+          },
+          _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+        };
+      }(), i.enc.Base64;
+    }(l)), g.exports;
+  }(), function p() {
+    return v || (v = 1, w.exports = function (i) {
+      return function (s) {
+        var a = i,
+          f = a.lib,
+          l = f.WordArray,
+          d = f.Hasher,
+          g = a.algo,
+          v = [];
+        !function () {
+          for (var i = 0; i < 64; i++) v[i] = 4294967296 * s.abs(s.sin(i + 1)) | 0;
+        }();
+        var w = g.MD5 = d.extend({
+          _doReset: function () {
+            this._hash = new l.init([1732584193, 4023233417, 2562383102, 271733878]);
+          },
+          _doProcessBlock: function (i, s) {
+            for (var a = 0; a < 16; a++) {
+              var f = s + a,
+                l = i[f];
+              i[f] = 16711935 & (l << 8 | l >>> 24) | 4278255360 & (l << 24 | l >>> 8);
+            }
+            var d = this._hash.words,
+              g = i[s + 0],
+              w = i[s + 1],
+              _ = i[s + 2],
+              A = i[s + 3],
+              E = i[s + 4],
+              b = i[s + 5],
+              B = i[s + 6],
+              R = i[s + 7],
+              S = i[s + 8],
+              x = i[s + 9],
+              M = i[s + 10],
+              O = i[s + 11],
+              nt = i[s + 12],
+              gt = i[s + 13],
+              It = i[s + 14],
+              At = i[s + 15],
+              Et = d[0],
+              bt = d[1],
+              Bt = d[2],
+              Rt = d[3];
+            Et = u(Et, bt, Bt, Rt, g, 7, v[0]), Rt = u(Rt, Et, bt, Bt, w, 12, v[1]), Bt = u(Bt, Rt, Et, bt, _, 17, v[2]), bt = u(bt, Bt, Rt, Et, A, 22, v[3]), Et = u(Et, bt, Bt, Rt, E, 7, v[4]), Rt = u(Rt, Et, bt, Bt, b, 12, v[5]), Bt = u(Bt, Rt, Et, bt, B, 17, v[6]), bt = u(bt, Bt, Rt, Et, R, 22, v[7]), Et = u(Et, bt, Bt, Rt, S, 7, v[8]), Rt = u(Rt, Et, bt, Bt, x, 12, v[9]), Bt = u(Bt, Rt, Et, bt, M, 17, v[10]), bt = u(bt, Bt, Rt, Et, O, 22, v[11]), Et = u(Et, bt, Bt, Rt, nt, 7, v[12]), Rt = u(Rt, Et, bt, Bt, gt, 12, v[13]), Bt = u(Bt, Rt, Et, bt, It, 17, v[14]), Et = h(Et, bt = u(bt, Bt, Rt, Et, At, 22, v[15]), Bt, Rt, w, 5, v[16]), Rt = h(Rt, Et, bt, Bt, B, 9, v[17]), Bt = h(Bt, Rt, Et, bt, O, 14, v[18]), bt = h(bt, Bt, Rt, Et, g, 20, v[19]), Et = h(Et, bt, Bt, Rt, b, 5, v[20]), Rt = h(Rt, Et, bt, Bt, M, 9, v[21]), Bt = h(Bt, Rt, Et, bt, At, 14, v[22]), bt = h(bt, Bt, Rt, Et, E, 20, v[23]), Et = h(Et, bt, Bt, Rt, x, 5, v[24]), Rt = h(Rt, Et, bt, Bt, It, 9, v[25]), Bt = h(Bt, Rt, Et, bt, A, 14, v[26]), bt = h(bt, Bt, Rt, Et, S, 20, v[27]), Et = h(Et, bt, Bt, Rt, gt, 5, v[28]), Rt = h(Rt, Et, bt, Bt, _, 9, v[29]), Bt = h(Bt, Rt, Et, bt, R, 14, v[30]), Et = c(Et, bt = h(bt, Bt, Rt, Et, nt, 20, v[31]), Bt, Rt, b, 4, v[32]), Rt = c(Rt, Et, bt, Bt, S, 11, v[33]), Bt = c(Bt, Rt, Et, bt, O, 16, v[34]), bt = c(bt, Bt, Rt, Et, It, 23, v[35]), Et = c(Et, bt, Bt, Rt, w, 4, v[36]), Rt = c(Rt, Et, bt, Bt, E, 11, v[37]), Bt = c(Bt, Rt, Et, bt, R, 16, v[38]), bt = c(bt, Bt, Rt, Et, M, 23, v[39]), Et = c(Et, bt, Bt, Rt, gt, 4, v[40]), Rt = c(Rt, Et, bt, Bt, g, 11, v[41]), Bt = c(Bt, Rt, Et, bt, A, 16, v[42]), bt = c(bt, Bt, Rt, Et, B, 23, v[43]), Et = c(Et, bt, Bt, Rt, x, 4, v[44]), Rt = c(Rt, Et, bt, Bt, nt, 11, v[45]), Bt = c(Bt, Rt, Et, bt, At, 16, v[46]), Et = p(Et, bt = c(bt, Bt, Rt, Et, _, 23, v[47]), Bt, Rt, g, 6, v[48]), Rt = p(Rt, Et, bt, Bt, R, 10, v[49]), Bt = p(Bt, Rt, Et, bt, It, 15, v[50]), bt = p(bt, Bt, Rt, Et, b, 21, v[51]), Et = p(Et, bt, Bt, Rt, nt, 6, v[52]), Rt = p(Rt, Et, bt, Bt, A, 10, v[53]), Bt = p(Bt, Rt, Et, bt, M, 15, v[54]), bt = p(bt, Bt, Rt, Et, w, 21, v[55]), Et = p(Et, bt, Bt, Rt, S, 6, v[56]), Rt = p(Rt, Et, bt, Bt, At, 10, v[57]), Bt = p(Bt, Rt, Et, bt, B, 15, v[58]), bt = p(bt, Bt, Rt, Et, gt, 21, v[59]), Et = p(Et, bt, Bt, Rt, E, 6, v[60]), Rt = p(Rt, Et, bt, Bt, O, 10, v[61]), Bt = p(Bt, Rt, Et, bt, _, 15, v[62]), bt = p(bt, Bt, Rt, Et, x, 21, v[63]), d[0] = d[0] + Et | 0, d[1] = d[1] + bt | 0, d[2] = d[2] + Bt | 0, d[3] = d[3] + Rt | 0;
+          },
+          _doFinalize: function () {
+            var i = this._data,
+              a = i.words,
+              f = 8 * this._nDataBytes,
+              l = 8 * i.sigBytes;
+            a[l >>> 5] |= 128 << 24 - l % 32;
+            var d = s.floor(f / 4294967296),
+              g = f;
+            a[15 + (l + 64 >>> 9 << 4)] = 16711935 & (d << 8 | d >>> 24) | 4278255360 & (d << 24 | d >>> 8), a[14 + (l + 64 >>> 9 << 4)] = 16711935 & (g << 8 | g >>> 24) | 4278255360 & (g << 24 | g >>> 8), i.sigBytes = 4 * (a.length + 1), this._process();
+            for (var v = this._hash, w = v.words, _ = 0; _ < 4; _++) {
+              var A = w[_];
+              w[_] = 16711935 & (A << 8 | A >>> 24) | 4278255360 & (A << 24 | A >>> 8);
+            }
+            return v;
+          },
+          clone: function () {
+            var i = d.clone.call(this);
+            return i._hash = this._hash.clone(), i;
+          }
+        });
+        function u(i, s, a, f, l, d, g) {
+          var v = i + (s & a | ~s & f) + l + g;
+          return (v << d | v >>> 32 - d) + s;
+        }
+        function h(i, s, a, f, l, d, g) {
+          var v = i + (s & f | a & ~f) + l + g;
+          return (v << d | v >>> 32 - d) + s;
+        }
+        function c(i, s, a, f, l, d, g) {
+          var v = i + (s ^ a ^ f) + l + g;
+          return (v << d | v >>> 32 - d) + s;
+        }
+        function p(i, s, a, f, l, d, g) {
+          var v = i + (a ^ (s | ~f)) + l + g;
+          return (v << d | v >>> 32 - d) + s;
+        }
+        a.MD5 = d._createHelper(w), a.HmacMD5 = d._createHmacHelper(w);
+      }(Math), i.MD5;
+    }(l)), w.exports;
+  }(), m(), S || (S = 1, function (i) {
+    i.lib.Cipher || function (s) {
+      var a = i,
+        f = a.lib,
+        l = f.Base,
+        d = f.WordArray,
+        g = f.BufferedBlockAlgorithm,
+        v = a.enc;
+      v.Utf8;
+      var w = v.Base64,
+        _ = a.algo.EvpKDF,
+        A = f.Cipher = g.extend({
+          cfg: l.extend(),
+          createEncryptor: function (i, s) {
+            return this.create(this._ENC_XFORM_MODE, i, s);
+          },
+          createDecryptor: function (i, s) {
+            return this.create(this._DEC_XFORM_MODE, i, s);
+          },
+          init: function (i, s, a) {
+            this.cfg = this.cfg.extend(a), this._xformMode = i, this._key = s, this.reset();
+          },
+          reset: function () {
+            g.reset.call(this), this._doReset();
+          },
+          process: function (i) {
+            return this._append(i), this._process();
+          },
+          finalize: function (i) {
+            return i && this._append(i), this._doFinalize();
+          },
+          keySize: 4,
+          ivSize: 4,
+          _ENC_XFORM_MODE: 1,
+          _DEC_XFORM_MODE: 2,
+          _createHelper: function () {
+            function t(i) {
+              return "string" == typeof i ? nt : M;
+            }
+            return function (i) {
+              return {
+                encrypt: function (s, a, f) {
+                  return t(a).encrypt(i, s, a, f);
+                },
+                decrypt: function (s, a, f) {
+                  return t(a).decrypt(i, s, a, f);
+                }
+              };
+            };
+          }()
+        });
+      f.StreamCipher = A.extend({
+        _doFinalize: function () {
+          return this._process(true);
+        },
+        blockSize: 1
+      });
+      var E = a.mode = {},
+        b = f.BlockCipherMode = l.extend({
+          createEncryptor: function (i, s) {
+            return this.Encryptor.create(i, s);
+          },
+          createDecryptor: function (i, s) {
+            return this.Decryptor.create(i, s);
+          },
+          init: function (i, s) {
+            this._cipher = i, this._iv = s;
+          }
+        }),
+        B = E.CBC = function () {
+          var i = b.extend();
+          function e(i, s, a) {
+            var f,
+              l = this._iv;
+            l ? (f = l, this._iv = undefined) : f = this._prevBlock;
+            for (var d = 0; d < a; d++) i[s + d] ^= f[d];
+          }
+          return i.Encryptor = i.extend({
+            processBlock: function (i, s) {
+              var a = this._cipher,
+                f = a.blockSize;
+              e.call(this, i, s, f), a.encryptBlock(i, s), this._prevBlock = i.slice(s, s + f);
+            }
+          }), i.Decryptor = i.extend({
+            processBlock: function (i, s) {
+              var a = this._cipher,
+                f = a.blockSize,
+                l = i.slice(s, s + f);
+              a.decryptBlock(i, s), e.call(this, i, s, f), this._prevBlock = l;
+            }
+          }), i;
+        }(),
+        R = (a.pad = {}).Pkcs7 = {
+          pad: function (i, s) {
+            for (var a = 4 * s, f = a - i.sigBytes % a, l = f << 24 | f << 16 | f << 8 | f, g = [], v = 0; v < f; v += 4) g.push(l);
+            var w = d.create(g, f);
+            i.concat(w);
+          },
+          unpad: function (i) {
+            var s = 255 & i.words[i.sigBytes - 1 >>> 2];
+            i.sigBytes -= s;
+          }
+        };
+      f.BlockCipher = A.extend({
+        cfg: A.cfg.extend({
+          mode: B,
+          padding: R
+        }),
+        reset: function () {
+          var i;
+          A.reset.call(this);
+          var s = this.cfg,
+            a = s.iv,
+            f = s.mode;
+          this._xformMode == this._ENC_XFORM_MODE ? i = f.createEncryptor : (i = f.createDecryptor, this._minBufferSize = 1), this._mode && this._mode.__creator == i ? this._mode.init(this, a && a.words) : (this._mode = i.call(f, this, a && a.words), this._mode.__creator = i);
+        },
+        _doProcessBlock: function (i, s) {
+          this._mode.processBlock(i, s);
+        },
+        _doFinalize: function () {
+          var i,
+            s = this.cfg.padding;
+          return this._xformMode == this._ENC_XFORM_MODE ? (s.pad(this._data, this.blockSize), i = this._process(true)) : (i = this._process(true), s.unpad(i)), i;
+        },
+        blockSize: 4
+      });
+      var S = f.CipherParams = l.extend({
+          init: function (i) {
+            this.mixIn(i);
+          },
+          toString: function (i) {
+            return (i || this.formatter).stringify(this);
+          }
+        }),
+        x = (a.format = {}).OpenSSL = {
+          stringify: function (i) {
+            var s = i.ciphertext,
+              a = i.salt;
+            return (a ? d.create([1398893684, 1701076831]).concat(a).concat(s) : s).toString(w);
+          },
+          parse: function (i) {
+            var s,
+              a = w.parse(i),
+              f = a.words;
+            return 1398893684 == f[0] && 1701076831 == f[1] && (s = d.create(f.slice(2, 4)), f.splice(0, 4), a.sigBytes -= 16), S.create({
+              ciphertext: a,
+              salt: s
+            });
+          }
+        },
+        M = f.SerializableCipher = l.extend({
+          cfg: l.extend({
+            format: x
+          }),
+          encrypt: function (i, s, a, f) {
+            f = this.cfg.extend(f);
+            var l = i.createEncryptor(a, f),
+              d = l.finalize(s),
+              g = l.cfg;
+            return S.create({
+              ciphertext: d,
+              key: a,
+              iv: g.iv,
+              algorithm: i,
+              mode: g.mode,
+              padding: g.padding,
+              blockSize: i.blockSize,
+              formatter: f.format
+            });
+          },
+          decrypt: function (i, s, a, f) {
+            return f = this.cfg.extend(f), s = this._parse(s, f.format), i.createDecryptor(a, f).finalize(s.ciphertext);
+          },
+          _parse: function (i, s) {
+            return "string" == typeof i ? s.parse(i, this) : i;
+          }
+        }),
+        O = (a.kdf = {}).OpenSSL = {
+          execute: function (i, s, a, f, l) {
+            if (f || (f = d.random(8)), l) g = _.create({
+              keySize: s + a,
+              hasher: l
+            }).compute(i, f);else var g = _.create({
+              keySize: s + a
+            }).compute(i, f);
+            var v = d.create(g.words.slice(s), 4 * a);
+            return g.sigBytes = 4 * s, S.create({
+              key: g,
+              iv: v,
+              salt: f
+            });
+          }
+        },
+        nt = f.PasswordBasedCipher = M.extend({
+          cfg: M.cfg.extend({
+            kdf: O
+          }),
+          encrypt: function (i, s, a, f) {
+            var l = (f = this.cfg.extend(f)).kdf.execute(a, i.keySize, i.ivSize, f.salt, f.hasher);
+            f.iv = l.iv;
+            var d = M.encrypt.call(this, i, s, l.key, f);
+            return d.mixIn(l), d;
+          },
+          decrypt: function (i, s, a, f) {
+            f = this.cfg.extend(f), s = this._parse(s, f.format);
+            var l = f.kdf.execute(a, i.keySize, i.ivSize, s.salt, f.hasher);
+            return f.iv = l.iv, M.decrypt.call(this, i, s, l.key, f);
+          }
+        });
+    }();
+  }(l, m())));
+  var x = "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {},
+    M = [],
+    O = [],
+    nt = "undefined" != typeof Uint8Array ? Uint8Array : Array,
+    gt = false;
+  function P() {
+    gt = true;
+    for (var i = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", s = 0; s < 64; ++s) M[s] = i[s], O[i.charCodeAt(s)] = s;
+    O["-".charCodeAt(0)] = 62, O["_".charCodeAt(0)] = 63;
+  }
+  function k(i, s, a) {
+    for (var f, l, d = [], g = s; g < a; g += 3) f = (i[g] << 16) + (i[g + 1] << 8) + i[g + 2], d.push(M[(l = f) >> 18 & 63] + M[l >> 12 & 63] + M[l >> 6 & 63] + M[63 & l]);
+    return d.join("");
+  }
+  function U(i) {
+    var s;
+    gt || P();
+    for (var a = i.length, f = a % 3, l = "", d = [], g = 16383, v = 0, w = a - f; v < w; v += g) d.push(k(i, v, v + g > w ? w : v + g));
+    return 1 === f ? (s = i[a - 1], l += M[s >> 2], l += M[s << 4 & 63], l += "==") : 2 === f && (s = (i[a - 2] << 8) + i[a - 1], l += M[s >> 10], l += M[s >> 4 & 63], l += M[s << 2 & 63], l += "="), d.push(l), d.join("");
+  }
+  function T(i, s, a, f, l) {
+    var d,
+      g,
+      v = 8 * l - f - 1,
+      w = (1 << v) - 1,
+      _ = w >> 1,
+      A = -7,
+      E = a ? l - 1 : 0,
+      b = a ? -1 : 1,
+      B = i[s + E];
+    for (E += b, d = B & (1 << -A) - 1, B >>= -A, A += v; A > 0; d = 256 * d + i[s + E], E += b, A -= 8);
+    for (g = d & (1 << -A) - 1, d >>= -A, A += f; A > 0; g = 256 * g + i[s + E], E += b, A -= 8);
+    if (0 === d) d = 1 - _;else {
+      if (d === w) return g ? NaN : Infinity * (B ? -1 : 1);
+      g += Math.pow(2, f), d -= _;
+    }
+    return (B ? -1 : 1) * g * Math.pow(2, d - f);
+  }
+  function C(i, s, a, f, l, d) {
+    var g,
+      v,
+      w,
+      _ = 8 * d - l - 1,
+      A = (1 << _) - 1,
+      E = A >> 1,
+      b = 23 === l ? Math.pow(2, -24) - Math.pow(2, -77) : 0,
+      B = f ? 0 : d - 1,
+      R = f ? 1 : -1,
+      S = s < 0 || 0 === s && 1 / s < 0 ? 1 : 0;
+    for (s = Math.abs(s), isNaN(s) || s === Infinity ? (v = isNaN(s) ? 1 : 0, g = A) : (g = Math.floor(Math.log(s) / Math.LN2), s * (w = Math.pow(2, -g)) < 1 && (g--, w *= 2), (s += g + E >= 1 ? b / w : b * Math.pow(2, 1 - E)) * w >= 2 && (g++, w /= 2), g + E >= A ? (v = 0, g = A) : g + E >= 1 ? (v = (s * w - 1) * Math.pow(2, l), g += E) : (v = s * Math.pow(2, E - 1) * Math.pow(2, l), g = 0)); l >= 8; i[a + B] = 255 & v, B += R, v /= 256, l -= 8);
+    for (g = g << l | v, _ += l; _ > 0; i[a + B] = 255 & g, B += R, g /= 256, _ -= 8);
+    i[a + B - R] |= 128 * S;
+  }
+  var It = {}.toString,
+    At = Array.isArray || function (i) {
+      return "[object Array]" == It.call(i);
+    };
+  function D() {
+    return I.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
+  }
+  function z(i, s) {
+    if (D() < s) throw new RangeError("Invalid typed array length");
+    return I.TYPED_ARRAY_SUPPORT ? (i = new Uint8Array(s)).__proto__ = I.prototype : (null === i && (i = new I(s)), i.length = s), i;
+  }
+  function I(i, s, a) {
+    if (!(I.TYPED_ARRAY_SUPPORT || this instanceof I)) return new I(i, s, a);
+    if ("number" == typeof i) {
+      if ("string" == typeof s) throw new Error("If encoding is specified then the first argument must be a string");
+      return F(this, i);
+    }
+    return Y(this, i, s, a);
+  }
+  function Y(i, s, a, f) {
+    if ("number" == typeof s) throw new TypeError('"value" argument must not be a number');
+    return "undefined" != typeof ArrayBuffer && s instanceof ArrayBuffer ? function (i, s, a, f) {
+      if (s.byteLength, a < 0 || s.byteLength < a) throw new RangeError("'offset' is out of bounds");
+      if (s.byteLength < a + (f || 0)) throw new RangeError("'length' is out of bounds");
+      return s = undefined === a && undefined === f ? new Uint8Array(s) : undefined === f ? new Uint8Array(s, a) : new Uint8Array(s, a, f), I.TYPED_ARRAY_SUPPORT ? (i = s).__proto__ = I.prototype : i = H(i, s), i;
+    }(i, s, a, f) : "string" == typeof s ? function (i, s, a) {
+      if ("string" == typeof a && "" !== a || (a = "utf8"), !I.isEncoding("utf8")) throw new TypeError('"encoding" must be a valid string encoding');
+      var f = 0 | K(s, "utf8"),
+        l = (i = z(i, f)).write(s, "utf8");
+      return l !== f && (i = i.slice(0, l)), i;
+    }(i, s, a) : function (i, s) {
+      if (j(s)) {
+        var a = 0 | N(s.length);
+        return 0 === (i = z(i, a)).length || s.copy(i, 0, 0, a), i;
+      }
+      if (s) {
+        if ("undefined" != typeof ArrayBuffer && s.buffer instanceof ArrayBuffer || "length" in s) return "number" != typeof s.length || (f = s.length) != f ? z(i, 0) : H(i, s);
+        if ("Buffer" === s.type && At(s.data)) return H(i, s.data);
+      }
+      var f;
+      throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
+    }(i, s);
+  }
+  function L(i) {
+    if ("number" != typeof i) throw new TypeError('"size" argument must be a number');
+    if (i < 0) throw new RangeError('"size" argument must not be negative');
+  }
+  function F(i, s) {
+    if (L(s), i = z(i, s < 0 ? 0 : 0 | N(s)), !I.TYPED_ARRAY_SUPPORT) for (var a = 0; a < s; ++a) i[a] = 0;
+    return i;
+  }
+  function H(i, s) {
+    var a = s.length < 0 ? 0 : 0 | N(s.length);
+    i = z(i, a);
+    for (var f = 0; f < a; f += 1) i[f] = 255 & s[f];
+    return i;
+  }
+  function N(i) {
+    if (i >= D()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + D().toString(16) + " bytes");
+    return 0 | i;
+  }
+  function j(i) {
+    return !(null == i || !i._isBuffer);
+  }
+  function K(i, s) {
+    if (j(i)) return i.length;
+    if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(i) || i instanceof ArrayBuffer)) return i.byteLength;
+    "string" != typeof i && (i = "" + i);
+    var a = i.length;
+    if (0 === a) return 0;
+    for (var f = false;;) switch (s) {
+      case "ascii":
+      case "latin1":
+      case "binary":
+        return a;
+      case "utf8":
+      case "utf-8":
+      case undefined:
+        return vt(i).length;
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return 2 * a;
+      case "hex":
+        return a >>> 1;
+      case "base64":
+        return wt(i).length;
+      default:
+        if (f) return vt(i).length;
+        s = ("" + s).toLowerCase(), f = true;
+    }
+  }
+  function W(i, s, a) {
+    var f = false;
+    if ((undefined === s || s < 0) && (s = 0), s > this.length) return "";
+    if ((undefined === a || a > this.length) && (a = this.length), a <= 0) return "";
+    if ((a >>>= 0) <= (s >>>= 0)) return "";
+    for (i || (i = "utf8");;) switch (i) {
+      case "hex":
+        return st(this, s, a);
+      case "utf8":
+      case "utf-8":
+        return et(this, s, a);
+      case "ascii":
+        return it(this, s, a);
+      case "latin1":
+      case "binary":
+        return ot(this, s, a);
+      case "base64":
+        return rt(this, s, a);
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return at(this, s, a);
+      default:
+        if (f) throw new TypeError("Unknown encoding: " + i);
+        i = (i + "").toLowerCase(), f = true;
+    }
+  }
+  function X(i, s, a) {
+    var f = i[s];
+    i[s] = i[a], i[a] = f;
+  }
+  function V(i, s, a, f, l) {
+    if (0 === i.length) return -1;
+    if ("string" == typeof a ? (f = a, a = 0) : a > 2147483647 ? a = 2147483647 : a < -2147483648 && (a = -2147483648), a = +a, isNaN(a) && (a = l ? 0 : i.length - 1), a < 0 && (a = i.length + a), a >= i.length) {
+      if (l) return -1;
+      a = i.length - 1;
+    } else if (a < 0) {
+      if (!l) return -1;
+      a = 0;
+    }
+    if ("string" == typeof s && (s = I.from(s, f)), j(s)) return 0 === s.length ? -1 : q(i, s, a, f, l);
+    if ("number" == typeof s) return s &= 255, I.TYPED_ARRAY_SUPPORT && "function" == typeof Uint8Array.prototype.indexOf ? l ? Uint8Array.prototype.indexOf.call(i, s, a) : Uint8Array.prototype.lastIndexOf.call(i, s, a) : q(i, [s], a, f, l);
+    throw new TypeError("val must be string, number or Buffer");
+  }
+  function q(i, s, a, f, l) {
+    var d,
+      g = 1,
+      v = i.length,
+      w = s.length;
+    if (undefined !== f && ("ucs2" === (f = String(f).toLowerCase()) || "ucs-2" === f || "utf16le" === f || "utf-16le" === f)) {
+      if (i.length < 2 || s.length < 2) return -1;
+      g = 2, v /= 2, w /= 2, a /= 2;
+    }
+    function u(i, s) {
+      return 1 === g ? i[s] : i.readUInt16BE(s * g);
+    }
+    if (l) {
+      var _ = -1;
+      for (d = a; d < v; d++) if (u(i, d) === u(s, -1 === _ ? 0 : d - _)) {
+        if (-1 === _ && (_ = d), d - _ + 1 === w) return _ * g;
+      } else -1 !== _ && (d -= d - _), _ = -1;
+    } else for (a + w > v && (a = v - w), d = a; d >= 0; d--) {
+      for (var A = true, E = 0; E < w; E++) if (u(i, d + E) !== u(s, E)) {
+        A = false;
+        break;
+      }
+      if (A) return d;
+    }
+    return -1;
+  }
+  function J(i, s, a, f) {
+    a = Number(a) || 0;
+    var l = i.length - a;
+    f ? (f = Number(f)) > l && (f = l) : f = l;
+    var d = s.length;
+    if (d % 2 != 0) throw new TypeError("Invalid hex string");
+    f > d / 2 && (f = d / 2);
+    for (var g = 0; g < f; ++g) {
+      var v = parseInt(s.substr(2 * g, 2), 16);
+      if (isNaN(v)) return g;
+      i[a + g] = v;
+    }
+    return g;
+  }
+  function Z(i, s, a, f) {
+    return _t(vt(s, i.length - a), i, a, f);
+  }
+  function $(i, s, a, f) {
+    return _t(function (i) {
+      for (var s = [], a = 0; a < i.length; ++a) s.push(255 & i.charCodeAt(a));
+      return s;
+    }(s), i, a, f);
+  }
+  function G(i, s, a, f) {
+    return $(i, s, a, f);
+  }
+  function Q(i, s, a, f) {
+    return _t(wt(s), i, a, f);
+  }
+  function tt(i, s, a, f) {
+    return _t(function (i, s) {
+      for (var a, f, l, d = [], g = 0; g < i.length && !((s -= 2) < 0); ++g) f = (a = i.charCodeAt(g)) >> 8, l = a % 256, d.push(l), d.push(f);
+      return d;
+    }(s, i.length - a), i, a, f);
+  }
+  function rt(i, s, a) {
+    return 0 === s && a === i.length ? U(i) : U(i.slice(s, a));
+  }
+  function et(i, s, a) {
+    a = Math.min(i.length, a);
+    for (var f = [], l = s; l < a;) {
+      var d,
+        g,
+        v,
+        w,
+        _ = i[l],
+        A = null,
+        E = _ > 239 ? 4 : _ > 223 ? 3 : _ > 191 ? 2 : 1;
+      if (l + E <= a) switch (E) {
+        case 1:
+          _ < 128 && (A = _);
+          break;
+        case 2:
+          128 == (192 & (d = i[l + 1])) && (w = (31 & _) << 6 | 63 & d) > 127 && (A = w);
+          break;
+        case 3:
+          d = i[l + 1], g = i[l + 2], 128 == (192 & d) && 128 == (192 & g) && (w = (15 & _) << 12 | (63 & d) << 6 | 63 & g) > 2047 && (w < 55296 || w > 57343) && (A = w);
+          break;
+        case 4:
+          d = i[l + 1], g = i[l + 2], v = i[l + 3], 128 == (192 & d) && 128 == (192 & g) && 128 == (192 & v) && (w = (15 & _) << 18 | (63 & d) << 12 | (63 & g) << 6 | 63 & v) > 65535 && w < 1114112 && (A = w);
+      }
+      null === A ? (A = 65533, E = 1) : A > 65535 && (A -= 65536, f.push(A >>> 10 & 1023 | 55296), A = 56320 | 1023 & A), f.push(A), l += E;
+    }
+    return function (i) {
+      var s = i.length;
+      if (s <= Et) return String.fromCharCode.apply(String, i);
+      for (var a = "", f = 0; f < s;) a += String.fromCharCode.apply(String, i.slice(f, f += Et));
+      return a;
+    }(f);
+  }
+  I.TYPED_ARRAY_SUPPORT = undefined === x.TYPED_ARRAY_SUPPORT || x.TYPED_ARRAY_SUPPORT, D(), I.poolSize = 8192, I._augment = function (i) {
+    return i.__proto__ = I.prototype, i;
+  }, I.from = function (i, s, a) {
+    return Y(null, i, s, a);
+  }, I.TYPED_ARRAY_SUPPORT && (I.prototype.__proto__ = Uint8Array.prototype, I.__proto__ = Uint8Array), I.alloc = function (i, s, a) {
+    return function (i, s, a, f) {
+      return L(s), s <= 0 ? z(i, s) : undefined !== a ? "string" == typeof f ? z(i, s).fill(a, f) : z(i, s).fill(a) : z(i, s);
+    }(null, i, s, a);
+  }, I.allocUnsafe = function (i) {
+    return F(null, i);
+  }, I.allocUnsafeSlow = function (i) {
+    return F(null, i);
+  }, I.isBuffer = function (i) {
+    return null != i && (!!i._isBuffer || mt(i) || function (i) {
+      return "function" == typeof i.readFloatLE && "function" == typeof i.slice && mt(i.slice(0, 0));
+    }(i));
+  }, I.compare = function (i, s) {
+    if (!j(i) || !j(s)) throw new TypeError("Arguments must be Buffers");
+    if (i === s) return 0;
+    for (var a = i.length, f = s.length, l = 0, d = Math.min(a, f); l < d; ++l) if (i[l] !== s[l]) {
+      a = i[l], f = s[l];
+      break;
+    }
+    return a < f ? -1 : f < a ? 1 : 0;
+  }, I.isEncoding = function (i) {
+    switch (String(i).toLowerCase()) {
+      case "hex":
+      case "utf8":
+      case "utf-8":
+      case "ascii":
+      case "latin1":
+      case "binary":
+      case "base64":
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return true;
+      default:
+        return false;
+    }
+  }, I.concat = function (i, s) {
+    if (!At(i)) throw new TypeError('"list" argument must be an Array of Buffers');
+    if (0 === i.length) return I.alloc(0);
+    var a;
+    if (undefined === s) for (s = 0, a = 0; a < i.length; ++a) s += i[a].length;
+    var f = I.allocUnsafe(s),
+      l = 0;
+    for (a = 0; a < i.length; ++a) {
+      var d = i[a];
+      if (!j(d)) throw new TypeError('"list" argument must be an Array of Buffers');
+      d.copy(f, l), l += d.length;
+    }
+    return f;
+  }, I.byteLength = K, I.prototype._isBuffer = true, I.prototype.swap16 = function () {
+    var i = this.length;
+    if (i % 2 != 0) throw new RangeError("Buffer size must be a multiple of 16-bits");
+    for (var s = 0; s < i; s += 2) X(this, s, s + 1);
+    return this;
+  }, I.prototype.swap32 = function () {
+    var i = this.length;
+    if (i % 4 != 0) throw new RangeError("Buffer size must be a multiple of 32-bits");
+    for (var s = 0; s < i; s += 4) X(this, s, s + 3), X(this, s + 1, s + 2);
+    return this;
+  }, I.prototype.swap64 = function () {
+    var i = this.length;
+    if (i % 8 != 0) throw new RangeError("Buffer size must be a multiple of 64-bits");
+    for (var s = 0; s < i; s += 8) X(this, s, s + 7), X(this, s + 1, s + 6), X(this, s + 2, s + 5), X(this, s + 3, s + 4);
+    return this;
+  }, I.prototype.toString = function () {
+    var i = 0 | this.length;
+    return 0 === i ? "" : 0 === arguments.length ? et(this, 0, i) : W.apply(this, arguments);
+  }, I.prototype.equals = function (i) {
+    if (!j(i)) throw new TypeError("Argument must be a Buffer");
+    return this === i || 0 === I.compare(this, i);
+  }, I.prototype.inspect = function () {
+    var i = "";
+    return this.length > 0 && (i = this.toString("hex", 0, 50).match(/.{2}/g).join(" "), this.length > 50 && (i += " ... ")), "<Buffer " + i + ">";
+  }, I.prototype.compare = function (i, s, a, f, l) {
+    if (!j(i)) throw new TypeError("Argument must be a Buffer");
+    if (undefined === s && (s = 0), undefined === a && (a = i ? i.length : 0), undefined === f && (f = 0), undefined === l && (l = this.length), s < 0 || a > i.length || f < 0 || l > this.length) throw new RangeError("out of range index");
+    if (f >= l && s >= a) return 0;
+    if (f >= l) return -1;
+    if (s >= a) return 1;
+    if (this === i) return 0;
+    for (var d = (l >>>= 0) - (f >>>= 0), g = (a >>>= 0) - (s >>>= 0), v = Math.min(d, g), w = this.slice(f, l), _ = i.slice(s, a), A = 0; A < v; ++A) if (w[A] !== _[A]) {
+      d = w[A], g = _[A];
+      break;
+    }
+    return d < g ? -1 : g < d ? 1 : 0;
+  }, I.prototype.includes = function (i, s, a) {
+    return -1 !== this.indexOf(i, s, a);
+  }, I.prototype.indexOf = function (i, s, a) {
+    return V(this, i, s, a, true);
+  }, I.prototype.lastIndexOf = function (i, s, a) {
+    return V(this, i, s, a, false);
+  }, I.prototype.write = function (i, s, a, f) {
+    if (undefined === s) f = "utf8", a = this.length, s = 0;else if (undefined === a && "string" == typeof s) f = s, a = this.length, s = 0;else {
+      if (!isFinite(s)) throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+      s |= 0, isFinite(a) ? (a |= 0, undefined === f && (f = "utf8")) : (f = a, a = undefined);
+    }
+    var l = this.length - s;
+    if ((undefined === a || a > l) && (a = l), i.length > 0 && (a < 0 || s < 0) || s > this.length) throw new RangeError("Attempt to write outside buffer bounds");
+    f || (f = "utf8");
+    for (var d = false;;) switch (f) {
+      case "hex":
+        return J(this, i, s, a);
+      case "utf8":
+      case "utf-8":
+        return Z(this, i, s, a);
+      case "ascii":
+        return $(this, i, s, a);
+      case "latin1":
+      case "binary":
+        return G(this, i, s, a);
+      case "base64":
+        return Q(this, i, s, a);
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return tt(this, i, s, a);
+      default:
+        if (d) throw new TypeError("Unknown encoding: " + f);
+        f = ("" + f).toLowerCase(), d = true;
+    }
+  }, I.prototype.toJSON = function () {
+    return {
+      type: "Buffer",
+      data: Array.prototype.slice.call(this._arr || this, 0)
+    };
+  };
+  var Et = 4096;
+  function it(i, s, a) {
+    var f = "";
+    a = Math.min(i.length, a);
+    for (var l = s; l < a; ++l) f += String.fromCharCode(127 & i[l]);
+    return f;
+  }
+  function ot(i, s, a) {
+    var f = "";
+    a = Math.min(i.length, a);
+    for (var l = s; l < a; ++l) f += String.fromCharCode(i[l]);
+    return f;
+  }
+  function st(i, s, a) {
+    var f = i.length;
+    (!s || s < 0) && (s = 0), (!a || a < 0 || a > f) && (a = f);
+    for (var l = "", d = s; d < a; ++d) l += yt(i[d]);
+    return l;
+  }
+  function at(i, s, a) {
+    for (var f = i.slice(s, a), l = "", d = 0; d < f.length; d += 2) l += String.fromCharCode(f[d] + 256 * f[d + 1]);
+    return l;
+  }
+  function ft(i, s, a) {
+    if (i % 1 != 0 || i < 0) throw new RangeError("offset is not uint");
+    if (i + s > a) throw new RangeError("Trying to access beyond buffer length");
+  }
+  function ut(i, s, a, f, l, d) {
+    if (!j(i)) throw new TypeError('"buffer" argument must be a Buffer instance');
+    if (s > l || s < d) throw new RangeError('"value" argument is out of bounds');
+    if (a + f > i.length) throw new RangeError("Index out of range");
+  }
+  function ht(i, s, a, f) {
+    s < 0 && (s = 65535 + s + 1);
+    for (var l = 0, d = Math.min(i.length - a, 2); l < d; ++l) i[a + l] = (s & 255 << 8 * (f ? l : 1 - l)) >>> 8 * (f ? l : 1 - l);
+  }
+  function ct(i, s, a, f) {
+    s < 0 && (s = 4294967295 + s + 1);
+    for (var l = 0, d = Math.min(i.length - a, 4); l < d; ++l) i[a + l] = s >>> 8 * (f ? l : 3 - l) & 255;
+  }
+  function pt(i, s, a, f, l, d) {
+    if (a + f > i.length) throw new RangeError("Index out of range");
+    if (a < 0) throw new RangeError("Index out of range");
+  }
+  function lt(i, s, a, f, l) {
+    return l || pt(i, 0, a, 4), C(i, s, a, f, 23, 4), a + 4;
+  }
+  function dt(i, s, a, f, l) {
+    return l || pt(i, 0, a, 8), C(i, s, a, f, 52, 8), a + 8;
+  }
+  I.prototype.slice = function (i, s) {
+    var a,
+      f = this.length;
+    if ((i = ~~i) < 0 ? (i += f) < 0 && (i = 0) : i > f && (i = f), (s = undefined === s ? f : ~~s) < 0 ? (s += f) < 0 && (s = 0) : s > f && (s = f), s < i && (s = i), I.TYPED_ARRAY_SUPPORT) (a = this.subarray(i, s)).__proto__ = I.prototype;else {
+      var l = s - i;
+      a = new I(l, undefined);
+      for (var d = 0; d < l; ++d) a[d] = this[d + i];
+    }
+    return a;
+  }, I.prototype.readUIntLE = function (i, s, a) {
+    i |= 0, s |= 0, a || ft(i, s, this.length);
+    for (var f = this[i], l = 1, d = 0; ++d < s && (l *= 256);) f += this[i + d] * l;
+    return f;
+  }, I.prototype.readUIntBE = function (i, s, a) {
+    i |= 0, s |= 0, a || ft(i, s, this.length);
+    for (var f = this[i + --s], l = 1; s > 0 && (l *= 256);) f += this[i + --s] * l;
+    return f;
+  }, I.prototype.readUInt8 = function (i, s) {
+    return s || ft(i, 1, this.length), this[i];
+  }, I.prototype.readUInt16LE = function (i, s) {
+    return s || ft(i, 2, this.length), this[i] | this[i + 1] << 8;
+  }, I.prototype.readUInt16BE = function (i, s) {
+    return s || ft(i, 2, this.length), this[i] << 8 | this[i + 1];
+  }, I.prototype.readUInt32LE = function (i, s) {
+    return s || ft(i, 4, this.length), (this[i] | this[i + 1] << 8 | this[i + 2] << 16) + 16777216 * this[i + 3];
+  }, I.prototype.readUInt32BE = function (i, s) {
+    return s || ft(i, 4, this.length), 16777216 * this[i] + (this[i + 1] << 16 | this[i + 2] << 8 | this[i + 3]);
+  }, I.prototype.readIntLE = function (i, s, a) {
+    i |= 0, s |= 0, a || ft(i, s, this.length);
+    for (var f = this[i], l = 1, d = 0; ++d < s && (l *= 256);) f += this[i + d] * l;
+    return f >= (l *= 128) && (f -= Math.pow(2, 8 * s)), f;
+  }, I.prototype.readIntBE = function (i, s, a) {
+    i |= 0, s |= 0, a || ft(i, s, this.length);
+    for (var f = s, l = 1, d = this[i + --f]; f > 0 && (l *= 256);) d += this[i + --f] * l;
+    return d >= (l *= 128) && (d -= Math.pow(2, 8 * s)), d;
+  }, I.prototype.readInt8 = function (i, s) {
+    return s || ft(i, 1, this.length), 128 & this[i] ? -1 * (255 - this[i] + 1) : this[i];
+  }, I.prototype.readInt16LE = function (i, s) {
+    s || ft(i, 2, this.length);
+    var a = this[i] | this[i + 1] << 8;
+    return 32768 & a ? 4294901760 | a : a;
+  }, I.prototype.readInt16BE = function (i, s) {
+    s || ft(i, 2, this.length);
+    var a = this[i + 1] | this[i] << 8;
+    return 32768 & a ? 4294901760 | a : a;
+  }, I.prototype.readInt32LE = function (i, s) {
+    return s || ft(i, 4, this.length), this[i] | this[i + 1] << 8 | this[i + 2] << 16 | this[i + 3] << 24;
+  }, I.prototype.readInt32BE = function (i, s) {
+    return s || ft(i, 4, this.length), this[i] << 24 | this[i + 1] << 16 | this[i + 2] << 8 | this[i + 3];
+  }, I.prototype.readFloatLE = function (i, s) {
+    return s || ft(i, 4, this.length), T(this, i, true, 23, 4);
+  }, I.prototype.readFloatBE = function (i, s) {
+    return s || ft(i, 4, this.length), T(this, i, false, 23, 4);
+  }, I.prototype.readDoubleLE = function (i, s) {
+    return s || ft(i, 8, this.length), T(this, i, true, 52, 8);
+  }, I.prototype.readDoubleBE = function (i, s) {
+    return s || ft(i, 8, this.length), T(this, i, false, 52, 8);
+  }, I.prototype.writeUIntLE = function (i, s, a, f) {
+    i = +i, s |= 0, a |= 0, f || ut(this, i, s, a, Math.pow(2, 8 * a) - 1, 0);
+    var l = 1,
+      d = 0;
+    for (this[s] = 255 & i; ++d < a && (l *= 256);) this[s + d] = i / l & 255;
+    return s + a;
+  }, I.prototype.writeUIntBE = function (i, s, a, f) {
+    i = +i, s |= 0, a |= 0, f || ut(this, i, s, a, Math.pow(2, 8 * a) - 1, 0);
+    var l = a - 1,
+      d = 1;
+    for (this[s + l] = 255 & i; --l >= 0 && (d *= 256);) this[s + l] = i / d & 255;
+    return s + a;
+  }, I.prototype.writeUInt8 = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 1, 255, 0), I.TYPED_ARRAY_SUPPORT || (i = Math.floor(i)), this[s] = 255 & i, s + 1;
+  }, I.prototype.writeUInt16LE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 2, 65535, 0), I.TYPED_ARRAY_SUPPORT ? (this[s] = 255 & i, this[s + 1] = i >>> 8) : ht(this, i, s, true), s + 2;
+  }, I.prototype.writeUInt16BE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 2, 65535, 0), I.TYPED_ARRAY_SUPPORT ? (this[s] = i >>> 8, this[s + 1] = 255 & i) : ht(this, i, s, false), s + 2;
+  }, I.prototype.writeUInt32LE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 4, 4294967295, 0), I.TYPED_ARRAY_SUPPORT ? (this[s + 3] = i >>> 24, this[s + 2] = i >>> 16, this[s + 1] = i >>> 8, this[s] = 255 & i) : ct(this, i, s, true), s + 4;
+  }, I.prototype.writeUInt32BE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 4, 4294967295, 0), I.TYPED_ARRAY_SUPPORT ? (this[s] = i >>> 24, this[s + 1] = i >>> 16, this[s + 2] = i >>> 8, this[s + 3] = 255 & i) : ct(this, i, s, false), s + 4;
+  }, I.prototype.writeIntLE = function (i, s, a, f) {
+    if (i = +i, s |= 0, !f) {
+      var l = Math.pow(2, 8 * a - 1);
+      ut(this, i, s, a, l - 1, -l);
+    }
+    var d = 0,
+      g = 1,
+      v = 0;
+    for (this[s] = 255 & i; ++d < a && (g *= 256);) i < 0 && 0 === v && 0 !== this[s + d - 1] && (v = 1), this[s + d] = (i / g >> 0) - v & 255;
+    return s + a;
+  }, I.prototype.writeIntBE = function (i, s, a, f) {
+    if (i = +i, s |= 0, !f) {
+      var l = Math.pow(2, 8 * a - 1);
+      ut(this, i, s, a, l - 1, -l);
+    }
+    var d = a - 1,
+      g = 1,
+      v = 0;
+    for (this[s + d] = 255 & i; --d >= 0 && (g *= 256);) i < 0 && 0 === v && 0 !== this[s + d + 1] && (v = 1), this[s + d] = (i / g >> 0) - v & 255;
+    return s + a;
+  }, I.prototype.writeInt8 = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 1, 127, -128), I.TYPED_ARRAY_SUPPORT || (i = Math.floor(i)), i < 0 && (i = 255 + i + 1), this[s] = 255 & i, s + 1;
+  }, I.prototype.writeInt16LE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 2, 32767, -32768), I.TYPED_ARRAY_SUPPORT ? (this[s] = 255 & i, this[s + 1] = i >>> 8) : ht(this, i, s, true), s + 2;
+  }, I.prototype.writeInt16BE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 2, 32767, -32768), I.TYPED_ARRAY_SUPPORT ? (this[s] = i >>> 8, this[s + 1] = 255 & i) : ht(this, i, s, false), s + 2;
+  }, I.prototype.writeInt32LE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 4, 2147483647, -2147483648), I.TYPED_ARRAY_SUPPORT ? (this[s] = 255 & i, this[s + 1] = i >>> 8, this[s + 2] = i >>> 16, this[s + 3] = i >>> 24) : ct(this, i, s, true), s + 4;
+  }, I.prototype.writeInt32BE = function (i, s, a) {
+    return i = +i, s |= 0, a || ut(this, i, s, 4, 2147483647, -2147483648), i < 0 && (i = 4294967295 + i + 1), I.TYPED_ARRAY_SUPPORT ? (this[s] = i >>> 24, this[s + 1] = i >>> 16, this[s + 2] = i >>> 8, this[s + 3] = 255 & i) : ct(this, i, s, false), s + 4;
+  }, I.prototype.writeFloatLE = function (i, s, a) {
+    return lt(this, i, s, true, a);
+  }, I.prototype.writeFloatBE = function (i, s, a) {
+    return lt(this, i, s, false, a);
+  }, I.prototype.writeDoubleLE = function (i, s, a) {
+    return dt(this, i, s, true, a);
+  }, I.prototype.writeDoubleBE = function (i, s, a) {
+    return dt(this, i, s, false, a);
+  }, I.prototype.copy = function (i, s, a, f) {
+    if (a || (a = 0), f || 0 === f || (f = this.length), s >= i.length && (s = i.length), s || (s = 0), f > 0 && f < a && (f = a), f === a) return 0;
+    if (0 === i.length || 0 === this.length) return 0;
+    if (s < 0) throw new RangeError("targetStart out of bounds");
+    if (a < 0 || a >= this.length) throw new RangeError("sourceStart out of bounds");
+    if (f < 0) throw new RangeError("sourceEnd out of bounds");
+    f > this.length && (f = this.length), i.length - s < f - a && (f = i.length - s + a);
+    var l,
+      d = f - a;
+    if (this === i && a < s && s < f) for (l = d - 1; l >= 0; --l) i[l + s] = this[l + a];else if (d < 1e3 || !I.TYPED_ARRAY_SUPPORT) for (l = 0; l < d; ++l) i[l + s] = this[l + a];else Uint8Array.prototype.set.call(i, this.subarray(a, a + d), s);
+    return d;
+  }, I.prototype.fill = function (i, s, a, f) {
+    if ("string" == typeof i) {
+      if ("string" == typeof s ? (f = s, s = 0, a = this.length) : "string" == typeof a && (f = a, a = this.length), 1 === i.length) {
+        var l = i.charCodeAt(0);
+        l < 256 && (i = l);
+      }
+      if (undefined !== f && "string" != typeof f) throw new TypeError("encoding must be a string");
+      if ("string" == typeof f && !I.isEncoding(f)) throw new TypeError("Unknown encoding: " + f);
+    } else "number" == typeof i && (i &= 255);
+    if (s < 0 || this.length < s || this.length < a) throw new RangeError("Out of range index");
+    if (a <= s) return this;
+    var d;
+    if (s >>>= 0, a = undefined === a ? this.length : a >>> 0, i || (i = 0), "number" == typeof i) for (d = s; d < a; ++d) this[d] = i;else {
+      var g = j(i) ? i : vt(new I(i, f).toString()),
+        v = g.length;
+      for (d = 0; d < a - s; ++d) this[d + s] = g[d % v];
+    }
+    return this;
+  };
+  var bt = /[^+\/0-9A-Za-z-_]/g;
+  function yt(i) {
+    return i < 16 ? "0" + i.toString(16) : i.toString(16);
+  }
+  function vt(i, s) {
+    var a;
+    s = s || Infinity;
+    for (var f = i.length, l = null, d = [], g = 0; g < f; ++g) {
+      if ((a = i.charCodeAt(g)) > 55295 && a < 57344) {
+        if (!l) {
+          if (a > 56319) {
+            (s -= 3) > -1 && d.push(239, 191, 189);
+            continue;
+          }
+          if (g + 1 === f) {
+            (s -= 3) > -1 && d.push(239, 191, 189);
+            continue;
+          }
+          l = a;
+          continue;
+        }
+        if (a < 56320) {
+          (s -= 3) > -1 && d.push(239, 191, 189), l = a;
+          continue;
+        }
+        a = 65536 + (l - 55296 << 10 | a - 56320);
+      } else l && (s -= 3) > -1 && d.push(239, 191, 189);
+      if (l = null, a < 128) {
+        if ((s -= 1) < 0) break;
+        d.push(a);
+      } else if (a < 2048) {
+        if ((s -= 2) < 0) break;
+        d.push(a >> 6 | 192, 63 & a | 128);
+      } else if (a < 65536) {
+        if ((s -= 3) < 0) break;
+        d.push(a >> 12 | 224, a >> 6 & 63 | 128, 63 & a | 128);
+      } else {
+        if (!(a < 1114112)) throw new Error("Invalid code point");
+        if ((s -= 4) < 0) break;
+        d.push(a >> 18 | 240, a >> 12 & 63 | 128, a >> 6 & 63 | 128, 63 & a | 128);
+      }
+    }
+    return d;
+  }
+  function wt(i) {
+    return function (i) {
+      var s, a, f, l, d, g;
+      gt || P();
+      var v = i.length;
+      if (v % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+      d = "=" === i[v - 2] ? 2 : "=" === i[v - 1] ? 1 : 0, g = new nt(3 * v / 4 - d), f = d > 0 ? v - 4 : v;
+      var w = 0;
+      for (s = 0, a = 0; s < f; s += 4, a += 3) l = O[i.charCodeAt(s)] << 18 | O[i.charCodeAt(s + 1)] << 12 | O[i.charCodeAt(s + 2)] << 6 | O[i.charCodeAt(s + 3)], g[w++] = l >> 16 & 255, g[w++] = l >> 8 & 255, g[w++] = 255 & l;
+      return 2 === d ? (l = O[i.charCodeAt(s)] << 2 | O[i.charCodeAt(s + 1)] >> 4, g[w++] = 255 & l) : 1 === d && (l = O[i.charCodeAt(s)] << 10 | O[i.charCodeAt(s + 1)] << 4 | O[i.charCodeAt(s + 2)] >> 2, g[w++] = l >> 8 & 255, g[w++] = 255 & l), g;
+    }(function (i) {
+      if ((i = function (i) {
+        return i.trim ? i.trim() : i.replace(/^\s+|\s+$/g, "");
+      }(i).replace(bt, "")).length < 2) return "";
+      for (; i.length % 4 != 0;) i += "=";
+      return i;
+    }(i));
+  }
+  function _t(i, s, a, f) {
+    for (var l = 0; l < f && !(l + a >= s.length || l >= i.length); ++l) s[l + a] = i[l];
+    return l;
+  }
+  function mt(i) {
+    return !!i.constructor && "function" == typeof i.constructor.isBuffer && i.constructor.isBuffer(i);
+  }
   return {
-    "index": _0xd4c15c.index,
-    "nickname": _0x4c26ad,
-    "initialCoin": _0x5e1d3a,
-    "finalCoin": _0x5d5587,
-    "coinChange": _0x2828e3,
-    "initialCash": _0x1ffe3d,
-    "finalCash": _0x9247be,
-    "cashChange": _0x3adb83,
-    "stats": _0x389453.getTaskStats(),
-    "coinLimitExceeded": _0x389453.coinExceeded
+    encrypt: i => {
+      const s = d.enc.Utf8.parse("xeNtBVqzDc6tuNTh"),
+        a = d.enc.Utf8.parse("MAAAYAAAAAAAAABg"),
+        f = d.AES.encrypt(i, s, {
+          iv: a,
+          mode: d.mode.CBC,
+          padding: d.pad.Pkcs7
+        }),
+        l = f.ciphertext.words,
+        g = f.ciphertext.sigBytes;
+      if ("undefined" != typeof $task) {
+        const i = new ArrayBuffer(g),
+          s = new Uint8Array(i);
+        let a = 0;
+        for (let i = 0; i < l.length; i++) {
+          const f = l[i] >>> 0;
+          a < g && (s[a++] = f >> 24 & 255), a < g && (s[a++] = f >> 16 & 255), a < g && (s[a++] = f >> 8 & 255), a < g && (s[a++] = 255 & f);
+        }
+        return i;
+      }
+      {
+        const i = Buffer.allocUnsafe(g);
+        let s = 0;
+        for (let a = 0; a < l.length; a++) {
+          const f = l[a] << 0;
+          if (i.writeUInt8(f >>> 24 & 255, s++), i.writeUInt8(f >>> 16 & 255, s++), i.writeUInt8(f >>> 8 & 255, s++), i.writeUInt8(255 & f, s++), s >= g) break;
+        }
+        return i.slice(0, g);
+      }
+    }
   };
 }
-function _0x5d47d4(_0x31a1e4) {
-  if (!_0x31a1e4.length) {
-    console.log("\n没有可显示的账号信息。");
-    return;
-  }
-  const _0x48f406 = _0x31a1e4.reduce((_0x56ad8c, _0x4bf8a7) => {
-      return _0x56ad8c + (parseInt(_0x4bf8a7.initialCoin) || 0);
-    }, 0),
-    _0x3daa71 = _0x31a1e4.reduce((_0x2500c4, _0x4c7b64) => {
-      return _0x2500c4 + (parseInt(_0x4c7b64.finalCoin) || 0);
-    }, 0),
-    _0x273bc1 = _0x3daa71 - _0x48f406,
-    _0x343bb0 = _0x31a1e4.reduce((_0x11fdb1, _0x17fa6b) => {
-      return _0x11fdb1 + (parseFloat(_0x17fa6b.initialCash) || 0);
-    }, 0),
-    _0x5edbfb = _0x31a1e4.reduce((_0x47f46f, _0x5cdeda) => {
-      return _0x47f46f + (parseFloat(_0x5cdeda.finalCash) || 0);
-    }, 0),
-    _0x2767ff = _0x5edbfb - _0x343bb0;
-  let _0x1dd778 = 0,
-    _0x2ed8a9 = 0,
-    _0x2daf2a = 0;
-  _0x31a1e4.forEach(_0x5698a6 => {
-    _0x5698a6.stats && Object.values(_0x5698a6.stats).forEach(_0x44ce09 => {
-      _0x1dd778 += _0x44ce09.success + _0x44ce09.failed;
-      _0x2ed8a9 += _0x44ce09.success;
-      _0x2daf2a += _0x44ce09.totalReward;
-    });
-  });
-  const _0x2a31fa = _0x1dd778 > 0 ? (_0x2ed8a9 / _0x1dd778 * 100).toFixed(1) : "0.0",
-    _0x3a249e = _0x31a1e4.filter(_0x18f8f6 => _0x18f8f6.coinLimitExceeded).length;
-  console.log("\n\n" + "=".repeat(80));
-  console.log("|" + _0x5939f2("      快手养号任务执行结果汇总表      ", 78) + "|");
-  console.log("=".repeat(80));
-  console.log("|" + ("总账号数: " + _0x31a1e4.length).padEnd(22) + ("超过金币阈值账号: " + _0x3a249e).padEnd(22) + ("总任务数: " + _0x1dd778).padEnd(22) + ("任务成功率: " + _0x2a31fa + "%").padEnd(10) + "|");
-  console.log("|" + ("总金币变化: " + _0x273bc1).padEnd(26) + ("总金币奖励: " + _0x2daf2a).padEnd(26) + ("总余额变化: " + _0x2767ff.toFixed(2)).padEnd(24) + "|");
-  console.log("-".repeat(80));
-  const _0xcb697d = ["序号", "账号昵称", "初始金币", "最终金币", "金币变化", "初始余额", "最终余额", "余额变化"],
-    _0x1bca1f = [6, 16, 12, 12, 12, 12, 12, 12];
-  let _0x2ed48f = "|";
-  _0xcb697d.forEach((_0x2f92a7, _0xe438c) => {
-    _0x2ed48f += _0x5939f2(_0x2f92a7, _0x1bca1f[_0xe438c]) + "|";
-  });
-  console.log(_0x2ed48f);
-  let _0x129c0f = "|";
-  _0x1bca1f.forEach(_0x847a10 => {
-    _0x129c0f += "-".repeat(_0x847a10) + "|";
-  });
-  console.log(_0x129c0f);
-  _0x31a1e4.forEach(_0x4c46af => {
-    let _0x48c341 = "|";
-    _0x48c341 += _0x5939f2(_0x4c46af.index, _0x1bca1f[0]) + "|";
-    const _0x219213 = (_0x4c46af.nickname || "-") + (_0x4c46af.coinLimitExceeded ? " ⚠️" : "");
-    _0x48c341 += _0x5939f2(_0x219213.substring(0, _0x1bca1f[1] - 2), _0x1bca1f[1]) + "|";
-    _0x48c341 += _0x5939f2(_0x4c46af.initialCoin, _0x1bca1f[2]) + "|";
-    _0x48c341 += _0x5939f2(_0x4c46af.finalCoin, _0x1bca1f[3]) + "|";
-    const _0x3fe6b0 = _0x4c46af.coinChange >= 0 ? "+" + _0x4c46af.coinChange : _0x4c46af.coinChange;
-    _0x48c341 += _0x5939f2(_0x3fe6b0, _0x1bca1f[4]) + "|";
-    _0x48c341 += _0x5939f2(_0x4c46af.initialCash, _0x1bca1f[5]) + "|";
-    _0x48c341 += _0x5939f2(_0x4c46af.finalCash, _0x1bca1f[6]) + "|";
-    const _0x1537ba = _0x4c46af.cashChange >= 0 ? "+" + _0x4c46af.cashChange.toFixed(2) : _0x4c46af.cashChange.toFixed(2);
-    _0x48c341 += _0x5939f2(_0x1537ba, _0x1bca1f[7]) + "|";
-    console.log(_0x48c341);
-  });
-  console.log("=".repeat(80));
-  console.log("|" + _0x5939f2("      任务执行完成，请查看详细结果      ", 78) + "|");
-  console.log("=".repeat(80));
-}
-(async () => {
-  const _0x2d1cec = _0x5ebbb4();
-  console.log("共找到 " + _0x2d1cec.length + " 个有效账号");
-  !_0x2d1cec.length && process.exit(1);
-  const _0x6ef668 = parseInt(process.env.MAX_CONCURRENCY || process.env.CONCURRENCY || "888", 10) || 888,
-    _0x411917 = parseInt(process.env.ROUNDS || "35", 10) || 35;
-  console.log("\n防黑并发：" + _0x6ef668 + "    防黑轮数：" + _0x411917 + "\n");
-  const _0x50c746 = [];
-  await _0x1da865(_0x2d1cec, _0x6ef668, async _0x3f8a0b => {
-    console.log("\n—— 🚀 开始账号[" + _0x3f8a0b.index + "]" + (_0x3f8a0b.remark ? "（" + _0x3f8a0b.remark + "）" : "") + " ——");
-    try {
-      const _0x348393 = await _0x598c47(_0x3f8a0b, _0x411917);
-      _0x50c746.push({
-        "index": _0x3f8a0b.index,
-        "remark": _0x3f8a0b.remark || "无备注",
-        "nickname": _0x348393?.["nickname"] || this.nickname,
-        "initialCoin": _0x348393?.["initialCoin"] || 0,
-        "finalCoin": _0x348393?.["finalCoin"] || 0,
-        "coinChange": _0x348393?.["coinChange"] || 0,
-        "initialCash": _0x348393?.["initialCash"] || 0,
-        "finalCash": _0x348393?.["finalCash"] || 0,
-        "cashChange": _0x348393?.["cashChange"] || 0,
-        "stats": _0x348393?.["stats"] || {},
-        "coinLimitExceeded": _0x348393?.["coinLimitExceeded"] || false
-      });
-    } catch (_0x5c1ad1) {
-      console.log("账号[" + _0x3f8a0b.index + "] ❌ 执行异常：" + _0x5c1ad1.message);
-      _0x50c746.push({
-        "index": _0x3f8a0b.index,
-        "remark": _0x3f8a0b.remark || "无备注",
-        "nickname": this.nickname,
-        "initialCoin": 0,
-        "finalCoin": 0,
-        "coinChange": 0,
-        "initialCash": 0,
-        "finalCash": 0,
-        "cashChange": 0,
-        "error": _0x5c1ad1.message
-      });
-    }
-  });
-  _0x50c746.sort((_0x295be7, _0x49f230) => _0x295be7.index - _0x49f230.index);
-  console.log("\n全部完成。", "✅");
-  console.log("\n---------------------------------------------- 账号信息汇总 ----------------------------------------------");
-  _0x5d47d4(_0x50c746);
-})();
